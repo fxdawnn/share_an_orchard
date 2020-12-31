@@ -1,113 +1,131 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import * as React from 'react';
+import {  StyleSheet, Button, View, TouchableOpacity, SafeAreaView, Text, Alert } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import TreeMap from './TreeMap';
+import Testing from './Testing';
+import Home from './Home';
+import MapView from 'react-native-maps';
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const App: () => React$Node = () => {
+function HomeScreen({ navigation }) {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                <Text style={styles.highlight}>Share an Orchard</Text> I made some Edit.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+      <View style={{ backgroundColor: '#43AA8B', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <TouchableOpacity
+              style={styles.loginScreenButton}
+              onPress={() => navigation.navigate('Profile')}
+              underlayColor='#fff'>
+            <Text style={styles.loginText}>Share an Orchard</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+              style={styles.loginScreenButton}
+              onPress={() => navigation.navigate('Profile')}
+              underlayColor='#fff'>
+              <Text style={styles.loginText}>Add a Tree</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+              style={styles.loginScreenButton}
+              onPress={() => navigation.navigate('Profile')}
+              underlayColor='#fff'>
+              <Text style={styles.loginText}>Trade Crops</Text>
+          </TouchableOpacity>
+      </View>
   );
-};
+}
+
+function ProfileScreen({ navigation }) {
+  return (
+      <View style={{ backgroundColor: '#43AA8B', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button
+            title="Go to Notifications"
+            onPress={() => navigation.navigate('Notifications')}
+        />
+        <Button title="Go back" onPress={() => navigation.goBack()} />
+      </View>
+  );
+}
+
+function NotificationsScreen({ navigation }) {
+  return (
+      <View style={{ backgroundColor: '#43AA8B', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button
+            title="Go to Settings"
+            onPress={() => navigation.navigate('Settings')}
+        />
+        <Button title="Go back" onPress={() => navigation.goBack()} />
+      </View>
+  );
+}
+
+function SettingsScreen({ navigation }) {
+  return (
+      <View style={{ backgroundColor: '#43AA8B', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <View>
+              <TreeMap />
+          </View>
+          <Button title="Go back" onPress={() => navigation.goBack()} />
+
+
+      </View>
+  );
+}
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        marginHorizontal: 16,
+    },
+    title: {
+        textAlign: 'center',
+        marginVertical: 8,
+    },
+    fixToText: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    separator: {
+        marginVertical: 8,
+        borderBottomColor: '#737373',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+    },
+    loginScreenButton:{
+        marginRight:40,
+        marginLeft:40,
+        marginTop:10,
+        paddingTop:10,
+        paddingBottom:10,
+        backgroundColor:'#1E6738',
+        borderRadius:10,
+        borderWidth: 1,
+        borderColor: '#fff'
+    },
+    loginText:{
+        color:'#fff',
+        textAlign:'center',
+        paddingLeft : 10,
+        paddingRight : 10
+    },
 });
 
-export default App;
+const Stack = createStackNavigator();
+
+function MyStack() {
+  return (
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Notifications" component={NotificationsScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+      </Stack.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+  );
+}
+
+
