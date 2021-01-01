@@ -11,11 +11,10 @@ import {
     Image,
 } from 'react-native';
 import MapView from 'react-native-maps';
-import Testing from './Testing';
 
-const TreeMap = () => {
+export const TreeMap = (props) => {
     return (
-        <View style={styles.container}>
+        <View>
             <Text style={styles.description}>
                 Search for local crops!
             </Text>
@@ -29,16 +28,15 @@ const TreeMap = () => {
                     title='Go'
                 />
             </View>
-            <View style={styles.flowRight}>
-                <MapView
-                    initialRegion={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                    }}
-                />
-            </View>
+            <MapView
+                style={{flex: 1}}
+                initialRegion={{
+                    latitude: 37.78825,
+                    longitude: -122.4324,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                }}
+            />
 
         </View>
     );
@@ -73,4 +71,4 @@ const styles = StyleSheet.create({
         color: '#48BBEC',
     },
 });
-export default TreeMap;
+
