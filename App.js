@@ -58,7 +58,7 @@ function ProfileScreen({navigation}) {
         justifyContent: 'center',
       }}>
       <Button
-        title="Go to Notifications"
+        title="Go to Crop List"
         onPress={() => navigation.navigate('Notifications')}
       />
       <Button title="Go back" onPress={() => navigation.goBack()} />
@@ -76,7 +76,7 @@ function NotificationsScreen({navigation}) {
         justifyContent: 'center',
       }}>
       <Button
-        title="Go to Settings"
+        title="Go to Crops Map"
         onPress={() => navigation.navigate('Settings')}
       />
       <Button title="Go back" onPress={() => navigation.goBack()} />
@@ -95,11 +95,12 @@ function SettingsScreen({navigation}) {
             <TextInput
                 style={styles.searchInput}
                 placeholder='Search via Address or postcode'/>
-            <Button
-                onPress={() => {}}
-                color='#48BBEC'
-                title='Go'
-            />
+            <TouchableOpacity
+                style={styles.loginScreenButton}
+                onPress={() => navigation.navigate('Profile')}
+                underlayColor="#fff">
+                <Text style={styles.loginText}> Add a Tree </Text>
+            </TouchableOpacity>
         </View>
     </View>
   );
