@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
   },
   mainButtonText: {
-    fontFamily: 'Red Hat Display',
+    // fontFamily: 'Red Hat Display',
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 34,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
   },
   secondaryButtonText: {
-    fontFamily: 'Red Hat Display',
+    // fontFamily: 'Red Hat Display',
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 34,
