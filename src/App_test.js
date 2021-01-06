@@ -1,31 +1,36 @@
-import * as React from 'react';
+/**import React, {Component} from 'react';
 import {
-    StyleSheet,
-    Button,
-    View,
-    TouchableOpacity,
-    SafeAreaView,
-    Text,
-    Alert,
-    Fragment, TextInput,
+  StyleSheet,
+  Button,
+  View,
+  TouchableOpacity,
+  SafeAreaView,
+  Text,
+  Alert,
+  Fragment,
+  TextInput,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import TreeMap from './TreeMap';
-import Testing from './Testing';
-import Home from './Home';
+import TreeMap from '../TreeMap';
+import Testing from '../Testing';
+//import Home from '../Home';
 import MapView from 'react-native-maps';
-import Map from './Map';
+import Map from '../Map';
+import styled from 'styled-components';
+import logo from './nature_tree.png';
 
 function HomeScreen({navigation}) {
   return (
-    <View
-      style={{
-        backgroundColor: '#43AA8B',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
+      <View
+          style={{
+              backgroundColor: '#43AA8B',
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+          }}>
+    <Body>
+      <Logo source={logo} />
       <TouchableOpacity
         style={styles.loginScreenButton}
         onPress={() => navigation.navigate('Profile')}
@@ -44,7 +49,7 @@ function HomeScreen({navigation}) {
         underlayColor="#fff">
         <Text style={styles.loginText}> Trade Crops </Text>
       </TouchableOpacity>
-    </View>
+    </Body>
   );
 }
 
@@ -87,20 +92,15 @@ function NotificationsScreen({navigation}) {
 function SettingsScreen({navigation}) {
   return (
     <View>
-        <Map />
-        <View>
-            <Text style={styles.description}>
-                Search for local crops!
-            </Text>
-            <TextInput
-                style={styles.searchInput}
-                placeholder='Search via Address or postcode'/>
-            <Button
-                onPress={() => {}}
-                color='#48BBEC'
-                title='Go'
-            />
-        </View>
+      <Map />
+      <View>
+        <Text style={styles.description}>Search for local crops!</Text>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search via Address or postcode"
+        />
+        <Button onPress={() => {}} color="#48BBEC" title="Go" />
+      </View>
     </View>
   );
 }
@@ -145,6 +145,18 @@ const styles = StyleSheet.create({
 
 const Stack = createStackNavigator();
 
+const Home = () => (
+  <Body>
+    <Logo source={logo} />
+  </Body>
+);
+const Logo = styled.Image`
+  height: 217px;
+  width: 217px;
+  left: 79px;
+  top: 49px;
+`;
+
 function MyStack() {
   return (
     <Stack.Navigator>
@@ -163,3 +175,4 @@ export default function App() {
     </NavigationContainer>
   );
 }
+*/
