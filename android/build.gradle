@@ -1,5 +1,21 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+/*android {
+    defaultConfig {
+        // ...
+        // Set the properties within `local.properties` into a `Properties` class so that values
+        // within `local.properties` (e.g. Maps API key) are accessible in this file.
+        Properties properties = new Properties()
+        if (rootProject.file("local.properties").exists()) {
+            properties.load(rootProject.file("local.properties").newDataInputStream())
+        }
+
+        // Inject the Maps API key into the manifest
+        manifestPlaceholders = [ mapsApiKey : properties.getProperty("MAPS_API_KEY", "") ]
+    }
+}*/
+
+
 buildscript {
     ext {
         buildToolsVersion = "29.0.2"
