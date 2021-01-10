@@ -23,6 +23,7 @@ import styled from 'styled-components';
 import logo from './img/nature_tree.png';
 import HomeScreen from './homeScreen';
 import MapScreen from './mapScreen';
+import ShareAreaSelection from '../ShareAreaSelection';
 import Header from './header';
 
 function ProfileScreen({navigation}) {
@@ -82,7 +83,7 @@ function MyStack() {
       })}>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Notifications" component={NotificationsScreen} />
-      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Profile" component={ShareAreaSelection} />
       <Stack.Screen
         name="Map"
         component={MapScreen}
