@@ -26,6 +26,8 @@ import HomeScreen from './homeScreen';
 import MapScreen from './mapScreen';
 import ShareAreaSelection from '../ShareAreaSelection';
 import Header from './header';
+import AddTreeScreen from './AddTreeScreen';
+
 import {
   LineChart,
   BarChart,
@@ -35,7 +37,7 @@ import {
   StackedBarChart,
 } from 'react-native-chart-kit';
 
-function ProfileScreen({navigation}) {
+function CropYieldScreen({navigation}) {
   return (
     <View
       style={{
@@ -91,8 +93,8 @@ function ProfileScreen({navigation}) {
         />
       </View>
       <Button
-        title="Go to Notifications"
-        onPress={() => navigation.navigate('Notifications')}
+        title="Go to Area Selection"
+        onPress={() => navigation.navigate('ShareAreaSelection')}
       />
       <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
@@ -137,13 +139,14 @@ function MyStack() {
         ),
       })}>
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Notifications" component={ShareAreaSelection} />
-      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="ShareAreaSelection" component={ShareAreaSelection} />
+      <Stack.Screen name="CropYield" component={CropYieldScreen} />
       <Stack.Screen
         name="Map"
         component={MapScreen}
         options={{title: 'Tree Map'}}
       />
+      <Stack.Screen name="AddTree" component={AddTreeScreen} />
     </Stack.Navigator>
   );
 }

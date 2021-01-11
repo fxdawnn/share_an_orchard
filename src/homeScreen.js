@@ -10,12 +10,18 @@ function HomeScreen({navigation}) {
         style={styles.mainButton}
         onPress={() => navigation.navigate('Map')}
         underlayColor="#fff">
-        <Text style={styles.mainButtonText}>Share an Orchard</Text>
+        <Text style={styles.mainButtonText}>Crop Swap</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.secondaryButton}
-        onPress={() => navigation.navigate('Profile')}
+        style={styles.mainButton}
+        onPress={() => navigation.navigate('CropYield')}
         underlayColor="#fff">
+        <Text style={styles.secondaryButtonText}> Share an Orchard </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+          style={styles.secondaryButton}
+          onPress={() => navigation.navigate('CropYield')}
+          underlayColor="#fff">
         <Text style={styles.secondaryButtonText}> Log In/Register </Text>
       </TouchableOpacity>
       {/*<TouchableOpacity

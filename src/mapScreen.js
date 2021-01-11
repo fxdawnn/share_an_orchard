@@ -13,6 +13,7 @@ function MapScreen({navigation}) {
           placeholder="Search via Address or postcode"
         />
         <Button onPress={() => {}} color="#48BBEC" title="Go" />
+        <Button onPress={() => navigation.navigate('AddTree')} color="#48BBEC" title="Add a Tree" />
       </View>
     </View>
   );
