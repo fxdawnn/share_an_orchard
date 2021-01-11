@@ -4,7 +4,7 @@ import Map from '../Map';
 
 function MapScreen({navigation}) {
   return (
-    <View style={styles.bg}>
+    <View>
       <Map />
       <View>
         <Text style={styles.description}>Search for local crops!</Text>
@@ -20,7 +20,7 @@ function MapScreen({navigation}) {
 
 const styles = StyleSheet.create({
   bg: {
-    backgroundColor: '#43aa8b',
+    //backgroundColor: '#43aa8b',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
