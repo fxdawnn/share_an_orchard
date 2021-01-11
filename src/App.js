@@ -24,6 +24,7 @@ import logo from './img/nature_tree.png';
 import HomeScreen from './homeScreen';
 import MapScreen from './mapScreen';
 import Header from './header';
+import AddTreeScreen from './addTreeSdreen';
 
 function ProfileScreen({navigation}) {
   return (
@@ -87,6 +88,11 @@ function MyStack() {
         name="Map"
         component={MapScreen}
         options={{title: 'Tree Map'}}
+      />
+      <Stack.Screen
+        name="AddTree"
+        component={AddTreeScreen}
+        options={{title: 'Add a Tree'}}
       />
     </Stack.Navigator>
   );

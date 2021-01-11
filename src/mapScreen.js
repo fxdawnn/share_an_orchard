@@ -1,42 +1,128 @@
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
-import * as React from 'react';
+import {Button, Image, StyleSheet, Text, TextInput, View} from 'react-native';
+import React, {Component, Modal, useEffect, useState, setState} from 'react';
 import Map from '../Map';
+import searchIcon from './img/search.png';
+import {TouchableOpacity} from 'react-native-web';
+import logo from './img/nature_tree.png';
 
-function MapScreen({navigation}) {
-  return (
-    <View style={styles.bg}>
-      <Map />
-      <View>
-        <Text style={styles.description}>Search for local crops!</Text>
+export default class MapScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      filter: 'None',
+      selectionFlag: false,
+    };
+  }
+
+  editSelection() {
+    // TODO connect to map
+    // .....
+    this.setState({selectionFlag: !this.state.selectionFlag});
+  }
+
+  editFilter() {
+    // TODO connect to map
+    // ......
+    // open modal
+  }
+
+  render() {
+    return (
+      <View style={styles.bg}>
+        {/*<View style={styles.searchLine}>
+        <TouchableOpacity onPress={() => {}}>
+          <Image style={styles.searchButton} source={searchIcon} />
+        </TouchableOpacity>
         <TextInput
           style={styles.searchInput}
-          placeholder="Search via Address or postcode"
+          placeholder="Enter Address or Zip Code"
         />
-        <Button onPress={() => {}} color="#48BBEC" title="Go" />
+      </View>*/}
+        <Map />
+        <View
+          style={{
+            flexDirection: 'row',
+            margin: 12,
+          }}>
+          <TouchableOpacity
+            onPress={this.editSelection()}
+            style={styles.mapOptions}>
+            <Text style={styles.searchInput}>
+              {this.state.selectionFlag ? 'Make Selection' : 'Remove Selection'}
+            </Text>
+            }
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.editFilter()}
+            style={styles.mapOptions}>
+            <Text style={styles.searchInput}>{this.state.filter}</Text>}
+          </TouchableOpacity>
+          <Modal>
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({filter: 'Harvesting'});
+                // close modal
+              }}>
+              <Text style={styles.searchInput}>Harvesting</Text>
+            </TouchableOpacity>
+            ;
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({filter: 'Propagating'});
+                // close modal
+              }}>
+              <Text style={styles.searchInput}>Propagating</Text>
+            </TouchableOpacity>
+            ;
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({filter: 'Exchanging'});
+                // close modal
+              }}>
+              <Text style={styles.searchInput}>Exchanging</Text>
+            </TouchableOpacity>
+            ;
+          </Modal>
+          <TouchableOpacity
+            style={styles.mainButton}
+            onPress={() => this.props.navigation.navigate('AddTree')}
+            underlayColor="#fff">
+            <Text style={styles.mainButtonText}>Add a Tree</Text>
+          </TouchableOpacity>
+          <Button onPress={() => {}} color="#48BBEC" title="Go" />
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
+  mapOptions: {
+    backgroundColor: '#B2B09B',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  searchLine: {
+    borderBottomColor: '#254441',
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+  },
+  searchInput: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 24,
+    /*lineHeight: 45,*/
+    textAlign: 'center',
+    color: '#254441',
+  },
   bg: {
     backgroundColor: '#43aa8b',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    marginHorizontal: 16,
-  },
-  title: {
-    textAlign: 'center',
-    marginVertical: 8,
-  },
-  fixToText: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   mainButton: {
     /* Share an orchard */
@@ -45,7 +131,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                top: 630.17,*/
+                                                                    top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
     borderWidth: 3,
@@ -69,7 +155,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                top: 630.17,*/
+                                                                    top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -87,9 +173,9 @@ const styles = StyleSheet.create({
     color: '#254441',
   },
 
-  logo: {
-    height: 217,
-    width: 217,
+  searchButton: {
+    height: 40,
+    width: 40,
     margin: 12,
   },
   separator: {
@@ -115,5 +201,3 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
 });
-
-export default MapScreen;
