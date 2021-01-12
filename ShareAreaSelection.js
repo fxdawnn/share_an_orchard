@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -7,13 +7,17 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import socketIOClient from 'socket.io-client';
+
+const ENDPOINT = 'http://localhost:3000';
+
 import MapView, {MAP_TYPES, Polygon, ProviderPropType} from 'react-native-maps';
 
 const {width, height} = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
-const LATITUDE = 37.78825;
-const LONGITUDE = -122.4324;
+const LATITUDE = 33.99632;
+const LONGITUDE = -118.48138;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 let id = 0;
@@ -146,10 +150,13 @@ class ShareAreaSelection extends React.Component {
         <View style={styles.buttonContainer}>
           {this.state.editing && (
             <TouchableOpacity
+              style={styles.button}
               onPress={() => this.createHole()}
               style={[styles.bubble, styles.button]}>
               <Text>
-                {this.state.creatingHole ? 'Finish Hole' : 'Create Hole'}
+                {this.state.creatingHole
+                  ? 'Finish Selecting'
+                  : 'Create Area Selection'}
               </Text>
             </TouchableOpacity>
           )}
@@ -192,14 +199,31 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   button: {
-    width: 80,
-    paddingHorizontal: 12,
+    width: 150,
+    paddingHorizontal: 0,
     alignItems: 'center',
     marginHorizontal: 10,
   },
+  secondaryButton: {
+    /* Share an orchard */
+
+    position: 'relative',
+    //width: 315.77,
+    //height: 51.83,
+    /*left: 32.62,
+                    top: 630.17,*/
+    backgroundColor: '#43aa8b',
+    borderRadius: 22,
+    borderWidth: 3,
+    borderColor: '#DD5252',
+
+    /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
+  },
+
   buttonContainer: {
     flexDirection: 'row',
-    marginVertical: 20,
+    marginVertical: 10,
+    marginHorizontal: 50,
     backgroundColor: 'transparent',
   },
 });

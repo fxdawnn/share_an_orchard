@@ -19,9 +19,9 @@ function HomeScreen({navigation}) {
         <Text style={styles.secondaryButtonText}> Share an Orchard </Text>
       </TouchableOpacity>
       <TouchableOpacity
-          style={styles.secondaryButton}
-          onPress={() => navigation.navigate('CropArea')}
-          underlayColor="#fff">
+        style={styles.secondaryButton}
+        onPress={() => navigation.navigate('CropArea')}
+        underlayColor="#fff">
         <Text style={styles.secondaryButtonText}> Log In/Register </Text>
       </TouchableOpacity>
       {/*<TouchableOpacity
