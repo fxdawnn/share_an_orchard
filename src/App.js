@@ -27,6 +27,7 @@ import MapScreen from './mapScreen';
 import ShareAreaSelection from '../ShareAreaSelection';
 import Header from './header';
 import AddTreeScreen from './AddTreeScreen';
+import CropYieldScreen from './CropYieldScreen';
 
 import {
   LineChart,
@@ -36,70 +37,6 @@ import {
   ContributionGraph,
   StackedBarChart,
 } from 'react-native-chart-kit';
-
-function CropYieldScreen({navigation}) {
-  return (
-    <View
-      style={{
-        backgroundColor: '#43AA8B',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <View>
-        <Text>Yield Bezier Line Chart</Text>
-        <LineChart
-          data={{
-            labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June'],
-            datasets: [
-              {
-                data: [
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                ],
-              },
-            ],
-          }}
-          width={Dimensions.get('window').width} // from react-native
-          height={220}
-          yAxisLabel=""
-          yAxisSuffix="kg"
-          yAxisInterval={1} // optional, defaults to 1
-          chartConfig={{
-            backgroundColor: '#e26a00',
-            backgroundGradientFrom: '#fb8c00',
-            backgroundGradientTo: '#ffa726',
-            decimalPlaces: 2, // optional, defaults to 2dp
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16,
-            },
-            propsForDots: {
-              r: '6',
-              strokeWidth: '2',
-              stroke: '#ffa726',
-            },
-          }}
-          bezier
-          style={{
-            marginVertical: 8,
-            borderRadius: 16,
-          }}
-        />
-      </View>
-      <Button
-        title="Go to Area Selection"
-        onPress={() => navigation.navigate('ShareAreaSelection')}
-      />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
-  );
-}
 
 function NotificationsScreen({navigation}) {
   return (
