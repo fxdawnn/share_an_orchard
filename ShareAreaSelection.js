@@ -114,7 +114,7 @@ class ShareAreaSelection extends React.Component {
     }
 
     return (
-      <View style={styles.container}>
+      <View style={styles.mapContainer}>
         <MapView
           provider={this.props.provider}
           style={styles.map}
@@ -169,15 +169,17 @@ class ShareAreaSelection extends React.Component {
 ShareAreaSelection.propTypes = {
   provider: ProviderPropType,
 };
-
+const imageWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+  mapContainer: {
+    height: imageWidth,
+    //justifyContent: 'flex-end',
+    //alignItems: 'center',
+    //backgroundColor: '#43AA8B',
   },
   map: {
-    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    height: imageWidth,
   },
   bubble: {
     backgroundColor: 'rgba(255,255,255,0.7)',

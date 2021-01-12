@@ -28,6 +28,7 @@ import ShareAreaSelection from '../ShareAreaSelection';
 import Header from './header';
 import AddTreeScreen from './AddTreeScreen';
 import CropYieldScreen from './CropYieldScreen';
+import CropAreaScreen from './CropAreaScreen';
 
 import {
   LineChart,
@@ -76,7 +77,7 @@ function MyStack() {
         ),
       })}>
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="ShareAreaSelection" component={ShareAreaSelection} />
+      <Stack.Screen name="CropArea" component={CropAreaScreen} />
       <Stack.Screen name="CropYield" component={CropYieldScreen} />
       <Stack.Screen
         name="Map"

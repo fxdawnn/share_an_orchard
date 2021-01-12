@@ -14,13 +14,13 @@ function HomeScreen({navigation}) {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.mainButton}
-        onPress={() => navigation.navigate('CropYield')}
+        onPress={() => navigation.navigate('CropArea')}
         underlayColor="#fff">
         <Text style={styles.secondaryButtonText}> Share an Orchard </Text>
       </TouchableOpacity>
       <TouchableOpacity
           style={styles.secondaryButton}
-          onPress={() => navigation.navigate('CropYield')}
+          onPress={() => navigation.navigate('CropArea')}
           underlayColor="#fff">
         <Text style={styles.secondaryButtonText}> Log In/Register </Text>
       </TouchableOpacity>
