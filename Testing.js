@@ -29,11 +29,6 @@ export default class Testing extends Component<{}> {
             contentInsetAdjustmentBehavior="automatic"
             style={styles.scrollView}>
             <Header />
-            {global.HermesInternal == null ? null : (
-              <View style={styles.engine}>
-                <Text style={styles.footer}>Engine: Hermes</Text>
-              </View>
-            )}
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
                 <Text style={styles.sectionTitle}>Setting up the testing</Text>
@@ -74,6 +69,7 @@ const TimeGet = () => {
     <Text style={styles.sectionTitle}>Share an Orchard time{response}</Text>
   );
 };
+
 const FruitsGet = () => {
   const [Fruitresponse, setFruitResponse] = useState([]);
 
@@ -83,7 +79,7 @@ const FruitsGet = () => {
       setFruitResponse(data);
     });
   }, []);
-  // console.log(Fruitresponse[0]);
+  console.log(Fruitresponse[0]);
   return (
     <Text style={styles.sectionTitle}>
       Share an Orchard fruit{Fruitresponse.toString()}

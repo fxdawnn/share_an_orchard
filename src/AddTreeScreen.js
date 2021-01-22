@@ -7,13 +7,14 @@ import {
   View,
 } from 'react-native';
 import * as React from 'react';
-import Map from '../Map';
+import Map from './Map';
 import TreeForm from './AddTreeForm';
+import Testing from '../Testing';
 
 function AddTreeScreen({navigation}) {
   return (
     <ScrollView>
-      <Map />
+      <Testing />
       <View>
         {/*<Text style={styles.description}>Add A tree</Text>
         <TextInput style={styles.searchInput} placeholder="Tree Type" />
