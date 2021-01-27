@@ -15,25 +15,33 @@ import RegisterForm from './forms/RegisterForm';
 
 export default function LoginScreen() {
   const [loginVisible, setLoginVisible] = useState(true);
-  const Form = LoginForm ? loginVisible : RegisterForm;
+  const Form = loginVisible ? LoginForm : RegisterForm;
 
   return (
     <View>
-      <View style={{flexDirection: 'row'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          flex: 1,
+          justifyContent: 'space-around',
+          paddingBottom: 12,
+        }}>
         <TouchableHighlight
+          style={styles.button}
           onPress={() => {
             setLoginVisible(true);
           }}>
-          <Text>Login</Text>
+          <Text style={styles.text}>Login</Text>
         </TouchableHighlight>
         <TouchableHighlight
+          style={styles.button}
           onPress={() => {
             setLoginVisible(false);
           }}>
-          <Text>Register</Text>
+          <Text style={styles.text}>Register</Text>
         </TouchableHighlight>
       </View>
-      <View>
+      <View style={{paddingTop: 40}}>
         <Form />
       </View>
     </View>
@@ -41,6 +49,16 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
+  text: {textAlign: 'center'},
+
+  button: {
+    backgroundColor: '#B2B09B',
+    height: 51.83,
+    width: 100,
+    borderRadius: 22,
+    borderWidth: 2,
+    borderColor: '#254441',
+  },
   input: {
     margin: 12,
     backgroundColor: 'white',

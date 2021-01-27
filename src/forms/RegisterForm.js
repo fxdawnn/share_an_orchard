@@ -32,7 +32,7 @@ export default function LoginForm() {
             onBlur={onBlur}
             onChangeText={(text) => onChange(text)}
             value={value}
-            placeholder={'Username'}
+            placeholder={'Email'}
           />
         )}
         name="email"
