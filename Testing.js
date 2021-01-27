@@ -20,7 +20,31 @@ import socketIOClient from 'socket.io-client';
 const ENDPOINT = 'http://localhost:3000';
 
 export default class Testing extends Component<{}> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chatMessage: '',
+      chatMessages: [],
+    };
+  }
+  componentDidMount() {
+    this.socket = socketIOClient(ENDPOINT);
+    this.socket.on('chat message', (msg) => {
+      this.setState({chatMessages: [...this.state.chatMessages, msg]});
+    });
+    console.log('Testing socket' + this.state.chatMessage);
+  }
+
+  submitChatMessage() {
+    this.socket.emit('chat message', this.state.chatMessage);
+    this.setState({chatMessage: ''});
+    console.log('Testing submit msg' + this.state.chatMessage);
+  }
+
   render() {
+    const chatMessages = this.state.chatMessages.map((chatMessage) => (
+      <Text style={styles.sectionDescription}>{chatMessage} testing</Text>
+    ));
     return (
       <>
         <StatusBar barStyle="dark-content" />
@@ -32,14 +56,27 @@ export default class Testing extends Component<{}> {
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
                 <Text style={styles.sectionTitle}>Setting up the testing</Text>
-                <TimeGet />
-                <FruitsGet />
+                {/* <TimeGet />*/}
+                {/*<FruitsGet />*/}
                 <TestTree name="lemon tree" />
                 <Text style={styles.sectionDescription}>
                   <Text style={styles.highlight}>Share an Orchard</Text> let's
                   get started!
                 </Text>
               </View>
+            </View>
+            <View>
+              <View style={styles.sectionContainer}>{chatMessages}</View>
+              <TextInput
+                style={{height: 40, borderWidth: 2}}
+                autoCorrect={false}
+                value={this.state.chatMessage}
+                onSubmitEditing={() => this.submitChatMessage()}
+                onChangeText={(chatMessage) => {
+                  this.setState({chatMessage});
+                }}
+              />
+              {chatMessages}
             </View>
             <TextInput
               style={{
@@ -58,6 +95,8 @@ export default class Testing extends Component<{}> {
 
 const TimeGet = () => {
   const [response, setResponse] = useState('');
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT);
@@ -70,7 +109,7 @@ const TimeGet = () => {
   );
 };
 
-const FruitsGet = () => {
+/*const FruitsGet = () => {
   const [Fruitresponse, setFruitResponse] = useState([]);
 
   useEffect(() => {
@@ -85,7 +124,7 @@ const FruitsGet = () => {
       Share an Orchard fruit{Fruitresponse.toString()}
     </Text>
   );
-};
+};*/
 
 const TestTree = (tree) => {
   const [isAlive, setIsAlive] = useState(false);
@@ -120,6 +159,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'stretch',
+  },
+  container_chat: {
+    height: 400,
+    flex: 1,
+    backgroundColor: '#F5FCFF',
   },
   searchInput: {
     height: 36,
