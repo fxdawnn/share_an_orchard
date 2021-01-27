@@ -20,7 +20,7 @@ function HomeScreen({navigation}) {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.secondaryButton}
-        onPress={() => navigation.navigate('CropArea')}
+        onPress={() => navigation.navigate('Login')}
         underlayColor="#fff">
         <Text style={styles.secondaryButtonText}> Log In/Register </Text>
       </TouchableOpacity>

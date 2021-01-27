@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import * as React from 'react';
 import Map from '../Map';
-import TreeForm from './AddTreeForm';
+import TreeForm from './forms/AddTreeForm';
 
 function AddTreeScreen({navigation}) {
   return (
