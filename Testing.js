@@ -29,14 +29,14 @@ export default class Testing extends Component<{}> {
   }
   componentDidMount() {
     this.socket = socketIOClient(ENDPOINT);
-    this.socket.on('chat message', (msg) => {
+    this.socket.on('plant info', (msg) => {
       this.setState({chatMessages: [...this.state.chatMessages, msg]});
     });
     console.log('Testing socket' + this.state.chatMessage);
   }
 
   submitChatMessage() {
-    this.socket.emit('chat message', this.state.chatMessage);
+    this.socket.emit('plant info', this.state.chatMessage);
     this.setState({chatMessage: ''});
     console.log('Testing submit msg' + this.state.chatMessage);
   }
