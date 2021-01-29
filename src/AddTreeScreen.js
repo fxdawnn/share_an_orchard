@@ -9,12 +9,12 @@ import {
 import * as React from 'react';
 import Map from './Map';
 import TreeForm from './AddTreeForm';
-import Testing from '../Testing';
+import NewCrop from './NewCrop';
 
 function AddTreeScreen({navigation}) {
   return (
     <ScrollView>
-      <Testing />
+      <NewCrop />
       <View>
         {/*<Text style={styles.description}>Add A tree</Text>
         <TextInput style={styles.searchInput} placeholder="Tree Type" />

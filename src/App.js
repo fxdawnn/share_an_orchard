@@ -16,7 +16,7 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import TreeMap from './TreeMap';
-import Testing from '../Testing';
+import NewCrop from './NewCrop';
 import Home from '../Home';
 import MapView from 'react-native-maps';
 import Map from './Map';
