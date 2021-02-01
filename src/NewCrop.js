@@ -52,11 +52,11 @@ export default class NewCrop extends Component<{}> {
   submitCropCommonName() {
     let NewCrop = {
       common_name: this.state.CropCommonName,
-      location: this.state.a,
+      coordinates: [this.state.a.longitude, this.state.a.latitude],
     };
-    this.socket.emit('plant info', this.state.CropCommonName);
+    this.socket.emit('plant info', JSON.stringify(NewCrop));
     this.setState({CropCommonName: ''});
-    console.log('NewCrop submit msg' + NewCrop.common_name);
+    console.log('NewCrop submit location' + JSON.stringify(NewCrop));
   }
 
   render() {
