@@ -1,33 +1,8 @@
-import {
-  Button,
-  StyleSheet,
-  Text,
-  ScrollView,
-  TextInput,
-  View,
-} from 'react-native';
-import * as React from 'react';
-import Map from '../Map';
-import TreeForm from './forms/AddTreeForm';
+import {StyleSheet} from 'react-native';
 
-function AddTreeScreen({navigation}) {
-  return (
-    <ScrollView>
-      <Map />
-      <View>
-        {/*<Text style={styles.description}>Add A tree</Text>
-        <TextInput style={styles.searchInput} placeholder="Tree Type" />
-        <TextInput style={styles.searchInput} placeholder="Annual yield" />
-        <Button onPress={() => {}} color="#48BBEC" title="Go" />*/}
-        <TreeForm />
-      </View>
-    </ScrollView>
-  );
-}
-
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   bg: {
-    //backgroundColor: '#43aa8b',
+    backgroundColor: '#43aa8b',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -40,6 +15,24 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginVertical: 8,
+  },
+  smallText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 18,
+    lineHeight: 20,
+    textAlign: 'center',
+    color: '#254441',
+  },
+  titleText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 34,
+    lineHeight: 45,
+    textAlign: 'center',
+    color: '#254441',
   },
   fixToText: {
     flexDirection: 'row',
@@ -104,23 +97,4 @@ const styles = StyleSheet.create({
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
-  loginScreenButton: {
-    marginRight: 40,
-    marginLeft: 40,
-    marginTop: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
-    backgroundColor: '#1E6738',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
-  },
-  loginText: {
-    color: '#fff',
-    textAlign: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
 });
-
-export default AddTreeScreen;

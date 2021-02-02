@@ -1,6 +1,6 @@
 import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
 import * as React from 'react';
-import ShareAreaSelection from '../ShareAreaSelection';
+import ShareAreaSelection from '../../ShareAreaSelection';
 
 function CropAreaScreen({navigation}) {
     return (

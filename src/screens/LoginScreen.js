@@ -10,10 +10,10 @@ import {
   Alert,
   TouchableHighlight,
 } from 'react-native';
-import LoginForm from './forms/LoginForm';
-import RegisterForm from './forms/RegisterForm';
+import LoginForm from '../forms/LoginForm';
+import RegisterForm from '../forms/RegisterForm';
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
   const [loginVisible, setLoginVisible] = useState(true);
   const Form = loginVisible ? LoginForm : RegisterForm;
 
@@ -42,7 +42,7 @@ export default function LoginScreen() {
         </TouchableHighlight>
       </View>
       <View style={{paddingTop: 40}}>
-        <Form />
+        <Form navigation={navigation} />
       </View>
     </View>
   );
