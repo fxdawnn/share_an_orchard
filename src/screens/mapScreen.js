@@ -1,7 +1,6 @@
 import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
 import * as React from 'react';
-import Map from '../../Map';
-
+import Map from '../Map';
 function MapScreen({navigation}) {
   return (
     <View>
