@@ -13,8 +13,11 @@ import {
   Button,
   StyleSheet,
   Alert,
+  Dimensions,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
+import Slider from '@react-native-community/slider';
+import {styles} from '../styles';
 
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -23,7 +26,7 @@ export default function LoginForm({navigation}) {
   //const onSubmit = (data) => console.log(data);
   const onSubmit = (data) => {
     console.log(data);
-    navigation.navigate('AccountSetup');
+    //navigation.navigate('AccountSetup');
   };
 
   return (
@@ -58,15 +61,9 @@ export default function LoginForm({navigation}) {
         rules={{required: true}}
         defaultValue=""
       />
-
-      <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+        <View style={{marginTop: 20}}>
+            <Button title="Login" onPress={handleSubmit(onSubmit)} />
+        </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    margin: 12,
-    backgroundColor: 'white',
-  },
-});

@@ -62,6 +62,24 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#254441',
   },
+  loginScreenSwitchText: {
+      fontFamily: 'Red Hat Display',
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      fontSize: 28,
+      lineHeight: 45,
+      textAlign: 'center',
+      color: '#254441',
+  },
+  loginScreenSwitchTextActive: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 28,
+    lineHeight: 45,
+    textAlign: 'center',
+    color: '#254441',
+  },
   secondaryButton: {
     /* Share an orchard */
 
@@ -96,5 +114,19 @@ export const styles = StyleSheet.create({
     marginVertical: 8,
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  input: {
+    margin: 12,
+    backgroundColor: 'white',
+  },
+  text: {textAlign: 'center'},
+
+  button: {
+    backgroundColor: '#B2B09B',
+    height: 51.83,
+    width: 100,
+    borderRadius: 22,
+    borderWidth: 2,
+    borderColor: '#254441',
   },
 });
