@@ -13,6 +13,7 @@ import socketIOClient from 'socket.io-client';
 const ENDPOINT = 'http://localhost:3000';
 
 export default class Map extends Component {
+
   constructor(props) {
     super(props);
 
@@ -28,14 +29,31 @@ export default class Map extends Component {
         },
       ],
       fruitsResponse : [],
+      nearbyFruits:[],
     };
   }
 
   componentDidMount() {
     this.socket = socketIOClient(ENDPOINT);
-    this.socket.on('plant info', (msg) => {
-      this.setState({CropCommonNames: [...this.state.CropCommonNames, msg]});
+
+    this.socket.on('plants nearby', (msg) => {
+      var plants = JSON.parse(msg)
+      console.log('json return' + msg);
+      console.log('json return' + msg);
+      console.log('plants nearby' + plants.crops[0].common_name + ' ' + plants.crops[0].longitude +
+      ' ' + plants.crops[0].latitude);
+      this.state.nearbyFruits = plants.crops;
+      this.state.nearbyFruits.map((crop) => {
+        console.log('plant:' + crop.common_name);
+        crop.coordinates = {
+          latitude: crop.latitude,
+          longitude: crop.longitude,
+        };
+        console.log('plant coordination:' + crop.coordinates);
+      })
+      console.log('update info' + JSON.stringify(this.state.nearbyFruits));
     });
+
     this.socket.on('FruitsFromAPI', (data) => {
       this.fruitsResponse = data;
     });
@@ -64,13 +82,30 @@ export default class Map extends Component {
           zoomEnabled={true}
           //annotations={markers}
       >
-        {/*{this.fruitsResponse.map((marker) => (
+        {this.state.nearbyFruits.map((marker) => (
             <MapView.Marker
                 coordinate={marker.coordinates}
-                description={marker.description}
-                title={marker.title}
+                // description={marker.description}
+                title={marker.common_name}
             />
-        ))}*/}
+        ))}
+        {this.state.nearbyFruits.map((marker) => (
+            <MapView.Marker
+                coordinate={marker.coordinates}
+                //description={marker.description}
+                title={marker.common_name}
+            />
+        ))}
+        {
+          this.state.fruitsResponse.map((marker) => (
+              <MapView.Marker
+                  coordinate={marker.coordinates}
+                  description={marker.description}
+                  title={marker.title}
+              />
+          ))
+        }
+
       </MapView>
       <View style={styles.buttonContainer}>
         <TouchableOpacity

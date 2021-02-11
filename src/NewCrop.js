@@ -43,10 +43,11 @@ export default class NewCrop extends Component<{}> {
   }
   componentDidMount() {
     this.socket = socketIOClient(ENDPOINT);
-    this.socket.on('plant info', (msg) => {
-      this.setState({CropCommonNames: [...this.state.CropCommonNames, msg]});
+    this.socket.on('plants nearby', (msg) => {
+      let plants = JSON.parse(msg)
+      console.log('plants nearby' + plants);
     });
-    console.log('NewCrop socket' + this.state.CropCommonName);
+    // console.log('NewCrop socket' + this.state.CropCommonName);
   }
 
   submitCropCommonName() {
