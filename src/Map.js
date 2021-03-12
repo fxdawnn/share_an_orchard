@@ -13,7 +13,6 @@ import socketIOClient from 'socket.io-client';
 const ENDPOINT = 'http://localhost:3000';
 
 export default class Map extends Component {
-
   constructor(props) {
     super(props);
 
@@ -28,8 +27,8 @@ export default class Map extends Component {
           },
         },
       ],
-      fruitsResponse : [],
-      nearbyFruits:[],
+      fruitsResponse: [],
+      nearbyFruits: [],
     };
   }
 
@@ -37,11 +36,17 @@ export default class Map extends Component {
     this.socket = socketIOClient(ENDPOINT);
 
     this.socket.on('plants nearby', (msg) => {
-      var plants = JSON.parse(msg)
+      var plants = JSON.parse(msg);
       console.log('json return' + msg);
       console.log('json return' + msg);
-      console.log('plants nearby' + plants.crops[0].common_name + ' ' + plants.crops[0].longitude +
-      ' ' + plants.crops[0].latitude);
+      console.log(
+        'plants nearby' +
+          plants.crops[0].common_name +
+          ' ' +
+          plants.crops[0].longitude +
+          ' ' +
+          plants.crops[0].latitude,
+      );
       this.state.nearbyFruits = plants.crops;
       this.state.nearbyFruits.map((crop) => {
         console.log('plant:' + crop.common_name);
@@ -50,7 +55,7 @@ export default class Map extends Component {
           longitude: crop.longitude,
         };
         console.log('plant coordination:' + crop.coordinates);
-      })
+      });
       console.log('update info' + JSON.stringify(this.state.nearbyFruits));
     });
 
@@ -62,14 +67,14 @@ export default class Map extends Component {
 
   getNeighborCrops() {
     this.socket.emit('get neighbor crops', 'testing');
-  };
+  }
   render() {
     return (
       /*<View style={styles.mapContainer}>
         <FruitsGet />
       </View>*/
-    <View style={styles.mapContainer}>
-      <MapView
+      <View style={styles.mapContainer}>
+        <MapView
           style={styles.map}
           //provider={PROVIDER_GOOGLE}
           showsUserLocation
@@ -81,45 +86,40 @@ export default class Map extends Component {
           }}
           zoomEnabled={true}
           //annotations={markers}
-      >
-        {this.state.nearbyFruits.map((marker) => (
+        >
+          {this.state.nearbyFruits.map((marker) => (
             <MapView.Marker
-                coordinate={marker.coordinates}
-                // description={marker.description}
-                title={marker.common_name}
+              coordinate={marker.coordinates}
+              // description={marker.description}
+              title={marker.common_name}
             />
-        ))}
-        {this.state.nearbyFruits.map((marker) => (
+          ))}
+          {this.state.nearbyFruits.map((marker) => (
             <MapView.Marker
-                coordinate={marker.coordinates}
-                //description={marker.description}
-                title={marker.common_name}
+              coordinate={marker.coordinates}
+              //description={marker.description}
+              title={marker.common_name}
             />
-        ))}
-        {
-          this.state.fruitsResponse.map((marker) => (
-              <MapView.Marker
-                  coordinate={marker.coordinates}
-                  description={marker.description}
-                  title={marker.title}
-              />
-          ))
-        }
-
-      </MapView>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
+          ))}
+          {this.state.fruitsResponse.map((marker) => (
+            <MapView.Marker
+              coordinate={marker.coordinates}
+              description={marker.description}
+              title={marker.title}
+            />
+          ))}
+        </MapView>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
             onPress={() => this.getNeighborCrops()}
             style={[styles.bubble, styles.button]}>
-          <Text>Get Trees</Text>
-        </TouchableOpacity>
+            <Text>Get Trees</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
     );
   }
 }
-
-
 
 const FruitsGet = () => {
   const [Fruitresponse, setFruitResponse] = useState([]);
