@@ -26,6 +26,30 @@ export default class Map extends Component {
             longitude: -118.48138,
           },
         },
+        {
+          title: 'pear',
+          description: "This is Peet's pear",
+          coordinates: {
+            latitude: 33.99,
+            longitude: -118.4811,
+          },
+        },
+        {
+          title: 'peach',
+          description: "This is Parker's pear",
+          coordinates: {
+            latitude: 33.999,
+            longitude: -118.4811,
+          },
+        },
+        {
+          title: 'pumpkin',
+          description: "This is Pam's pumpkin",
+          coordinates: {
+            latitude: 33.996,
+            longitude: -118.485,
+          },
+        },
       ],
       fruitsResponse: [],
       nearbyFruits: [],
@@ -37,30 +61,46 @@ export default class Map extends Component {
 
     this.socket.on('plants nearby', (msg) => {
       var plants = JSON.parse(msg);
-      console.log('json return' + msg);
-      console.log('json return' + msg);
-      console.log(
-        'plants nearby' +
-          plants.crops[0].common_name +
-          ' ' +
-          plants.crops[0].longitude +
-          ' ' +
-          plants.crops[0].latitude,
-      );
       this.state.nearbyFruits = plants.crops;
+      this.state.markers.push({
+        title: 'Rigt agh',
+        description: 'new crops for testing add',
+        coordinates: {
+          latitude: 33.9965,
+          longitude: -118.4855,
+        },
+      });
+      var PlantsReturn = [];
       this.state.nearbyFruits.map((crop) => {
-        console.log('plant:' + crop.common_name);
+        // console.log('plant:' + crop.common_name);
         crop.coordinates = {
           latitude: crop.latitude,
           longitude: crop.longitude,
         };
-        console.log('plant coordination:' + crop.coordinates);
+        crop.title = crop.common_name;
+        PlantsReturn.push({
+          title: crop.title,
+          description: 'new crops for testing add',
+          coordinates: {
+            latitude: crop.latitude,
+            longitude: crop.longitude,
+          },
+        });
+        console.log(
+          'plant coordination:' +
+            JSON.stringify(crop.coordinates) +
+            'crop title: ' +
+            crop.common_name,
+        );
       });
-      console.log('update info' + JSON.stringify(this.state.nearbyFruits));
+      this.setState({
+        markers: PlantsReturn,
+      });
     });
 
     this.socket.on('FruitsFromAPI', (data) => {
       this.fruitsResponse = data;
+      //console.log("fruit from api" +  JSON.stringify(data))
     });
     console.log('NewCrop socket' + this.state.CropCommonName);
   }
@@ -87,27 +127,20 @@ export default class Map extends Component {
           zoomEnabled={true}
           //annotations={markers}
         >
-          {this.state.nearbyFruits.map((marker) => (
-            <MapView.Marker
-              coordinate={marker.coordinates}
-              // description={marker.description}
-              title={marker.common_name}
-            />
-          ))}
-          {this.state.nearbyFruits.map((marker) => (
+          {this.state.markers.map((marker) => (
             <MapView.Marker
               coordinate={marker.coordinates}
               //description={marker.description}
               title={marker.common_name}
             />
           ))}
-          {this.state.fruitsResponse.map((marker) => (
+          {/*{this.state.fruitsResponse.map((marker) => (
             <MapView.Marker
               coordinate={marker.coordinates}
               description={marker.description}
               title={marker.title}
             />
-          ))}
+          ))}*/}
         </MapView>
         <View style={styles.buttonContainer}>
           <TouchableOpacity

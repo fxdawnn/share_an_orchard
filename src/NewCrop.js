@@ -44,7 +44,7 @@ export default class NewCrop extends Component<{}> {
   componentDidMount() {
     this.socket = socketIOClient(ENDPOINT);
     this.socket.on('plants nearby', (msg) => {
-      let plants = JSON.parse(msg)
+      let plants = JSON.parse(msg);
       console.log('plants nearby' + plants);
     });
     // console.log('NewCrop socket' + this.state.CropCommonName);
@@ -55,6 +55,7 @@ export default class NewCrop extends Component<{}> {
       common_name: this.state.CropCommonName,
       coordinates: [this.state.a.longitude, this.state.a.latitude],
     };
+    console.log('coordination:' + this.state.a.longitude + " " + this.state.a.latitude);
     this.socket.emit('plant info', JSON.stringify(NewCrop));
     this.setState({CropCommonName: ''});
     console.log('NewCrop submit location' + JSON.stringify(NewCrop));
@@ -121,24 +122,6 @@ export default class NewCrop extends Component<{}> {
     );
   }
 }
-
-const TestTree = (tree) => {
-  const [isAlive, setIsAlive] = useState(false);
-  return (
-    <View>
-      <Text>
-        I am {tree.name}, and I am {isAlive ? 'alive' : 'dead'}!
-      </Text>
-      <Button
-        onPress={() => {
-          setIsAlive(true);
-        }}
-        disabled={isAlive}
-        title={isAlive ? 'Thank you!' : 'Water me!'}
-      />
-    </View>
-  );
-};
 
 const imageWidth = Dimensions.get('window').width;
 NewCrop.propTypes = {
