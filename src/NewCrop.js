@@ -61,6 +61,15 @@ export default class NewCrop extends Component<{}> {
     console.log('NewCrop submit location' + JSON.stringify(NewCrop));
   }
 
+  onMarkerDragEnd = (coord) => {
+    let newcoord = {
+      latitude: coord.latitude,
+      longitude: coord.longitude,
+    };
+    this.setState({a: newcoord});
+    return newcoord;
+  };
+
   render() {
     return (
       <>
@@ -84,7 +93,7 @@ export default class NewCrop extends Component<{}> {
                   onSelect={(e) => log('onSelect', e)}
                   onDrag={(e) => log('onDrag', e)}
                   onDragStart={(e) => log('onDragStart', e)}
-                  onDragEnd={(e) => log('onDragEnd', e)}
+                  onDragEnd={(e) => {console.log('dragEnd!', this.onMarkerDragEnd(e.nativeEvent.coordinate))}}
                   onPress={(e) => log('onPress', e)}
                   draggable
                 />
