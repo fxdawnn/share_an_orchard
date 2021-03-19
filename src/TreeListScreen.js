@@ -10,6 +10,7 @@ import {
 
 import socketIOClient from 'socket.io-client';
 import {useEffect, useState} from 'react';
+//import {List, ListItem} from 'react-native-elements';
 
 const ENDPOINT = 'http://localhost:3000';
 
@@ -19,6 +20,12 @@ function TreeListScreen({navigation}) {
   const socket = socketIOClient(ENDPOINT);
 
   useEffect(() => {
+    setFruitResponse([
+      {
+        title: 'TestingCrop',
+        description: 'new crops for testing add',
+      },
+    ]);
     socket.emit('get neighbor crops', 'testing');
     socket.on('FruitsFromAPI', (data) => {
       setFruitResponse(data);
@@ -63,15 +70,9 @@ function TreeListScreen({navigation}) {
   }
   return (
     <View style={styles.bg}>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={() => getNeighborCrops()}
-          style={[styles.bubble, styles.button]}>
-          <Text>Get Trees</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.container}>
+      <View style={styles.listItemContainer}>
         <FlatList
+          style={styles.listItemContainer}
           data={Fruitresponse}
           renderItem={({item}) => (
             <TouchableOpacity
@@ -101,6 +102,11 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginVertical: 8,
+  },
+  listItemContainer: {
+    padding: 10,
+    marginTop: 3,
+    backgroundColor: '#d9f9b1',
   },
   fixToText: {
     flexDirection: 'row',
@@ -154,7 +160,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#254441',
   },
-
   logo: {
     height: 217,
     width: 217,

@@ -26,6 +26,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  listItemContainer: {
+    padding: 10,
+    marginTop: 3,
+    backgroundColor: '#d9f9b1',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
