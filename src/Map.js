@@ -46,14 +46,6 @@ export default class Map extends Component {
     this.socket.on('plants nearby', (msg) => {
       var plants = JSON.parse(msg);
       this.state.nearbyFruits = plants.crops;
-      this.state.markers.push({
-        title: 'Rigt agh',
-        description: 'new crops for testing add',
-        coordinates: {
-          latitude: 33.9965,
-          longitude: -118.4855,
-        },
-      });
       var PlantsReturn = [];
       this.state.nearbyFruits.map((crop) => {
         // console.log('plant:' + crop.common_name);
@@ -92,6 +84,7 @@ export default class Map extends Component {
   getNeighborCrops() {
     this.socket.emit('get neighbor crops', 'testing');
   }
+
   render() {
     return (
       /*<View style={styles.mapContainer}>

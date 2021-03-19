@@ -19,14 +19,44 @@ function TreeListScreen({navigation}) {
   const socket = socketIOClient(ENDPOINT);
 
   useEffect(() => {
+    socket.emit('get neighbor crops', 'testing');
     socket.on('FruitsFromAPI', (data) => {
       setFruitResponse(data);
     });
     socket.on('neighbor plants', (data) => {
       setNeighbourCrops(data);
     });
+    socket.on('plants nearby', (msg) => {
+      var plants = JSON.parse(msg);
+      var nearbyFruits = plants.crops;
+      var PlantsReturn = [];
+      console.log(plants);
+      console.log('plants neaby rturn');
+      nearbyFruits.map((crop) => {
+        // console.log('plant:' + crop.common_name);
+        crop.coordinates = {
+          latitude: crop.latitude,
+          longitude: crop.longitude,
+        };
+        crop.title = crop.common_name;
+        PlantsReturn.push({
+          title: crop.title,
+          description: 'new crops for testing add',
+          coordinates: {
+            latitude: crop.latitude,
+            longitude: crop.longitude,
+          },
+        });
+        console.log(
+          'plant coordination:' +
+            JSON.stringify(crop.coordinates) +
+            'crop title: ' +
+            crop.common_name,
+        );
+      });
+      setFruitResponse(PlantsReturn);
+    });
   }, []);
-  console.log(Fruitresponse);
 
   function getNeighborCrops() {
     socket.emit('get neighbor crops', 'testing');
@@ -42,19 +72,14 @@ function TreeListScreen({navigation}) {
       </View>
       <View style={styles.container}>
         <FlatList
-          data={[
-            {key: 'Devin'},
-            {key: 'Dan'},
-            {key: 'Dominic'},
-            {key: 'Jackson'},
-            {key: 'James'},
-            {key: 'Joel'},
-            {key: 'John'},
-            {key: 'Jillian'},
-            {key: 'Jimmy'},
-            {key: 'Julie'},
-          ]}
-          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+          data={Fruitresponse}
+          renderItem={({item}) => (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('TreeInfo')}
+              style={[styles.bubble, styles.button]}>
+              <Text style={styles.item}>{item.title}</Text>
+            </TouchableOpacity>
+          )}
         />
       </View>
     </View>
