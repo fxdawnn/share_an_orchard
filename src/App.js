@@ -30,6 +30,8 @@ import AddTreeScreen from './AddTreeScreen';
 import CropYieldScreen from './CropYieldScreen';
 import CropAreaScreen from './CropAreaScreen';
 import LoginScreen from './LoginScreen';
+import TreeInfoScreen from './TreeInfoScreen';
+import TreeListScreen from './TreeListScreen';
 
 import {
   LineChart,
@@ -86,7 +88,9 @@ function MyStack() {
         options={{title: 'Tree Map'}}
       />
       <Stack.Screen name="AddTree" component={AddTreeScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="TreeInfo" component={TreeInfoScreen} />
+      <Stack.Screen name="TreeList" component={TreeListScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
     </Stack.Navigator>
   );
 }

@@ -55,7 +55,9 @@ export default class NewCrop extends Component<{}> {
       common_name: this.state.CropCommonName,
       coordinates: [this.state.a.longitude, this.state.a.latitude],
     };
-    console.log('coordination:' + this.state.a.longitude + " " + this.state.a.latitude);
+    console.log(
+      'coordination:' + this.state.a.longitude + ' ' + this.state.a.latitude,
+    );
     this.socket.emit('plant info', JSON.stringify(NewCrop));
     this.setState({CropCommonName: ''});
     console.log('NewCrop submit location' + JSON.stringify(NewCrop));
@@ -93,7 +95,12 @@ export default class NewCrop extends Component<{}> {
                   onSelect={(e) => log('onSelect', e)}
                   onDrag={(e) => log('onDrag', e)}
                   onDragStart={(e) => log('onDragStart', e)}
-                  onDragEnd={(e) => {console.log('dragEnd!', this.onMarkerDragEnd(e.nativeEvent.coordinate))}}
+                  onDragEnd={(e) => {
+                    console.log(
+                      'dragEnd!',
+                      this.onMarkerDragEnd(e.nativeEvent.coordinate),
+                    );
+                  }}
                   onPress={(e) => log('onPress', e)}
                   draggable
                 />
@@ -103,8 +110,8 @@ export default class NewCrop extends Component<{}> {
               <View style={styles.sectionContainer}>
                 {/*<TestTree name="lemon tree" />*/}
                 <Text style={styles.sectionDescription}>
-                  <Text style={styles.highlight}>Share an Orchard</Text> Input
-                  New Crop Common Name
+                  <Text style={styles.highlight}>Share an Orchard</Text> New
+                  Crop Common Name
                 </Text>
               </View>
             </View>
@@ -119,6 +126,7 @@ export default class NewCrop extends Component<{}> {
                 }}
               />
               <Button
+                style={styles.secondaryButtonText}
                 onPress={() => {
                   this.submitCropCommonName();
                 }}
@@ -177,5 +185,14 @@ const styles = StyleSheet.create({
     borderColor: '#48BBEC',
     borderRadius: 8,
     color: '#48BBEC',
+  },
+  secondaryButtonText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 34,
+    lineHeight: 45,
+    textAlign: 'center',
+    color: '#254441',
   },
 });

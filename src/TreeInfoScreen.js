@@ -1,20 +1,33 @@
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
 import * as React from 'react';
-import Map from './Map';
+import {
+  StyleSheet,
+  View,
+  Image,
+  TouchableOpacity,
+  Text,
+  FlatList,
+} from 'react-native';
+import logo from './img/nature_tree.png';
 
-function MapScreen({navigation}) {
+function TreeInfoScreen({navigation}) {
   return (
-    <View>
-      <Map />
-      <View>
-        <Text style={styles.description}>Search for local crops!</Text>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search via Address or postcode"
+    <View style={styles.bg}>
+      <View style={styles.container}>
+        <FlatList
+          data={[
+            {key: 'Devin'},
+            {key: 'Dan'},
+            {key: 'Dominic'},
+            {key: 'Jackson'},
+            {key: 'James'},
+            {key: 'Joel'},
+            {key: 'John'},
+            {key: 'Jillian'},
+            {key: 'Jimmy'},
+            {key: 'Julie'},
+          ]}
+          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
         />
-        <Button onPress={() => {}} color="#48BBEC" title="Go" />
-        <Button onPress={() => navigation.navigate('AddTree')} color="#48BBEC" title="Add a Tree" />
-        <Button onPress={() => navigation.navigate('TreeList')} color="#48BBEC" title="Tree List" />
       </View>
     </View>
   );
@@ -22,7 +35,7 @@ function MapScreen({navigation}) {
 
 const styles = StyleSheet.create({
   bg: {
-    //backgroundColor: '#43aa8b',
+    backgroundColor: '#43aa8b',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -47,7 +60,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                top: 630.17,*/
+                        top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
     borderWidth: 3,
@@ -71,7 +84,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                top: 630.17,*/
+                        top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -88,28 +101,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#254441',
   },
+
+  logo: {
+    height: 217,
+    width: 217,
+    margin: 12,
+  },
   separator: {
     marginVertical: 8,
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
-  loginScreenButton: {
-    marginRight: 40,
-    marginLeft: 40,
-    marginTop: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
-    backgroundColor: '#1E6738',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
-  },
-  loginText: {
-    color: '#fff',
-    textAlign: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
 });
 
-export default MapScreen;
+export default TreeInfoScreen;

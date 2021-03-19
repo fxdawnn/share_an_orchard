@@ -27,22 +27,6 @@ export default class Map extends Component {
           },
         },
         {
-          title: 'pear',
-          description: "This is Peet's pear",
-          coordinates: {
-            latitude: 33.99,
-            longitude: -118.4811,
-          },
-        },
-        {
-          title: 'peach',
-          description: "This is Parker's pear",
-          coordinates: {
-            latitude: 33.999,
-            longitude: -118.4811,
-          },
-        },
-        {
           title: 'pumpkin',
           description: "This is Pam's pumpkin",
           coordinates: {
@@ -155,6 +139,7 @@ export default class Map extends Component {
 }
 
 const FruitsGet = () => {
+
   const [Fruitresponse, setFruitResponse] = useState([]);
   const [NeighborCrop, setNeighbourCrops] = useState('');
   const socket = socketIOClient(ENDPOINT);
