@@ -85,4 +85,29 @@ export default function LoginScreen({navigation}) {
             setLoginVisible(false);
           }}>
           <Text style={styles.text}>Register</Text>
+        </TouchableHighlight>
+      </View>
+      <View style={{paddingTop: 40}}>
+        <Form navigation={navigation} />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  text: {textAlign: 'center'},
+
+  button: {
+    backgroundColor: '#B2B09B',
+    height: 51.83,
+    width: 100,
+    borderRadius: 22,
+    borderWidth: 2,
+    borderColor: '#254441',
+  },
+  input: {
+    margin: 12,
+    backgroundColor: 'white',
+  },
+});
         </TouchableHighlight>*/

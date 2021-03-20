@@ -26,6 +26,8 @@ import HomeScreen from './screens/homeScreen';
 import MapScreen from './screens/mapScreen';
 import ShareAreaSelection from './ShareAreaSelection';
 import Header from './header';
+import TreeInfoScreen from './TreeInfoScreen';
+import TreeListScreen from './TreeListScreen';
 import AddTreeScreen from './screens/AddTreeScreen';
 import CropYieldScreen from './screens/CropYieldScreen';
 import CropAreaScreen from './screens/CropAreaScreen';
@@ -87,6 +89,8 @@ function MyStack() {
         options={{title: 'Tree Map'}}
       />
       <Stack.Screen name="AddTree" component={AddTreeScreen} />
+      <Stack.Screen name="TreeInfo" component={TreeInfoScreen} />
+      <Stack.Screen name="TreeList" component={TreeListScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="AccountSetup" component={AccountSetupScreen} />
     </Stack.Navigator>

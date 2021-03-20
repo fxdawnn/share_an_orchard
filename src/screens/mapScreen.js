@@ -12,11 +12,8 @@ function MapScreen({navigation}) {
           placeholder="Search via Address or postcode"
         />
         <Button onPress={() => {}} color="#48BBEC" title="Go" />
-        <Button
-          onPress={() => navigation.navigate('AddTree')}
-          color="#48BBEC"
-          title="Add a Tree"
-        />
+        <Button onPress={() => navigation.navigate('AddTree')} color="#48BBEC" title="Add a Tree" />
+        <Button onPress={() => navigation.navigate('TreeList')} color="#48BBEC" title="Tree List" />
       </View>
     </View>
   );
@@ -90,7 +87,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#254441',
   },
-
   logo: {
     height: 217,
     width: 217,
