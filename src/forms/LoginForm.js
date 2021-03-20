@@ -26,7 +26,7 @@ export default function LoginForm({navigation}) {
   //const onSubmit = (data) => console.log(data);
   const onSubmit = (data) => {
     console.log(data);
-    //navigation.navigate('AccountSetup');
+    navigation.navigate('AccountSetup');
   };
 
   return (

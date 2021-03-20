@@ -1,11 +1,35 @@
-import {StyleSheet} from 'react-native';
+import * as React from 'react';
+import {
+  StyleSheet,
+  View,
+  Image,
+  TouchableOpacity,
+  Text,
+  FlatList,
+} from 'react-native';
+import logo from './img/nature_tree.png';
 
-export const styles = StyleSheet.create({
+function TreeInfoScreen({navigation}) {
+  return (
+    <View style={styles.bg}>
+      <View style={styles.container}>
+        <Text>Tree Information</Text>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
   bg: {
     backgroundColor: '#43aa8b',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  listItemContainer: {
+    padding: 10,
+    marginTop: 3,
+    backgroundColor: '#d9f9b1',
   },
   container: {
     flex: 1,
@@ -15,24 +39,6 @@ export const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginVertical: 8,
-  },
-  smallText: {
-    fontFamily: 'Red Hat Display',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: 18,
-    lineHeight: 20,
-    textAlign: 'center',
-    color: '#254441',
-  },
-  titleText: {
-    fontFamily: 'Red Hat Display',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 34,
-    lineHeight: 45,
-    textAlign: 'center',
-    color: '#254441',
   },
   fixToText: {
     flexDirection: 'row',
@@ -98,3 +104,5 @@ export const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
+
+export default TreeInfoScreen;
