@@ -1,22 +1,83 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  View,
-  Image,
-  TouchableOpacity,
-  Text,
-  FlatList,
-} from 'react-native';
-import logo from './img/nature_tree.png';
+import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
+import {Table, Rows} from 'react-native-table-component';
 
-function TreeInfoScreen({navigation}) {
-  return (
-    <View style={styles.bg}>
-      <View style={styles.container}>
-        <Text>Tree Information</Text>
-      </View>
-    </View>
-  );
+export default class TreeInfoScreen extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      tree_data: this.props.navigation.state.params.tree_data,
+    };
+  }
+
+  render() {
+    const tree = this.state.tree_data;
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    const data = [
+      ['Description', tree.description],
+      ['Species', tree.species],
+      ['Cultivar', tree.cultivar],
+      ['Difficulty', tree.difficulty],
+      ['Needs help?', tree.needs_help],
+      ['Harvest now?', tree.can_harvest],
+      ['Owner Contact', tree.user_contact_info],
+      ['Average Yield (kg/year)', tree.average_yield],
+      [
+        'Harvest Window',
+        months[tree.harvest_start - 1] + '-' + months[tree.harvest_end - 1],
+      ],
+      ['Time to Maturity (years)', tree.time_to_maturity],
+      [
+        'Propagation Window',
+        months[tree.propagation_start - 1] + '-' + months[tree.propagation_end - 1],
+      ],
+    ];
+    return (
+      <ScrollView style={styles.bg}>
+        <View style={styles.container}>
+          <Text>{tree.common_name} Information</Text>
+          <Image />
+          <Table>
+            <Rows data={data} />
+          </Table>
+        </View>
+      </ScrollView>
+    );
+    {
+      /*common_name: Sequelize.STRING,
+        longitude: Sequelize.FLOAT,
+        latitude: Sequelize.FLOAT,
+        point: {
+      type: Sequelize.GEOMETRY('POINT'),
+    }
+    //species: Sequelize.STRING,
+    //cultivar: Sequelize.STRING,
+    //time_to_maturity
+    //primary_propagation_method
+    //difficulty
+    //hardness
+    //perfered_soil_type
+    //ideal_spacing
+    //propagation_window_start
+    //propagation_window_end
+    //Average_yield
+    //viability in storage**/
+    }
+  }
 }
 
 const styles = StyleSheet.create({
@@ -51,7 +112,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
     borderWidth: 3,
@@ -75,7 +136,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -104,5 +165,3 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
-
-export default TreeInfoScreen;

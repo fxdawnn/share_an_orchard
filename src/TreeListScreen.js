@@ -76,7 +76,7 @@ function TreeListScreen({navigation}) {
           data={Fruitresponse}
           renderItem={({item}) => (
             <TouchableOpacity
-              onPress={() => navigation.navigate('TreeInfo')}
+              onPress={() => navigation.navigate('TreeInfo', {tree_data: item})}
               style={[styles.bubble, styles.button]}>
               <Text style={styles.item}>{item.title}</Text>
             </TouchableOpacity>
