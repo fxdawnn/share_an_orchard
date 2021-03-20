@@ -26,10 +26,8 @@ import HomeScreen from './screens/homeScreen';
 import MapScreen from './screens/mapScreen';
 import ShareAreaSelection from './ShareAreaSelection';
 import Header from './header';
-
 import TreeInfoScreen from './TreeInfoScreen';
 import TreeListScreen from './TreeListScreen';
-
 import AddTreeScreen from './screens/AddTreeScreen';
 import CropYieldScreen from './screens/CropYieldScreen';
 import CropAreaScreen from './screens/CropAreaScreen';

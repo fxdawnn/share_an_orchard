@@ -13,16 +13,20 @@ import {
   Button,
   StyleSheet,
   Alert,
+  Dimensions,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
+import AccountSetupScreen from '../screens/AccountSetupScreen';
+import Slider from '@react-native-community/slider';
+import {styles} from '../styles';
 
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-export default function LoginForm({navigation}) {
+export default function RegisterForm({navigation}) {
   const {control, handleSubmit, errors} = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    navigation.navigate('AccountSetup');
+    //navigation.navigate('AccountSetup');
   };
 
   return (
@@ -39,10 +43,7 @@ export default function LoginForm({navigation}) {
           />
         )}
         name="email"
-        rules={{
-          required: true,
-          pattern: {value: EMAIL_REGEX, message: 'Email is invalid'},
-        }}
+        rules={{required: true, pattern: EMAIL_REGEX}}
         defaultValue=""
       />
       <Controller
@@ -75,15 +76,71 @@ export default function LoginForm({navigation}) {
         rules={{required: true}}
         defaultValue=""
       />
-
-      <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+      <View style={{marginTop: 20}}>
+        <Text style={styles.smallText}>How much experience you got?</Text>
+      </View>
+      <Controller
+        name="Experience"
+        defaultValue=""
+        render={({onChange, value, errors}) => (
+          <Slider
+            style={{
+              width: Dimensions.get('window').width * 0.8,
+              height: 40,
+              marginLeft: 30,
+            }}
+            minimumValue={1}
+            maximumValue={4}
+            minimumTrackTintColor="#254441"
+            maximumTrackTintColor="#FFFFFF"
+            onValueChange={(sliderValue) => onChange(sliderValue)}
+            value={1}
+            step={1}
+          />
+        )}
+        rules={{required: {value: true, message: 'Experience is required'}}}
+        control={control}
+      />
+      <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
+        <Text>1</Text>
+        <Text>2</Text>
+        <Text>3</Text>
+        <Text>4</Text>
+      </View>
+      <View style={{marginTop: 20}}>
+        <Text style={styles.smallText}>How much land you got?</Text>
+      </View>
+      <Controller
+        name="Land Area Available to Grow"
+        defaultValue=""
+        render={({onChange, value, errors}) => (
+          <Slider
+            style={{
+              width: Dimensions.get('window').width * 0.8,
+              height: 40,
+              marginLeft: 30,
+            }}
+            minimumValue={1}
+            maximumValue={4}
+            minimumTrackTintColor="#254441"
+            maximumTrackTintColor="#FFFFFF"
+            onValueChange={(sliderValue) => onChange(sliderValue)}
+            value={1}
+            step={1}
+          />
+        )}
+        rules={{required: {value: true, message: 'Area is required'}}}
+        control={control}
+      />
+      <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
+        <Text>1</Text>
+        <Text>2</Text>
+        <Text>3</Text>
+        <Text>4</Text>
+      </View>
+      <View style={{marginTop: 20}}>
+        <Button title="Register" onPress={handleSubmit(onSubmit)} />
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    margin: 12,
-    backgroundColor: 'white',
-  },
-});

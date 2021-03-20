@@ -87,6 +87,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#254441',
   },
+  logo: {
+    height: 217,
+    width: 217,
+    margin: 12,
+  },
   separator: {
     marginVertical: 8,
     borderBottomColor: '#737373',
