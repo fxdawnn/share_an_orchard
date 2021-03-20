@@ -1,7 +1,6 @@
 import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
 import * as React from 'react';
-import Map from './Map';
-
+import Map from '../Map';
 function MapScreen({navigation}) {
   return (
     <View>
@@ -47,7 +46,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                top: 630.17,*/
+                    top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
     borderWidth: 3,
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                top: 630.17,*/
+                    top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,

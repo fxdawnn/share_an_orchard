@@ -1,27 +1,25 @@
-import {
-  Button,
-  StyleSheet,
-  Text,
-  ScrollView,
-  TextInput,
-  View,
-} from 'react-native';
+import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
 import * as React from 'react';
-import NewCrop from './NewCrop';
-import TreeForm from './forms/AddTreeForm';
+import ShareAreaSelection from '../ShareAreaSelection';
 
-function AddTreeScreen({navigation}) {
+function CropAreaScreen({navigation}) {
   return (
-    <ScrollView>
-      <NewCrop />
+    <View>
+      <ShareAreaSelection />
       <View>
-        {/*<Text style={styles.description}>Add A tree</Text>
-        <TextInput style={styles.searchInput} placeholder="Tree Type" />
-        <TextInput style={styles.searchInput} placeholder="Annual yield" />
-        <Button onPress={() => {}} color="#48BBEC" title="Go" />*/}
-        <TreeForm />
+        <Text style={styles.description}>Search for local crops!</Text>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search via Address or postcode"
+        />
+        <Button onPress={() => {}} color="#48BBEC" title="Go" />
+        <Button
+          onPress={() => navigation.navigate('CropYield')}
+          color="#48BBEC"
+          title="Community Yield"
+        />
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -41,10 +39,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 8,
   },
-  fixToText: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   mainButton: {
     /* Share an orchard */
 
@@ -52,7 +46,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                    top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
     borderWidth: 3,
@@ -69,21 +63,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#254441',
   },
-  secondaryButton: {
-    /* Share an orchard */
 
-    position: 'relative',
-    width: 315.77,
-    height: 51.83,
-    /*left: 32.62,
-                        top: 630.17,*/
-    backgroundColor: '#43aa8b',
-    borderRadius: 22,
-    borderWidth: 3,
-    borderColor: '#DD5252',
-
-    /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
-  },
   secondaryButtonText: {
     fontFamily: 'Red Hat Display',
     fontStyle: 'normal',
@@ -94,11 +74,6 @@ const styles = StyleSheet.create({
     color: '#254441',
   },
 
-  logo: {
-    height: 217,
-    width: 217,
-    margin: 12,
-  },
   separator: {
     marginVertical: 8,
     borderBottomColor: '#737373',
@@ -115,12 +90,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
   },
-  loginText: {
-    color: '#fff',
-    textAlign: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
 });
 
-export default AddTreeScreen;
+export default CropAreaScreen;

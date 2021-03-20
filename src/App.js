@@ -22,16 +22,19 @@ import MapView from 'react-native-maps';
 import Map from './Map';
 import styled from 'styled-components';
 import logo from './img/nature_tree.png';
-import HomeScreen from './homeScreen';
-import MapScreen from './mapScreen';
+import HomeScreen from './screens/homeScreen';
+import MapScreen from './screens/mapScreen';
 import ShareAreaSelection from './ShareAreaSelection';
 import Header from './header';
-import AddTreeScreen from './AddTreeScreen';
-import CropYieldScreen from './CropYieldScreen';
-import CropAreaScreen from './CropAreaScreen';
-import LoginScreen from './LoginScreen';
+
 import TreeInfoScreen from './TreeInfoScreen';
 import TreeListScreen from './TreeListScreen';
+
+import AddTreeScreen from './screens/AddTreeScreen';
+import CropYieldScreen from './screens/CropYieldScreen';
+import CropAreaScreen from './screens/CropAreaScreen';
+import LoginScreen from './screens/LoginScreen';
+import AccountSetupScreen from './screens/AccountSetupScreen';
 
 import {
   LineChart,
@@ -91,6 +94,7 @@ function MyStack() {
       <Stack.Screen name="TreeInfo" component={TreeInfoScreen} />
       <Stack.Screen name="TreeList" component={TreeListScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="AccountSetup" component={AccountSetupScreen} />
     </Stack.Navigator>
   );
 }

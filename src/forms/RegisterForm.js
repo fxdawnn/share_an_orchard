@@ -18,9 +18,12 @@ import {useForm, Controller} from 'react-hook-form';
 
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-export default function LoginForm() {
+export default function LoginForm({navigation}) {
   const {control, handleSubmit, errors} = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    navigation.navigate('AccountSetup');
+  };
 
   return (
     <View>
