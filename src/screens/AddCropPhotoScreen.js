@@ -3,32 +3,18 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  TextInput,
-  View,
-  TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import * as React from 'react';
 import NewCrop from '../NewCrop';
 import TreeForm from '../forms/AddTreeForm';
 import SimpleImagePicker from '../CropImagePicker';
 
-function AddTreeScreen({navigation}) {
+function AddCropPhotoScreen({navigation}) {
   return (
     <ScrollView>
-      <TouchableOpacity
-        style={styles.mainButton}
-        onPress={() => navigation.navigate('AddCropPhoto')}
-        underlayColor="#fff">
-        <Text style={styles.secondaryButtonText}> Add Crop Photo </Text>
-      </TouchableOpacity>
-      <NewCrop />
-      <View>
-        {/*<Text style={styles.description}>Add A tree</Text>
-        <TextInput style={styles.searchInput} placeholder="Tree Type" />
-        <TextInput style={styles.searchInput} placeholder="Annual yield" />
-        <Button onPress={() => {}} color="#48BBEC" title="Go" />*/}
-        <TreeForm />
-      </View>
+      <StatusBar barStyle="light-content" />
+      <SimpleImagePicker />
     </ScrollView>
   );
 }
@@ -60,7 +46,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
     borderWidth: 3,
@@ -69,6 +55,7 @@ const styles = StyleSheet.create({
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
   },
   mainButtonText: {
+    fontFamily: 'Red Hat Display',
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 34,
@@ -83,7 +70,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -130,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddTreeScreen;
+export default AddCropPhotoScreen;

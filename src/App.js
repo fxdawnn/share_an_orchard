@@ -33,6 +33,7 @@ import CropYieldScreen from './screens/CropYieldScreen';
 import CropAreaScreen from './screens/CropAreaScreen';
 import LoginScreen from './screens/LoginScreen';
 import AccountSetupScreen from './screens/AccountSetupScreen';
+import AddCropPhotoScreen from './screens/AddCropPhotoScreen';
 
 import {
   LineChart,
@@ -93,6 +94,7 @@ function MyStack() {
       <Stack.Screen name="TreeList" component={TreeListScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="AccountSetup" component={AccountSetupScreen} />
+      <Stack.Screen name="AddCropPhoto" component={AddCropPhotoScreen} />
     </Stack.Navigator>
   );
 }
