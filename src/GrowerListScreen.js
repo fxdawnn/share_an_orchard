@@ -16,7 +16,7 @@ import {List, ListItem} from 'react-native-elements';
 const ENDPOINT = 'http://localhost:3000';
 import TreeList from './TreeList';
 
-function TreeListScreen({navigation}) {
+function GrowerListScreen({navigation}) {
   const [Fruitresponse, setFruitResponse] = useState([]);
   const [NeighborCrops, setNeighbourCrops] = useState('');
   const socket = socketIOClient(ENDPOINT);
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
     borderWidth: 3,
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -189,4 +189,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TreeListScreen;
+export default GrowerListScreen;

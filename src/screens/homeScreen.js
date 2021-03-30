@@ -27,14 +27,14 @@ function HomeScreen({navigation}) {
       <View style={styles.space} />
       <TouchableOpacity
         style={styles.mainButton}
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => navigation.navigate('AddTree')}
         underlayColor="#fff">
         <Text style={styles.mainButtonText}> Add Crop </Text>
       </TouchableOpacity>
       <View style={styles.space} />
       <TouchableOpacity
         style={styles.mainButton}
-        onPress={() => navigation.navigate('Profile')}
+        onPress={() => navigation.navigate('GrowerList')}
         underlayColor="#fff">
         <Text style={styles.mainButtonText}> Get Help </Text>
       </TouchableOpacity>

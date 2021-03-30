@@ -88,6 +88,26 @@ export default class TreeList extends Component {
     this.socket.emit('get neighbor crops', 'testing');
   }
 
+  renderItem = ({item}) => (
+    /*<TouchableOpacity
+        //onPress={() => navigation.navigate('TreeInfo')}
+        style={[styles.bubble, styles.button]}>
+        <Text style={styles.item}>{item.title}</Text>
+      </TouchableOpacity>*/
+    <ListItem
+      title={
+        /* <TouchableOpacity
+              //onPress={() => navigation.navigate('TreeInfo')}
+              style={[styles.bubble]}>
+              <Text style={styles.item}>{item.title}</Text>
+            </TouchableOpacity>*/
+        'Testing title'
+      }
+      subtitle={'santa monica'}
+      bottomDivider={true}
+    />
+  );
+
   render() {
     return (
       <View style={styles.mapContainer}>
@@ -129,24 +149,13 @@ export default class TreeList extends Component {
             <Text>Crops</Text>
           </TouchableOpacity>
         </View>
-       {/* <SafeAreaView style={styles.listItemContainer}>
+        <SafeAreaView style={styles.ListContainer}>
           <FlatList
-            keyExtractor={(item, index) => index.toString()}
+            //keyExtractor={(item, index) => index.toString()}
             data={this.state.markers}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                //onPress={() => navigation.navigate('TreeInfo')}
-                style={[styles.bubble, styles.button]}>
-                <Text style={styles.item}>{item.title}</Text>
-              </TouchableOpacity>
-              /*<ListItem
-                      title={'Title Testing'}
-                      subtitle={'santa monica'}
-                      bottomDivider={true}
-                    />
-            )}
+            renderItem={this.renderItem}
           />
-        </SafeAreaView>*/}
+        </SafeAreaView>
       </View>
     );
   }
@@ -155,8 +164,12 @@ export default class TreeList extends Component {
 const imageWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   mapContainer: {
-    height: imageWidth,
+    height: imageWidth * 1.5,
     backgroundColor: '#43AA8B',
+  },
+  ListContainer: {
+    flex: 1,
+    justifyContent: 'center',
   },
   map: {
     flex: 1,
