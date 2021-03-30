@@ -10,12 +10,13 @@ import {
   StyleSheet,
   Alert,
   TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import Slider from '@react-native-community/slider';
 import {styles} from '../styles';
 
-export default function AccountSetupScreen() {
+export default function AccountSetupScreen({navigation}) {
   const {control, handleSubmit, errors} = useForm();
   const onSubmit = (data) => console.log(data);
   return (
@@ -62,7 +63,12 @@ export default function AccountSetupScreen() {
         />
       </View>
       <View style={{marginTop: 20}}>
-        <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+        <TouchableOpacity
+          style={styles.mainButton}
+          onPress={() => navigation.navigate('CropArea')}
+          underlayColor="#fff">
+          <Text style={styles.mainButtonText}> Area Selection </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

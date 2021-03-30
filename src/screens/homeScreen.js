@@ -20,7 +20,7 @@ function HomeScreen({navigation}) {
       <View style={styles.space} />
       <TouchableOpacity
         style={styles.mainButton}
-        onPress={() => navigation.navigate('CropArea')}
+        onPress={() => navigation.navigate('AccountSetup')}
         underlayColor="#fff">
         <Text style={styles.mainButtonText}> Crop Guidance </Text>
       </TouchableOpacity>

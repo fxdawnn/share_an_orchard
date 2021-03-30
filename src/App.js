@@ -113,7 +113,7 @@ export default function App() {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={MyStack} />
         <Tab.Screen name="Friends" component={GrowerListScreen} />
-        <Tab.Screen name="My Crop" component={AccountSetupScreen} />
+        <Tab.Screen name="My Crops" component={AccountSetupScreen} />
       <Tab.Screen name="Share History" component={GrowerListScreen} />
       </Tab.Navigator>
     </NavigationContainer>
