@@ -73,6 +73,16 @@ function TreeListScreen({navigation}) {
   return (
     <View>
       <TreeList />
+      <View>
+        {Fruitresponse.map((item, index) => (
+          <TouchableOpacity
+            key={item.title}
+            style={styles.ListObjContainer}
+            onPress={() => navigation.navigate('TreeInfo')}>
+            <Text style={styles.text}>{item.title}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
       {/*<View>
         <SafeAreaView style={styles.listItemContainer}>
           <FlatList
@@ -186,6 +196,12 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  ListObjContainer: {
+    padding: 10,
+    marginTop: 3,
+    backgroundColor: '#d9f9b1',
+    alignItems: 'center',
   },
 });
 

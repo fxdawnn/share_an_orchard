@@ -13,7 +13,7 @@ function HomeScreen({navigation}) {
       <View style={styles.space} />
       <TouchableOpacity
         style={styles.mainButton}
-        onPress={() => navigation.navigate('Map')}
+        onPress={() => navigation.navigate('TreeList')}
         underlayColor="#fff">
         <Text style={styles.mainButtonText}>Explore Crops</Text>
       </TouchableOpacity>

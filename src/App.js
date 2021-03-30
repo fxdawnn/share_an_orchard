@@ -94,7 +94,11 @@ function MyStack() {
       />
       <Stack.Screen name="AddTree" component={AddTreeScreen} />
       <Stack.Screen name="TreeInfo" component={TreeInfoScreen} />
-      <Stack.Screen name="TreeList" component={TreeListScreen} />
+      <Stack.Screen
+        name="TreeList"
+        component={TreeListScreen}
+        options={{title: 'Crops and Growers'}}
+      />
       <Stack.Screen
         name="GrowerList"
         component={GrowerListScreen}
@@ -114,7 +118,7 @@ export default function App() {
         <Tab.Screen name="Home" component={MyStack} />
         <Tab.Screen name="Friends" component={GrowerListScreen} />
         <Tab.Screen name="My Crops" component={AccountSetupScreen} />
-      <Tab.Screen name="Share History" component={GrowerListScreen} />
+        <Tab.Screen name="Share History" component={GrowerListScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

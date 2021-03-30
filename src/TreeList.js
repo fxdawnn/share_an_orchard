@@ -149,13 +149,23 @@ export default class TreeList extends Component {
             <Text>Crops</Text>
           </TouchableOpacity>
         </View>
-        <SafeAreaView style={styles.ListContainer}>
+        {/*<View>
+          {this.state.markers.map((item, index) => (
+            <TouchableOpacity
+              key={item.title}
+              style={styles.ListObjContainer}
+              onPress={() => this.alertItemName(item)}>
+              <Text style={styles.text}>{item.title}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>*/}
+        {/*<SafeAreaView style={styles.ListContainer}>
           <FlatList
             //keyExtractor={(item, index) => index.toString()}
             data={this.state.markers}
             renderItem={this.renderItem}
           />
-        </SafeAreaView>
+        </SafeAreaView>*/}
       </View>
     );
   }
@@ -164,7 +174,7 @@ export default class TreeList extends Component {
 const imageWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   mapContainer: {
-    height: imageWidth * 1.5,
+    height: imageWidth,
     backgroundColor: '#43AA8B',
   },
   ListContainer: {
