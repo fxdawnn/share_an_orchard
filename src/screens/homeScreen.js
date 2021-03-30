@@ -22,7 +22,7 @@ function HomeScreen({navigation}) {
         style={styles.mainButton}
         onPress={() => navigation.navigate('AccountSetup')}
         underlayColor="#fff">
-        <Text style={styles.mainButtonText}> Crop Guidance </Text>
+        <Text style={styles.mainButtonText}> Suggest Crop </Text>
       </TouchableOpacity>
       <View style={styles.space} />
       <TouchableOpacity
