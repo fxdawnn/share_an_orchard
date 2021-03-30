@@ -1,4 +1,11 @@
-import {Button, Dimensions, Text, View, StyleSheet} from 'react-native';
+import {
+  Button,
+  Dimensions,
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {LineChart} from 'react-native-chart-kit';
 import React, {useState} from 'react';
 import CheckBox from '@react-native-community/checkbox';
@@ -16,6 +23,41 @@ function CropYieldScreen({navigation}) {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
+      <View style={styles.container}>
+        <Text>For beginner grower within Santa Monica, we recommend:</Text>
+        <View style={styles.checkboxContainer}>
+          <CheckBox
+            value={isSelected}
+            onValueChange={setSelection}
+            style={styles.checkbox}
+          />
+          <Text style={styles.label}>Peach</Text>
+          <CheckBox
+            value={isBanana}
+            onValueChange={setBanana}
+            style={styles.checkbox}
+          />
+          <Text style={styles.label}>Banana</Text>
+        </View>
+        <View style={styles.checkboxContainer}>
+          <CheckBox
+            value={isPineapple}
+            onValueChange={setPineapple}
+            style={styles.checkbox}
+          />
+          <Text style={styles.label}>Pineapple</Text>
+          <CheckBox
+            value={isLemon}
+            onValueChange={setLemon}
+            style={styles.checkbox}
+          />
+          <Text style={styles.label}>Lemon</Text>
+        </View>
+        <Text>
+          Add Trees to location: {isLemon + isSelected + isPineapple + isBanana}
+        </Text>
+      </View>
+      <Text>Community Yield Chart</Text>
       <View
         style={{
           alignItems: 'center',
@@ -106,44 +148,15 @@ function CropYieldScreen({navigation}) {
             borderRadius: 16,
           }}
         />
-        <Text>Community Yield Chart</Text>
       </View>
-      <View style={styles.container}>
-        <View style={styles.checkboxContainer}>
-          <CheckBox
-            value={isSelected}
-            onValueChange={setSelection}
-            style={styles.checkbox}
-          />
-          <Text style={styles.label}>Add Peach?</Text>
-          <CheckBox
-            value={isBanana}
-            onValueChange={setBanana}
-            style={styles.checkbox}
-          />
-          <Text style={styles.label}>Add Banana?</Text>
-        </View>
-        <View style={styles.checkboxContainer}>
-          <CheckBox
-            value={isPineapple}
-            onValueChange={setPineapple}
-            style={styles.checkbox}
-          />
-          <Text style={styles.label}>Add Pineapple?</Text>
-          <CheckBox
-            value={isLemon}
-            onValueChange={setLemon}
-            style={styles.checkbox}
-          />
-          <Text style={styles.label}>Add Lemon?</Text>
-        </View>
-        <Text>Add Trees to location: {isLemon + isSelected + isPineapple + isBanana}</Text>
+      <View style={{marginTop: 20}}>
+        <TouchableOpacity
+          style={styles.mainButton}
+          onPress={() => navigation.navigate('CropArea')}
+          underlayColor="#fff">
+          <Text style={styles.mainButtonText}>Reselect Area</Text>
+        </TouchableOpacity>
       </View>
-      <Button
-        title="Go to Area Selection"
-        onPress={() => navigation.navigate('ShareAreaSelection')}
-      />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
   );
 }
@@ -163,6 +176,34 @@ const styles = StyleSheet.create({
   },
   label: {
     margin: 8,
+  },
+  mainButton: {
+    /* Share an orchard */
+
+    position: 'relative',
+    width: 275,
+    height: 51.83,
+    /*left: 32.62,
+                    top: 630.17,*/
+    backgroundColor: '#dd5252',
+    borderRadius: 22,
+    borderWidth: 2,
+    borderColor: '#254441',
+
+    /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
+  },
+  space: {
+    width: 20, // or whatever size you need
+    height: 20,
+  },
+  mainButtonText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 34,
+    lineHeight: 45,
+    textAlign: 'center',
+    color: '#254441',
   },
 });
 export default CropYieldScreen;

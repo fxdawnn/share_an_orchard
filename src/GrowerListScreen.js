@@ -16,7 +16,7 @@ import {List, ListItem} from 'react-native-elements';
 const ENDPOINT = 'http://localhost:3000';
 import TreeList from './TreeList';
 
-function TreeListScreen({navigation}) {
+function GrowerListScreen({navigation}) {
   const [Fruitresponse, setFruitResponse] = useState([]);
   const [NeighborCrops, setNeighbourCrops] = useState('');
   const socket = socketIOClient(ENDPOINT);
@@ -73,16 +73,6 @@ function TreeListScreen({navigation}) {
   return (
     <View>
       <TreeList />
-      <View>
-        {Fruitresponse.map((item, index) => (
-          <TouchableOpacity
-            key={item.title}
-            style={styles.ListObjContainer}
-            onPress={() => navigation.navigate('TreeInfo')}>
-            <Text style={styles.text}>{item.title}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
       {/*<View>
         <SafeAreaView style={styles.listItemContainer}>
           <FlatList
@@ -146,7 +136,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
     borderWidth: 3,
@@ -170,7 +160,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -197,12 +187,6 @@ const styles = StyleSheet.create({
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
-  ListObjContainer: {
-    padding: 10,
-    marginTop: 3,
-    backgroundColor: '#d9f9b1',
-    alignItems: 'center',
-  },
 });
 
-export default TreeListScreen;
+export default GrowerListScreen;

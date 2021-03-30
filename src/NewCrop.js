@@ -108,7 +108,6 @@ export default class NewCrop extends Component<{}> {
             </View>
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
-                {/*<TestTree name="lemon tree" />*/}
                 <Text style={styles.sectionDescription}>
                   <Text style={styles.highlight}>Share an Orchard</Text> New
                   Crop Common Name

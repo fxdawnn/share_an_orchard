@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import TreeMap from './TreeMap';
 import NewCrop from './NewCrop';
 import Home from '../Home';
@@ -33,6 +34,8 @@ import CropYieldScreen from './screens/CropYieldScreen';
 import CropAreaScreen from './screens/CropAreaScreen';
 import LoginScreen from './screens/LoginScreen';
 import AccountSetupScreen from './screens/AccountSetupScreen';
+import AddCropPhotoScreen from './screens/AddCropPhotoScreen';
+import GrowerListScreen from './GrowerListScreen';
 
 import {
   LineChart,
@@ -62,6 +65,7 @@ function NotificationsScreen({navigation}) {
 }
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function MyStack() {
   return (
@@ -90,9 +94,19 @@ function MyStack() {
       />
       <Stack.Screen name="AddTree" component={AddTreeScreen} />
       <Stack.Screen name="TreeInfo" component={TreeInfoScreen} />
-      <Stack.Screen name="TreeList" component={TreeListScreen} />
+      <Stack.Screen
+        name="TreeList"
+        component={TreeListScreen}
+        options={{title: 'Crops and Growers'}}
+      />
+      <Stack.Screen
+        name="GrowerList"
+        component={GrowerListScreen}
+        options={{title: 'Growers List'}}
+      />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="AccountSetup" component={AccountSetupScreen} />
+      <Stack.Screen name="AddCropPhoto" component={AddCropPhotoScreen} />
     </Stack.Navigator>
   );
 }
@@ -100,7 +114,12 @@ function MyStack() {
 export default function App() {
   return (
     <NavigationContainer>
-      <MyStack />
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={MyStack} />
+        <Tab.Screen name="Friends" component={GrowerListScreen} />
+        <Tab.Screen name="My Crops" component={AccountSetupScreen} />
+        <Tab.Screen name="Share History" component={GrowerListScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
