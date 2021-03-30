@@ -6,30 +6,38 @@ function HomeScreen({navigation}) {
   return (
     <View style={styles.bg}>
       <Image style={styles.logo} source={logo} />
+      <View style={styles}>
+        <Text style={styles.titleText}> Share an Orchard</Text>
+      </View>
+      <View style={styles.space} />
+      <View style={styles.space} />
       <TouchableOpacity
         style={styles.mainButton}
         onPress={() => navigation.navigate('Map')}
         underlayColor="#fff">
-        <Text style={styles.mainButtonText}>Crop Swap</Text>
+        <Text style={styles.mainButtonText}>Explore Crops</Text>
       </TouchableOpacity>
+      <View style={styles.space} />
       <TouchableOpacity
         style={styles.mainButton}
         onPress={() => navigation.navigate('CropArea')}
         underlayColor="#fff">
-        <Text style={styles.secondaryButtonText}> Share an Orchard </Text>
+        <Text style={styles.mainButtonText}> Crop Guidance </Text>
       </TouchableOpacity>
+      <View style={styles.space} />
       <TouchableOpacity
-        style={styles.secondaryButton}
+        style={styles.mainButton}
         onPress={() => navigation.navigate('Login')}
         underlayColor="#fff">
-        <Text style={styles.secondaryButtonText}> Log In/Register </Text>
+        <Text style={styles.mainButtonText}> Add Crop </Text>
       </TouchableOpacity>
-      {/*<TouchableOpacity
-        style={styles.loginScreenButton}
+      <View style={styles.space} />
+      <TouchableOpacity
+        style={styles.mainButton}
         onPress={() => navigation.navigate('Profile')}
         underlayColor="#fff">
-        <Text style={styles.loginText}> Trade Crops </Text>
-      </TouchableOpacity>*/}
+        <Text style={styles.mainButtonText}> Get Help </Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -58,16 +66,20 @@ const styles = StyleSheet.create({
     /* Share an orchard */
 
     position: 'relative',
-    width: 315.77,
+    width: 275,
     height: 51.83,
     /*left: 32.62,
                     top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: '#254441',
 
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
+  },
+  space: {
+    width: 20, // or whatever size you need
+    height: 20,
   },
   mainButtonText: {
     fontFamily: 'Red Hat Display',
@@ -98,6 +110,15 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 34,
+    lineHeight: 45,
+    textAlign: 'center',
+    color: '#254441',
+  },
+  titleText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 40,
     lineHeight: 45,
     textAlign: 'center',
     color: '#254441',

@@ -6,13 +6,16 @@ import {
   Image,
   Text,
   TouchableOpacity,
+  FlatList,
+  SafeAreaView,
 } from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import socketIOClient from 'socket.io-client';
+import {ListItem} from 'react-native-elements';
 
 const ENDPOINT = 'http://localhost:3000';
 
-export default class Map extends Component {
+export default class TreeList extends Component {
   constructor(props) {
     super(props);
 
@@ -87,9 +90,6 @@ export default class Map extends Component {
 
   render() {
     return (
-      /*<View style={styles.mapContainer}>
-        <FruitsGet />
-      </View>*/
       <View style={styles.mapContainer}>
         <MapView
           style={styles.map}
@@ -111,13 +111,6 @@ export default class Map extends Component {
               title={marker.common_name}
             />
           ))}
-          {/*{this.state.fruitsResponse.map((marker) => (
-            <MapView.Marker
-              coordinate={marker.coordinates}
-              description={marker.description}
-              title={marker.title}
-            />
-          ))}*/}
         </MapView>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -136,59 +129,28 @@ export default class Map extends Component {
             <Text>Crops</Text>
           </TouchableOpacity>
         </View>
+       {/* <SafeAreaView style={styles.listItemContainer}>
+          <FlatList
+            keyExtractor={(item, index) => index.toString()}
+            data={this.state.markers}
+            renderItem={({item}) => (
+              <TouchableOpacity
+                //onPress={() => navigation.navigate('TreeInfo')}
+                style={[styles.bubble, styles.button]}>
+                <Text style={styles.item}>{item.title}</Text>
+              </TouchableOpacity>
+              /*<ListItem
+                      title={'Title Testing'}
+                      subtitle={'santa monica'}
+                      bottomDivider={true}
+                    />
+            )}
+          />
+        </SafeAreaView>*/}
       </View>
     );
   }
 }
-
-const FruitsGet = () => {
-  const [Fruitresponse, setFruitResponse] = useState([]);
-  const [NeighborCrop, setNeighbourCrops] = useState('');
-  const socket = socketIOClient(ENDPOINT);
-
-  useEffect(() => {
-    socket.on('FruitsFromAPI', (data) => {
-      setFruitResponse(data);
-    });
-    socket.on('neighbor plants', (data) => {
-      setNeighbourCrops(data);
-    });
-  }, []);
-  console.log(Fruitresponse);
-
-  return (
-    <View style={styles.mapContainer}>
-      <MapView
-        style={styles.map}
-        //provider={PROVIDER_GOOGLE}
-        showsUserLocation
-        initialRegion={{
-          latitude: 33.99632,
-          longitude: -118.48138,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-        zoomEnabled={true}
-        //annotations={markers}
-      >
-        {Fruitresponse.map((marker) => (
-          <MapView.Marker
-            coordinate={marker.coordinates}
-            description={marker.description}
-            title={marker.title}
-          />
-        ))}
-      </MapView>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          //onPress={() => getNeighborCrops()}
-          style={[styles.bubble, styles.button]}>
-          <Text>Get Trees</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-};
 
 const imageWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({

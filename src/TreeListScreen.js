@@ -6,13 +6,15 @@ import {
   TouchableOpacity,
   Text,
   FlatList,
+  SafeAreaView,
 } from 'react-native';
 
 import socketIOClient from 'socket.io-client';
 import {useEffect, useState} from 'react';
-//import {List, ListItem} from 'react-native-elements';
-
+import {List, ListItem} from 'react-native-elements';
+//import logo from 'img/nature_tree.png';
 const ENDPOINT = 'http://localhost:3000';
+import TreeList from './TreeList';
 
 function TreeListScreen({navigation}) {
   const [Fruitresponse, setFruitResponse] = useState([]);
@@ -69,20 +71,26 @@ function TreeListScreen({navigation}) {
     socket.emit('get neighbor crops', 'testing');
   }
   return (
-    <View style={styles.bg}>
-      <View style={styles.listItemContainer}>
+    <View>
+      <TreeList />
+      <SafeAreaView style={styles.listItemContainer}>
         <FlatList
-          style={styles.listItemContainer}
+          keyExtractor={(item, index) => index.toString()}
           data={Fruitresponse}
           renderItem={({item}) => (
-            <TouchableOpacity
+            /*<TouchableOpacity
               onPress={() => navigation.navigate('TreeInfo')}
               style={[styles.bubble, styles.button]}>
               <Text style={styles.item}>{item.title}</Text>
-            </TouchableOpacity>
+            </TouchableOpacity>*/
+            <ListItem
+              title={'Title Testing'}
+              subtitle={'santa monica'}
+              bottomDivider={true}
+            />
           )}
         />
-      </View>
+      </SafeAreaView>
     </View>
   );
 }
@@ -104,8 +112,9 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   listItemContainer: {
-    padding: 10,
-    marginTop: 3,
+    //padding: 10,
+    flex: 1,
+    justifyContent: 'center',
     backgroundColor: '#d9f9b1',
   },
   fixToText: {
