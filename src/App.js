@@ -36,6 +36,7 @@ import LoginScreen from './screens/LoginScreen';
 import AccountSetupScreen from './screens/AccountSetupScreen';
 import AddCropPhotoScreen from './screens/AddCropPhotoScreen';
 import GrowerListScreen from './GrowerListScreen';
+import FriendListScreen from './FriendListScreen';
 
 import {
   LineChart,
@@ -104,6 +105,7 @@ function MyStack() {
         component={GrowerListScreen}
         options={{title: 'Growers List'}}
       />
+      <Stack.Screen name="Friends" component={FriendListScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="AccountSetup" component={AccountSetupScreen} />
       <Stack.Screen name="AddCropPhoto" component={AddCropPhotoScreen} />
@@ -116,9 +118,9 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Home" component={MyStack} />
-        <Tab.Screen name="Friends" component={GrowerListScreen} />
-        <Tab.Screen name="My Crops" component={AccountSetupScreen} />
-        <Tab.Screen name="Share History" component={GrowerListScreen} />
+        <Tab.Screen name="Profile" component={AccountSetupScreen} />
+        <Tab.Screen name="Friends" component={FriendListScreen} />
+        <Tab.Screen name="Fruits" component={GrowerListScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

@@ -16,9 +16,10 @@ import {List, ListItem} from 'react-native-elements';
 const ENDPOINT = 'http://localhost:3000';
 import TreeList from './TreeList';
 
-function TreeListScreen({navigation}) {
+function FriendListScreen({navigation}) {
   const [Fruitresponse, setFruitResponse] = useState([]);
   const [NeighborCrops, setNeighbourCrops] = useState('');
+  const [Friendresponse, setFriendResponse] = useState([]);
   const socket = socketIOClient(ENDPOINT);
 
   useEffect(() => {
@@ -27,6 +28,25 @@ function TreeListScreen({navigation}) {
         title: 'TestingCrop',
         description: 'new crops for testing add',
       },
+    ]);
+    setFriendResponse([
+      {
+        title: 'Pam',
+        description: 'new crops for testing add',
+      },
+      {
+        title: 'Barath',
+        description: 'that',
+      },
+      {
+        title: 'Jay',
+        description: 'that',
+      },
+      {
+        title: 'Josh',
+        description: 'that',
+      },
+
     ]);
     socket.emit('get neighbor crops', 'testing');
     socket.on('FruitsFromAPI', (data) => {
@@ -72,17 +92,8 @@ function TreeListScreen({navigation}) {
   }
   return (
     <View>
-      <TreeList />
-
-     {/* <SafeAreaView style={styles.listItemContainer}>
-        <FlatList
-          data={this.state.data}
-          renderItem={(item) => this.renderItemComponent(item)}
-        />
-      </SafeAreaView>*/}
-
       <View>
-        {Fruitresponse.map((item, index) => (
+        {Friendresponse.map((item, index) => (
           <TouchableOpacity
             key={item.title}
             style={styles.ListObjContainer}
@@ -91,6 +102,16 @@ function TreeListScreen({navigation}) {
           </TouchableOpacity>
         ))}
       </View>
+      {/* <View>
+        {Fruitresponse.map((item, index) => (
+          <TouchableOpacity
+            key={item.title}
+            style={styles.ListObjContainer}
+            onPress={() => navigation.navigate('TreeInfo')}>
+            <Text style={styles.text}>{item.title}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>*/}
     </View>
   );
 }
@@ -128,7 +149,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
     borderWidth: 3,
@@ -152,7 +173,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -187,4 +208,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TreeListScreen;
+export default FriendListScreen;

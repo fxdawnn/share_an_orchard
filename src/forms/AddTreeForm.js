@@ -31,12 +31,12 @@ export default function TreeForm() {
             onBlur={onBlur}
             onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
             selectedValue={value}>
-            <Picker.Item label={'Orange'} value={'orange'} />
-            <Picker.Item label={'Pineapple'} value={'pineapple'} />
-            <Picker.Item label={'Avocado'} value={'avocado'} />
-            <Picker.Item label={'Apple'} value={'apple'} />
-            <Picker.Item label={'Pomegranate'} value={'pomegranate'} />
-            <Picker.Item label={'Fig'} value={'fig'} />
+            <Picker.Item label={'Private'} value={'Private'} />
+            <Picker.Item label={'Friends'} value={'Friends'} />
+            <Picker.Item label={'Private'} value={'Private'} />
+            {/*<Picker.Item label={'Apple'} value={'apple'} />*/}
+            {/*<Picker.Item label={'Pomegranate'} value={'pomegranate'} />*/}
+            {/*<Picker.Item label={'Fig'} value={'fig'} />*/}
           </Picker>
         )}
         name="tree_type"
