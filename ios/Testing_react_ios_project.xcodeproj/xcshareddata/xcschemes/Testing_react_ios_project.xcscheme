@@ -83,6 +83,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "ShareAnOrchard"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

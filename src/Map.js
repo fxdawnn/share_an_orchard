@@ -10,7 +10,7 @@ import {
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import socketIOClient from 'socket.io-client';
 
-const ENDPOINT = 'http://localhost:3000';
+const ENDPOINT = 'http://10.101.10.223:3000';
 
 export default class Map extends Component {
   constructor(props) {
