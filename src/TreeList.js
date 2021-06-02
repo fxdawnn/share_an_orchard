@@ -18,7 +18,8 @@ const ENDPOINT = 'http://10.101.10.223:3000';
 export default class TreeList extends Component {
   constructor(props) {
     super(props);
-
+    this.socket = socketIOClient(ENDPOINT);
+    this.getNeighborCrops();
     this.state = {
       markers: [
         {
@@ -41,11 +42,6 @@ export default class TreeList extends Component {
       fruitsResponse: [],
       nearbyFruits: [],
     };
-  }
-
-  componentDidMount() {
-    this.socket = socketIOClient(ENDPOINT);
-
     this.socket.on('plants nearby', (msg) => {
       var plants = JSON.parse(msg);
       this.state.nearbyFruits = plants.crops;
@@ -76,6 +72,39 @@ export default class TreeList extends Component {
         markers: PlantsReturn,
       });
     });
+  }
+
+  componentDidMount() {
+    /*this.socket.on('plants nearby', (msg) => {
+      var plants = JSON.parse(msg);
+      this.state.nearbyFruits = plants.crops;
+      var PlantsReturn = [];
+      this.state.nearbyFruits.map((crop) => {
+        // console.log('plant:' + crop.common_name);
+        crop.coordinates = {
+          latitude: crop.latitude,
+          longitude: crop.longitude,
+        };
+        crop.title = crop.common_name;
+        PlantsReturn.push({
+          title: crop.title,
+          description: 'new crops for testing add',
+          coordinates: {
+            latitude: crop.latitude,
+            longitude: crop.longitude,
+          },
+        });
+        console.log(
+          'plant coordination:' +
+            JSON.stringify(crop.coordinates) +
+            'crop title: ' +
+            crop.common_name,
+        );
+      });
+      this.setState({
+        markers: PlantsReturn,
+      });
+    });*/
 
     this.socket.on('FruitsFromAPI', (data) => {
       this.fruitsResponse = data;
@@ -87,7 +116,15 @@ export default class TreeList extends Component {
   getNeighborCrops() {
     this.socket.emit('get neighbor crops', 'testing');
   }
-
+  renderItemComponent = (
+    itemData, // 1
+  ) => (
+    <TouchableOpacity>
+      {' '}
+      // 2
+      {/*<Image style={styles.image} source={{uri: itemData.item.url}} /> // 3*/}
+    </TouchableOpacity>
+  );
   renderItem = ({item}) => (
     /*<TouchableOpacity
         //onPress={() => navigation.navigate('TreeInfo')}
@@ -110,6 +147,13 @@ export default class TreeList extends Component {
 
   render() {
     return (
+      /*<SafeAreaView style={styles.listItemContainer}>
+        <FlatList
+            data={this.state.markers}
+            renderItem={(item) => this.renderItemComponent(item)}
+        />
+      </SafeAreaView>*/
+
       <View style={styles.mapContainer}>
         <MapView
           style={styles.map}
@@ -149,23 +193,6 @@ export default class TreeList extends Component {
             <Text>Crops</Text>
           </TouchableOpacity>
         </View>
-        {/*<View>
-          {this.state.markers.map((item, index) => (
-            <TouchableOpacity
-              key={item.title}
-              style={styles.ListObjContainer}
-              onPress={() => this.alertItemName(item)}>
-              <Text style={styles.text}>{item.title}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>*/}
-        {/*<SafeAreaView style={styles.ListContainer}>
-          <FlatList
-            //keyExtractor={(item, index) => index.toString()}
-            data={this.state.markers}
-            renderItem={this.renderItem}
-          />
-        </SafeAreaView>*/}
       </View>
     );
   }
