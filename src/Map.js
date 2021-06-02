@@ -10,7 +10,7 @@ import {
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import socketIOClient from 'socket.io-client';
 
-const ENDPOINT = 'http://10.101.10.223:3000';
+const ENDPOINT = 'http://192.168.1.246:3000';
 
 export default class Map extends Component {
   constructor(props) {
@@ -24,14 +24,6 @@ export default class Map extends Component {
           coordinates: {
             latitude: 33.99632,
             longitude: -118.48138,
-          },
-        },
-        {
-          title: 'pumpkin',
-          description: "This is Pam's pumpkin",
-          coordinates: {
-            latitude: 33.996,
-            longitude: -118.485,
           },
         },
       ],

@@ -9,7 +9,7 @@ import {
 
 import socketIOClient from 'socket.io-client';
 
-const ENDPOINT = 'http://10.101.10.223:3000';
+const ENDPOINT = 'http://192.168.1.246:3000';
 
 import MapView, {MAP_TYPES, Polygon, ProviderPropType} from 'react-native-maps';
 
