@@ -27,7 +27,7 @@ function log(eventName, e) {
   console.log(eventName, e.nativeEvent);
 }
 
-const ENDPOINT = 'http://localhost:3000';
+const ENDPOINT = 'http://10.101.10.223:3000';
 
 export default class NewCrop extends Component<{}> {
   constructor(props) {
