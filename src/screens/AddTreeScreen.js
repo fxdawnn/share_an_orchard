@@ -27,7 +27,7 @@ function AddTreeScreen({navigation}) {
         <TextInput style={styles.searchInput} placeholder="Tree Type" />
         <TextInput style={styles.searchInput} placeholder="Annual yield" />
         <Button onPress={() => {}} color="#48BBEC" title="Go" />*/}
-        <TreeForm />
+        {/*<TreeForm />*/}
       </View>
     </ScrollView>
   );
