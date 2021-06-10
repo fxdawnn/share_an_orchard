@@ -38,13 +38,13 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>$This app would like to use your camera</string>
+	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use your microphone (for videos)</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>$This app would like to save photos to your photo gallery</string>
+	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$This app would like access to your photo gallery</string>
 	<key>UIAppFonts</key>
