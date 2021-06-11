@@ -55,6 +55,8 @@ function TreeListScreen({navigation}) {
             latitude: crop.latitude,
             longitude: crop.longitude,
           },
+          option: crop.option,
+          privacy: crop.privacy,
         });
         console.log(
           'plant coordination:' +
@@ -86,7 +88,7 @@ function TreeListScreen({navigation}) {
           <TouchableOpacity
             key={item.title}
             style={styles.ListObjContainer}
-            onPress={() => navigation.navigate('TreeInfo')}>
+            onPress={() => navigation.navigate('TreeInfo', {item})}>
             <Text style={styles.text}>{item.title}</Text>
           </TouchableOpacity>
         ))}
