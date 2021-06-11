@@ -41,15 +41,22 @@ function TreeInfoScreen({route, navigation}) {
       </View>
       <View>
         <View style={styles.bodyContent}>
-          <Text style={styles.info}> {item.privacy} / {item.option}</Text>
+          <Text style={styles.info}>
+            {' '}
+            {item.privacy} / {item.option}
+          </Text>
           <Text style={styles.description}>
             Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum
             electram expetendis, omittam deseruisse consequuntur ius an,
           </Text>
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Comments')}
+            style={styles.buttonContainer}>
             <Text>See comments</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => navigation.navigate('AddCropPhoto')}>
             <Text>Sharing proof phtots</Text>
           </TouchableOpacity>
         </View>
@@ -84,15 +91,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   buttonContainer: {
-    marginTop:10,
-    height:45,
+    marginTop: 10,
+    height: 45,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom:20,
-    width:250,
-    borderRadius:30,
-    backgroundColor: "#00BFFF",
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 30,
+    backgroundColor: '#00BFFF',
   },
   secondaryButton: {
     /* Share an orchard */
@@ -199,25 +206,24 @@ const styles = StyleSheet.create({
 
   bodyContent: {
     alignItems: 'center',
-    padding:30,
+    padding: 30,
   },
-  name:{
-    fontSize:28,
-    color: "#696969",
-    fontWeight: "600",
+  name: {
+    fontSize: 28,
+    color: '#696969',
+    fontWeight: '600',
   },
-  info:{
-    fontSize:16,
-    color: "#00BFFF",
-    marginTop:10,
+  info: {
+    fontSize: 16,
+    color: '#00BFFF',
+    marginTop: 10,
   },
-  description:{
-    fontSize:16,
-    color: "#696969",
-    marginTop:10,
+  description: {
+    fontSize: 16,
+    color: '#696969',
+    marginTop: 10,
     textAlign: 'center',
   },
-
 });
 
 export default TreeInfoScreen;
