@@ -99,6 +99,28 @@ export default function SimpleImagePicker() {
         console.log('type -> ', response.type);
         console.log('fileName -> ', response.fileName);
         setFilePath(response);
+        const data = new FormData();
+        data.append('name', 'avatar');
+        data.append('fileData', {
+          uri: response.uri,
+          type: response.type,
+          name: response.fileName,
+        });
+        const config = {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+          },
+          body: data,
+        };
+        fetch('http://localhost:8000/' + 'upload', config)
+          .then((checkStatusAndGetJSONResponse) => {
+            console.log(checkStatusAndGetJSONResponse);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       });
     }
   };
@@ -139,9 +161,7 @@ export default function SimpleImagePicker() {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <Text style={styles.titleText}>
-        Choose or take photos of the crops
-      </Text>
+      <Text style={styles.titleText}>Choose or take photos of the crops</Text>
       <View style={styles.container}>
         {/* <Image
           source={{
@@ -203,9 +223,38 @@ const styles = StyleSheet.create({
     fontFamily: 'Red Hat Display',
     fontStyle: 'normal',
     fontWeight: 'normal',
-    fontSize: 34,
+    fontSize: 30,
     lineHeight: 45,
     textAlign: 'center',
     color: '#254441',
+  },
+  container: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  titleText: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    paddingVertical: 20,
+  },
+  textStyle: {
+    padding: 10,
+    color: 'black',
+    textAlign: 'center',
+  },
+  buttonStyle: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 5,
+    marginVertical: 10,
+    width: 250,
+  },
+  imageStyle: {
+    width: 200,
+    height: 200,
+    margin: 5,
   },
 });
