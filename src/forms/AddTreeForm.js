@@ -23,7 +23,7 @@ export default function TreeForm() {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <View>
+    <ScrollView>
       <Controller
         render={({onChange, onBlur, value}) => (
           <Picker
@@ -33,7 +33,7 @@ export default function TreeForm() {
             selectedValue={value}>
             <Picker.Item label={'Private'} value={'Private'} />
             <Picker.Item label={'Friends'} value={'Friends'} />
-            <Picker.Item label={'Private'} value={'Private'} />
+            <Picker.Item label={'Public'} value={'Private'} />
             {/*<Picker.Item label={'Apple'} value={'apple'} />*/}
             {/*<Picker.Item label={'Pomegranate'} value={'pomegranate'} />*/}
             {/*<Picker.Item label={'Fig'} value={'fig'} />*/}
@@ -92,7 +92,7 @@ export default function TreeForm() {
       />*/}
 
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
-    </View>
+    </ScrollView>
   );
 }
 

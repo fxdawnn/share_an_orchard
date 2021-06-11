@@ -12,9 +12,11 @@ import {
   SafeAreaView,
   ScrollView,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import socketIOClient from 'socket.io-client';
 import MapView, {Marker, ProviderPropType} from 'react-native-maps';
+import RNPickerSelect from 'react-native-picker-select';
 
 const {width, height} = Dimensions.get('window');
 
@@ -39,6 +41,10 @@ export default class NewCrop extends Component<{}> {
         latitude: LATITUDE,
         longitude: LONGITUDE,
       },
+      CropPrivacy: '', // Private, Public or
+      CropOption: '', // Exchange or fREE
+      CropAvailability: '',
+      CropEmail: '',
     };
   }
   componentDidMount() {
@@ -54,6 +60,9 @@ export default class NewCrop extends Component<{}> {
     let NewCrop = {
       common_name: this.state.CropCommonName,
       coordinates: [this.state.a.longitude, this.state.a.latitude],
+      privacy: this.state.CropPrivacy,
+      option: this.state.CropOption,
+      availability: this.state.CropAvailability,
     };
     console.log(
       'coordination:' + this.state.a.longitude + ' ' + this.state.a.latitude,
@@ -109,28 +118,151 @@ export default class NewCrop extends Component<{}> {
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
                 <Text style={styles.sectionDescription}>
-                  <Text style={styles.highlight}>Share an Orchard</Text> New
-                  Crop Common Name
+                  <Text style={styles.highlight}>
+                    Crop Sharing Object Options
+                  </Text>
                 </Text>
+              </View>
+              <View style={styles.sectionContainer}>
+                <RNPickerSelect
+                  style={{
+                    ...pickerSelectStyles,
+                    iconContainer: {
+                      top: 20,
+                      right: 10,
+                    },
+                    placeholder: {
+                      color: 'purple',
+                      fontSize: 12,
+                      fontWeight: 'bold',
+                    },
+                  }}
+                  onValueChange={(value) => {
+                    this.state.CropPrivacy = value;
+                    console.log(this.state.CropPrivacy);
+                  }}
+                  placeholder={{
+                    label: 'Select a Sharing Objects...',
+                    value: null,
+                  }}
+                  items={[
+                    {label: 'Public', value: 'Public'},
+                    {label: 'Friends', value: 'Friends'},
+                    {label: 'Private', value: 'Private'},
+                  ]}
+                  Icon={() => {
+                    return (
+                      <View
+                        style={{
+                          backgroundColor: 'transparent',
+                          borderTopWidth: 10,
+                          borderTopColor: 'gray',
+                          borderRightWidth: 10,
+                          borderRightColor: 'transparent',
+                          borderLeftWidth: 10,
+                          borderLeftColor: 'transparent',
+                          width: 0,
+                          height: 0,
+                        }}
+                      />
+                    );
+                  }}
+                />
+              </View>
+            </View>
+            <View style={styles.body}>
+              <View style={styles.sectionContainer}>
+                <Text style={styles.sectionDescription}>
+                  <Text style={styles.highlight}>
+                    Crop Sharing Method Options
+                  </Text>
+                </Text>
+              </View>
+              <View style={styles.sectionContainer}>
+                <RNPickerSelect
+                  style={{
+                    ...pickerSelectStyles,
+                    iconContainer: {
+                      top: 20,
+                      right: 10,
+                    },
+                    placeholder: {
+                      color: 'purple',
+                      fontSize: 12,
+                      fontWeight: 'bold',
+                    },
+                  }}
+                  onValueChange={(value) => {
+                    this.state.CropOption = value;
+                    console.log(this.state.CropOption);
+                  }}
+                  placeholder={{
+                    label: 'Select a Sharing Method...',
+                    value: null,
+                  }}
+                  items={[
+                    {label: 'Exchange', value: 'Exchange'},
+                    {label: 'Free', value: 'Free'},
+                  ]}
+                  Icon={() => {
+                    return (
+                      <View
+                        style={{
+                          backgroundColor: 'transparent',
+                          borderTopWidth: 10,
+                          borderTopColor: 'gray',
+                          borderRightWidth: 10,
+                          borderRightColor: 'transparent',
+                          borderLeftWidth: 10,
+                          borderLeftColor: 'transparent',
+                          width: 0,
+                          height: 0,
+                        }}
+                      />
+                    );
+                  }}
+                />
               </View>
             </View>
             <View>
+              <View style={styles.body}>
+                <View style={styles.sectionContainer}>
+                  <Text style={styles.sectionDescription}>
+                    <Text style={styles.highlight}>Crop Common Name</Text>
+                  </Text>
+                </View>
+              </View>
               <TextInput
-                style={{height: 40, borderWidth: 2}}
+                style={{height: 40, borderWidth: 1}}
                 autoCorrect={false}
                 value={this.state.CropCommonName}
-                onSubmitEditing={() => this.submitCropCommonName()}
+                //onSubmitEditing={() => this.submitCropCommonName()}
                 onChangeText={(CropCommonName) => {
                   this.setState({CropCommonName});
                 }}
               />
-              <Button
-                style={styles.secondaryButtonText}
-                onPress={() => {
-                  this.submitCropCommonName();
+              <View style={styles.body}>
+                <View style={styles.sectionContainer}>
+                  <Text style={styles.sectionDescription}>
+                    <Text style={styles.highlight}>Availability</Text>
+                  </Text>
+                </View>
+              </View>
+              <TextInput
+                style={{height: 40, borderWidth: 1}}
+                autoCorrect={false}
+                value={this.state.CropAvailability}
+                //onSubmitEditing={() => this.submitCropCommonName()}
+                onChangeText={(CropAvailability) => {
+                  this.setState({CropAvailability});
                 }}
-                title={'Add Crop'}
               />
+              <TouchableOpacity
+                style={styles.secondaryButton}
+                onPress={() => this.submitCropCommonName()}
+                underlayColor="#fff">
+                <Text style={styles.secondaryButtonText}> Add Crop </Text>
+              </TouchableOpacity>
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -170,6 +302,21 @@ const styles = StyleSheet.create({
     height: imageWidth,
     backgroundColor: '#43AA8B',
   },
+  secondaryButton: {
+    /* Share an orchard */
+
+    position: 'relative',
+    width: 315.77,
+    height: 51.83,
+    /*left: 32.62,
+                    top: 630.17,*/
+    backgroundColor: '#43aa8b',
+    borderRadius: 22,
+    borderWidth: 3,
+    borderColor: '#DD5252',
+
+    /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
+  },
   map: {
     flex: 1,
     height: imageWidth,
@@ -189,6 +336,51 @@ const styles = StyleSheet.create({
     fontFamily: 'Red Hat Display',
     fontStyle: 'normal',
     fontWeight: 'normal',
+    fontSize: 34,
+    lineHeight: 45,
+    textAlign: 'center',
+    color: '#254441',
+  },
+});
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'purple',
+    borderRadius: 8,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  mainButton: {
+    /* Share an orchard */
+
+    position: 'relative',
+    width: 315.77,
+    height: 51.83,
+    /*left: 32.62,
+                        top: 630.17,*/
+    backgroundColor: '#dd5252',
+    borderRadius: 22,
+    borderWidth: 3,
+    borderColor: '#254441',
+
+    /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
+  },
+  mainButtonText: {
+    fontStyle: 'normal',
+    fontWeight: 'bold',
     fontSize: 34,
     lineHeight: 45,
     textAlign: 'center',

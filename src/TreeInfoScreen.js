@@ -14,13 +14,14 @@ import {
 import logo from './img/nature_tree.png';
 import {Card, Icon} from 'react-native-elements';
 
-function TreeInfoScreen({navigation}) {
+function TreeInfoScreen({route, navigation}) {
+  const {item} = route.params;
   return (
     <View style={styles.bg}>
       <View style={styles.headerContainer}>
         <View style={styles.headerColumn}>
           <Image style={styles.userImage} source={{uri: logo}} />
-          <Text style={styles.userNameText}>{'Apple'}</Text>
+          <Text style={styles.userNameText}>{item.title}</Text>
           <View style={styles.userAddressRow}>
             <View>
               <Icon
@@ -36,6 +37,28 @@ function TreeInfoScreen({navigation}) {
               </Text>
             </View>
           </View>
+        </View>
+      </View>
+      <View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.info}>
+            {' '}
+            {item.privacy} / {item.option}
+          </Text>
+          <Text style={styles.description}>
+            Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum
+            electram expetendis, omittam deseruisse consequuntur ius an,
+          </Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Comments')}
+            style={styles.buttonContainer}>
+            <Text>See comments</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => navigation.navigate('AddCropPhoto')}>
+            <Text>Sharing proof phtots</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -67,29 +90,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  mainButton: {
-    /* Share an orchard */
-
-    position: 'relative',
-    width: 315.77,
-    height: 51.83,
-    /*left: 32.62,
-                        top: 630.17,*/
-    backgroundColor: '#dd5252',
-    borderRadius: 22,
-    borderWidth: 3,
-    borderColor: '#254441',
-
-    /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
-  },
-  mainButtonText: {
-    fontFamily: 'Red Hat Display',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 34,
-    lineHeight: 45,
-    textAlign: 'center',
-    color: '#254441',
+  buttonContainer: {
+    marginTop: 10,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 30,
+    backgroundColor: '#00BFFF',
   },
   secondaryButton: {
     /* Share an orchard */
@@ -160,9 +170,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 26,
   },
-  scroll: {
-    backgroundColor: '#FFF',
-  },
   telContainer: {
     backgroundColor: '#FFF',
     flex: 1,
@@ -194,6 +201,27 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     paddingBottom: 8,
+    textAlign: 'center',
+  },
+
+  bodyContent: {
+    alignItems: 'center',
+    padding: 30,
+  },
+  name: {
+    fontSize: 28,
+    color: '#696969',
+    fontWeight: '600',
+  },
+  info: {
+    fontSize: 16,
+    color: '#00BFFF',
+    marginTop: 10,
+  },
+  description: {
+    fontSize: 16,
+    color: '#696969',
+    marginTop: 10,
     textAlign: 'center',
   },
 });

@@ -8,20 +8,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import * as React from 'react';
-import NewCrop from '../NewCrop';
-import TreeForm from '../forms/AddTreeForm';
-import SimpleImagePicker from '../CropImagePicker';
+import CropComments from './CropComment';
 
-function AddTreeScreen({navigation}) {
+function CommentsScreen({navigation}) {
   return (
     <ScrollView>
-      <TouchableOpacity
-        style={styles.mainButton}
-        onPress={() => navigation.navigate('AddCropPhoto')}
-        underlayColor="#fff">
-        <Text style={styles.secondaryButtonText}> Add Crop Photo </Text>
-      </TouchableOpacity>
-      <NewCrop />
+      <CropComments />
       <View>
         {/*<Text style={styles.description}>Add A tree</Text>
         <TextInput style={styles.searchInput} placeholder="Tree Type" />
@@ -60,7 +52,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
     borderWidth: 3,
@@ -83,7 +75,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -130,4 +122,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddTreeScreen;
+export default CommentsScreen;

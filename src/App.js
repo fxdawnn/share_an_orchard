@@ -37,6 +37,7 @@ import AccountSetupScreen from './screens/AccountSetupScreen';
 import AddCropPhotoScreen from './screens/AddCropPhotoScreen';
 import GrowerListScreen from './GrowerListScreen';
 import FriendListScreen from './FriendListScreen';
+import CommentsScreen from './CommentsScreen';
 
 import {
   LineChart,
@@ -109,6 +110,7 @@ function MyStack() {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="AccountSetup" component={AccountSetupScreen} />
       <Stack.Screen name="AddCropPhoto" component={AddCropPhotoScreen} />
+      <Stack.Screen name="Comments" component={CommentsScreen} />
     </Stack.Navigator>
   );
 }

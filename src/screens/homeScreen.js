@@ -20,7 +20,7 @@ function HomeScreen({navigation}) {
       <View style={styles.space} />
       <TouchableOpacity
         style={styles.mainButton}
-        onPress={() => navigation.navigate('FriendListScreen')}
+        onPress={() => navigation.navigate('Friends')}
         underlayColor="#fff">
         <Text style={styles.mainButtonText}> Find Mentor </Text>
       </TouchableOpacity>
