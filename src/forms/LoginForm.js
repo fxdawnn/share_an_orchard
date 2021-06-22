@@ -14,6 +14,7 @@ import {
   StyleSheet,
   Alert,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import Slider from '@react-native-community/slider';
@@ -61,9 +62,18 @@ export default function LoginForm({navigation}) {
         rules={{required: true}}
         defaultValue=""
       />
-        <View style={{marginTop: 20}}>
-            <Button title="Login" onPress={handleSubmit(onSubmit)} />
-        </View>
+      <View style={{marginTop: 20}}>
+        <Button title="Login" onPress={handleSubmit(onSubmit)} />
+      </View>
+      <View style={styles.container}>
+        <Text style={styles.title}>Welcome</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => alert('Anonymous login')}>
+          <Text style={styles.buttonText}>Login Anonymously 🔥</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
+

@@ -39,6 +39,8 @@ import GrowerListScreen from './GrowerListScreen';
 import FriendListScreen from './FriendListScreen';
 import CommentsScreen from './CommentsScreen';
 
+import AuthNavigator from './Navigation/AuthNavigator';
+
 import {
   LineChart,
   BarChart,
@@ -114,8 +116,17 @@ function MyStack() {
     </Stack.Navigator>
   );
 }
+const AuthStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="SignIn" component={LoginScreen} />
+      <Stack.Screen name="Register" component={AccountSetupScreen} />
+      <Stack.Screen name="Home without Sign in" component={MyStack} />
+    </Stack.Navigator>
+  );
+};
 
-export default function App() {
+const AppStack = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator>
@@ -126,4 +137,8 @@ export default function App() {
       </Tab.Navigator>
     </NavigationContainer>
   );
+};
+
+export default function App() {
+  return <AppStack />;
 }

@@ -97,4 +97,20 @@ export const styles = StyleSheet.create({
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
+  button: {
+    flexDirection: 'row',
+    borderRadius: 30,
+    marginTop: 10,
+    marginBottom: 10,
+    width: 300,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#481380',
+  },
+  buttonText: {
+    color: '#ffe2ff',
+    fontSize: 24,
+    marginRight: 5,
+  },
 });
