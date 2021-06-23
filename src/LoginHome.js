@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import auth from '@react-native-firebase/auth';
-//import {AuthContext} from './Navigation/AuthNavigator';
+import {AuthContext} from './Navigation/AuthNavigator';
 
 export default function LoginHome() {
   const user = useContext(AuthContext);

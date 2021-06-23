@@ -38,7 +38,6 @@ import AddCropPhotoScreen from './screens/AddCropPhotoScreen';
 import GrowerListScreen from './GrowerListScreen';
 import FriendListScreen from './FriendListScreen';
 import CommentsScreen from './CommentsScreen';
-
 import AuthNavigator from './Navigation/AuthNavigator';
 
 import {
@@ -140,5 +139,5 @@ const AppStack = () => {
 };
 
 export default function App() {
-  return <AppStack />;
+  return <AuthNavigator />;
 }
