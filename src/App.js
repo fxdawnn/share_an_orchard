@@ -39,6 +39,8 @@ import GrowerListScreen from './GrowerListScreen';
 import FriendListScreen from './FriendListScreen';
 import CommentsScreen from './CommentsScreen';
 import AuthNavigator from './Navigation/AuthNavigator';
+import SwitchNavigator from './Navigation/SwitchNavigator';
+import Login from './screens/Login';
 
 import {
   LineChart,
@@ -139,5 +141,5 @@ const AppStack = () => {
 };
 
 export default function App() {
-  return <AuthNavigator />;
+  return <SwitchNavigator />;
 }

@@ -1,10 +1,58 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Button,
+} from 'react-native';
 import auth from '@react-native-firebase/auth';
 
-export default function Login() {
+class Login extends React.Component {
   // firebase login function later
-  async function signIn() {
+  state = {
+    email: '',
+    password: '',
+  };
+
+  handleLogin = () => {
+    const {email, password} = this.state;
+
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => this.props.navigation.navigate('Profile'))
+      .catch((error) => console.log(error));
+  };
+  render() {
+    return (
+      <View style={styles.container}>
+        <TextInput
+          style={styles.inputBox}
+          value={this.state.email}
+          onChangeText={(email) => this.setState({email})}
+          placeholder="Email"
+          autoCapitalize="none"
+        />
+        <TextInput
+          style={styles.inputBox}
+          value={this.state.password}
+          onChangeText={(password) => this.setState({password})}
+          placeholder="Password"
+          secureTextEntry={true}
+        />
+        <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+        <Button
+          title="Don't have an account yet? Sign up"
+          onPress={() => this.props.navigation.navigate('Signup')}
+        />
+      </View>
+    );
+  }
+}
+/*async function signIn() {
     try {
       await auth().signInAnonymously();
     } catch (e) {
@@ -25,8 +73,8 @@ export default function Login() {
         <Text style={styles.buttonText}>Login Anonymously 🔥</Text>
       </TouchableOpacity>
     </View>
-  );
-}
+  );*/
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -52,9 +100,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#481380',
   },
+  inputBox: {
+    width: '85%',
+    margin: 10,
+    padding: 15,
+    fontSize: 16,
+    borderColor: '#d3d3d3',
+    borderBottomWidth: 1,
+    textAlign: 'center',
+  },
   buttonText: {
     color: '#ffe2ff',
     fontSize: 24,
     marginRight: 5,
   },
 });
+
+export default Login;
