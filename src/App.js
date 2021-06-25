@@ -1,20 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import {
-  StyleSheet,
-  Button,
-  View,
-  Image,
-  TouchableOpacity,
-  SafeAreaView,
-  Text,
-  Alert,
-  Fragment,
-  TextInput,
-  Dimensions,
-} from 'react-native';
+import {Button, View} from 'react-native';
 
-import AppStack from './Navigation/AppStack';
 import AuthNavigator from './Navigation/AuthNavigator';
 
 function NotificationsScreen({navigation}) {
