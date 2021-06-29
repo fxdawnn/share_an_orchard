@@ -13,7 +13,7 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import socketIOClient from 'socket.io-client';
 import {ListItem} from 'react-native-elements';
 
-const ENDPOINT = 'http://192.168.1.246:3000';
+const ENDPOINT = 'http://10.101.9.144:3000';
 
 export default class TreeList extends Component {
   constructor(props) {

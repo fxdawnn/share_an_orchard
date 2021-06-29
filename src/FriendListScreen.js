@@ -13,7 +13,7 @@ import socketIOClient from 'socket.io-client';
 import {useEffect, useState} from 'react';
 import {List, ListItem} from 'react-native-elements';
 //import logo from 'img/nature_tree.png';
-const ENDPOINT = 'http://192.168.1.246:3000';
+const ENDPOINT = 'http://10.101.9.144:3000';
 import TreeList from './TreeList';
 
 function FriendListScreen({navigation}) {
@@ -46,7 +46,6 @@ function FriendListScreen({navigation}) {
         title: 'Josh',
         description: 'that',
       },
-
     ]);
     socket.emit('get neighbor crops', 'testing');
     socket.on('FruitsFromAPI', (data) => {
@@ -97,21 +96,11 @@ function FriendListScreen({navigation}) {
           <TouchableOpacity
             key={item.title}
             style={styles.ListObjContainer}
-            onPress={() => navigation.navigate('TreeInfo')}>
+            onPress={() => navigation.navigate('Chat')}>
             <Text style={styles.text}>{item.title}</Text>
           </TouchableOpacity>
         ))}
       </View>
-      {/* <View>
-        {Fruitresponse.map((item, index) => (
-          <TouchableOpacity
-            key={item.title}
-            style={styles.ListObjContainer}
-            onPress={() => navigation.navigate('TreeInfo')}>
-            <Text style={styles.text}>{item.title}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>*/}
     </View>
   );
 }

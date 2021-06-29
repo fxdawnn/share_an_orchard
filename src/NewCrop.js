@@ -29,7 +29,7 @@ function log(eventName, e) {
   console.log(eventName, e.nativeEvent);
 }
 
-const ENDPOINT = 'http://192.168.1.246:3000';
+const ENDPOINT = 'http://10.101.9.144:3000';
 
 export default class NewCrop extends Component<{}> {
   constructor(props) {

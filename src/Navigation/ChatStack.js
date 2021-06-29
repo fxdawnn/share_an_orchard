@@ -13,12 +13,13 @@ import LoginScreen from '../screens/LoginScreen';
 import AccountSetupScreen from '../screens/AccountSetUpScreens/AccountSetupScreen';
 import AddCropPhotoScreen from '../screens/AddCropPhotoScreen';
 import CommentsScreen from '../CommentsScreen';
+import ChatScreen from '../screens/ChatScreen';
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-export default function HomeStack() {
+export default function ChatStack() {
   return (
     <Stack.Navigator
       screenOptions={({navigation}) => ({
@@ -30,36 +31,13 @@ export default function HomeStack() {
           fontWeight: 'bold',
         },
         headerRight: () => (
-          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Friends')}>
             <Image style={{width: 28, height: 28, margin: 12}} source={logo} />
           </TouchableOpacity>
         ),
       })}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="CropArea" component={CropAreaScreen} />
-      <Stack.Screen name="CropYield" component={CropYieldScreen} />
-      <Stack.Screen
-        name="Map"
-        component={MapScreen}
-        options={{title: 'Tree Map'}}
-      />
-      <Stack.Screen name="AddTree" component={AddTreeScreen} />
-      <Stack.Screen name="TreeInfo" component={TreeInfoScreen} />
-      <Stack.Screen
-        name="TreeList"
-        component={TreeListScreen}
-        options={{title: 'Crops and Growers'}}
-      />
-      <Stack.Screen
-        name="GrowerList"
-        component={GrowerListScreen}
-        options={{title: 'Growers List'}}
-      />
-      <Stack.Screen name="Friends" component={GrowerListScreen} />
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="AccountSetup" component={AccountSetupScreen} />
-      <Stack.Screen name="AddCropPhoto" component={AddCropPhotoScreen} />
-      <Stack.Screen name="Comments" component={CommentsScreen} />
+      <Stack.Screen name="Friends" component={FriendListScreen} />
+      <Stack.Screen name="Chat" component={ChatScreen} />
     </Stack.Navigator>
   );
 }
