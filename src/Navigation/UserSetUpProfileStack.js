@@ -4,17 +4,20 @@ import AccountSetupScreen from '../screens/AccountSetUpScreens/AccountSetupScree
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {AuthContext} from './AuthNavigator';
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import AccountSetupExScreen from '../screens/AccountSetUpScreens/AccountSetupExScreen';
 import AccountSetupGreyWaterScreen from '../screens/AccountSetUpScreens/AccountGreyWaterScreen';
 import AccountSetupGMOScreen from '../screens/AccountSetUpScreens/AccountGMOScreen';
 import AccountBioScreen from '../screens/AccountSetUpScreens/AccountBioScreen';
+import UserProfileScreen from '../screens/UserProfileScreen';
+import {ProfileContext} from './ProfileSwitch';
 
 const Stack = createStackNavigator();
 
 export default function UserProfileSetupStack() {
   const user = useContext(AuthContext);
+  const [profile, setProfile] = useState({});
   async function logOut() {
     try {
       await auth().signOut();
@@ -24,30 +27,33 @@ export default function UserProfileSetupStack() {
   }
 
   return (
-    <Stack.Navigator
-      screenOptions={({navigation}) => ({
-        headerStyle: {
-          backgroundColor: '#254441',
-        },
-        headerTintColor: '#43AA8B',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-        headerRight: () => (
-          <TouchableOpacity style={styles.button} onPress={logOut}>
-            <Text style={styles.buttonText}>Log out</Text>
-          </TouchableOpacity>
-        ),
-      })}>
-      <Stack.Screen name="Setup" component={AccountSetupScreen} />
-      <Stack.Screen name="SharingSetup" component={AccountSetupExScreen} />
-      <Stack.Screen
-        name="GreyWaterSetup"
-        component={AccountSetupGreyWaterScreen}
-      />
-      <Stack.Screen name="GMOSetup" component={AccountSetupGMOScreen} />
-      <Stack.Screen name="BioSetup" component={AccountBioScreen} />
-    </Stack.Navigator>
+    <ProfileContext.Provider value={[profile, setProfile]}>
+      <Stack.Navigator
+        screenOptions={({navigation}) => ({
+          headerStyle: {
+            backgroundColor: '#254441',
+          },
+          headerTintColor: '#43AA8B',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerRight: () => (
+            <TouchableOpacity style={styles.button} onPress={logOut}>
+              <Text style={styles.buttonText}>Log out</Text>
+            </TouchableOpacity>
+          ),
+        })}>
+        <Stack.Screen name="Setup" component={AccountSetupScreen} />
+        <Stack.Screen name="SharingSetup" component={AccountSetupExScreen} />
+        <Stack.Screen
+          name="GreyWaterSetup"
+          component={AccountSetupGreyWaterScreen}
+        />
+        <Stack.Screen name="GMOSetup" component={AccountSetupGMOScreen} />
+        <Stack.Screen name="BioSetup" component={AccountBioScreen} />
+        <Stack.Screen name="ProfileFinal" component={UserProfileScreen} />
+      </Stack.Navigator>
+    </ProfileContext.Provider>
   );
 }
 

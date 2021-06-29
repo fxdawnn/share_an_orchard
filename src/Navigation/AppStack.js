@@ -9,6 +9,7 @@ import {AuthContext} from './AuthNavigator';
 import {useContext} from 'react';
 import UserProfileSetupStack from './UserSetUpProfileStack';
 import auth from '@react-native-firebase/auth';
+import ProfileSwitch from './ProfileSwitch';
 
 const Tab = createBottomTabNavigator();
 
