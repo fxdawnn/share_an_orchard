@@ -1,5 +1,5 @@
 import {NavigationContainer} from '@react-navigation/native';
-import AccountSetupScreen from '../screens/AccountSetupScreen';
+import AccountSetupScreen from '../screens/AccountSetUpScreens/AccountSetupScreen';
 import FriendListScreen from '../FriendListScreen';
 import GrowerListScreen from '../GrowerListScreen';
 import * as React from 'react';
@@ -29,7 +29,7 @@ export default function AppStack() {
         <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Profile" component={UserProfileSetupStack} />
         <Tab.Screen name="Friends" component={FriendListScreen} />
-        <Tab.Screen name="Log Out" component={logOut} />
+        <Tab.Screen name="Fruits" component={GrowerListScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

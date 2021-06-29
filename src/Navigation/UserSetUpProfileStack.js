@@ -1,11 +1,15 @@
 import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import logo from '../img/nature_tree.png';
-import AccountSetupScreen from '../screens/AccountSetupScreen';
+import AccountSetupScreen from '../screens/AccountSetUpScreens/AccountSetupScreen';
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {AuthContext} from './AuthNavigator';
 import {useContext} from 'react';
 import auth from '@react-native-firebase/auth';
+import AccountSetupExScreen from '../screens/AccountSetUpScreens/AccountSetupExScreen';
+import AccountSetupGreyWaterScreen from '../screens/AccountSetUpScreens/AccountGreyWaterScreen';
+import AccountSetupGMOScreen from '../screens/AccountSetUpScreens/AccountGMOScreen';
+import AccountBioScreen from '../screens/AccountSetUpScreens/AccountBioScreen';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +22,7 @@ export default function UserProfileSetupStack() {
       console.error(e);
     }
   }
+
   return (
     <Stack.Navigator
       screenOptions={({navigation}) => ({
@@ -29,14 +34,19 @@ export default function UserProfileSetupStack() {
           fontWeight: 'bold',
         },
         headerRight: () => (
-          <TouchableOpacity
-            style={styles.button}
-            onPress={logOut}>
+          <TouchableOpacity style={styles.button} onPress={logOut}>
             <Text style={styles.buttonText}>Log out</Text>
           </TouchableOpacity>
         ),
       })}>
-      <Stack.Screen name="AccountSetup" component={AccountSetupScreen} />
+      <Stack.Screen name="Setup" component={AccountSetupScreen} />
+      <Stack.Screen name="SharingSetup" component={AccountSetupExScreen} />
+      <Stack.Screen
+        name="GreyWaterSetup"
+        component={AccountSetupGreyWaterScreen}
+      />
+      <Stack.Screen name="GMOSetup" component={AccountSetupGMOScreen} />
+      <Stack.Screen name="BioSetup" component={AccountBioScreen} />
     </Stack.Navigator>
   );
 }

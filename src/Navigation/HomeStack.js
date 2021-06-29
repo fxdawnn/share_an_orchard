@@ -10,7 +10,7 @@ import TreeListScreen from '../TreeListScreen';
 import GrowerListScreen from '../GrowerListScreen';
 import FriendListScreen from '../FriendListScreen';
 import LoginScreen from '../screens/LoginScreen';
-import AccountSetupScreen from '../screens/AccountSetupScreen';
+import AccountSetupScreen from '../screens/AccountSetUpScreens/AccountSetupScreen';
 import AddCropPhotoScreen from '../screens/AddCropPhotoScreen';
 import CommentsScreen from '../CommentsScreen';
 import * as React from 'react';

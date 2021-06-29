@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {
-  Picker,
   Text,
   View,
   Dimensions,
@@ -14,16 +13,16 @@ import {
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import Slider from '@react-native-community/slider';
-import {styles} from '../styles';
+import {styles} from '../../styles';
 
-export default function AccountSetupScreen({navigation}) {
+export default function AccountSetupExScreen({navigation}) {
   const {control, handleSubmit, errors} = useForm();
   const onSubmit = (data) => console.log(data);
   return (
     <View style={styles.bg}>
-      <Text style={styles.titleText}>Account Settings</Text>
+      <Text style={styles.titleText}>Sharing Settings</Text>
       <View style={{marginTop: 20}}>
-        <Text style={styles.smallText}>How much experience you got?</Text>
+        <Text style={styles.smallText}> How do you score your sharing habits? </Text>
         <Controller
           name="Experience"
           defaultValue=""
@@ -42,9 +41,12 @@ export default function AccountSetupScreen({navigation}) {
           rules={{required: {value: true, message: 'Experience is required'}}}
           control={control}
         />
-        <Text style={styles.smallText}>How much land you got?</Text>
+        <Text style={styles.smallText}>
+          {' '}
+          How far would you like to share your food?{' '}
+        </Text>
         <Controller
-          name="Land Area Available to Grow"
+          name="Sharing area"
           defaultValue=""
           render={({onChange, value, errors}) => (
             <Slider
@@ -58,16 +60,18 @@ export default function AccountSetupScreen({navigation}) {
               step={1}
             />
           )}
-          rules={{required: {value: true, message: 'Area is required'}}}
+          rules={{
+            required: {value: true, message: 'Sharing distance is required'},
+          }}
           control={control}
         />
       </View>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
           style={styles.mainButton}
-          onPress={() => navigation.navigate('CropArea')}
+          onPress={() => navigation.navigate('GreyWaterSetup')}
           underlayColor="#fff">
-          <Text style={styles.mainButtonText}> Area Selection </Text>
+          <Text style={styles.mainButtonText}> Next </Text>
         </TouchableOpacity>
       </View>
     </View>

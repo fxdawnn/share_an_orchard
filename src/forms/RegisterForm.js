@@ -16,7 +16,7 @@ import {
   Dimensions,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
-import AccountSetupScreen from '../screens/AccountSetupScreen';
+import AccountSetupScreen from '../screens/AccountSetUpScreens/AccountSetupScreen';
 import Slider from '@react-native-community/slider';
 import {styles} from '../styles';
 
