@@ -114,7 +114,7 @@ export default function SimpleImagePicker() {
           },
           body: data,
         };
-        fetch('http://localhost:8000/' + 'upload', config)
+        fetch('http://34.121.9.120:3001/' + 'upload', config)
           .then((checkStatusAndGetJSONResponse) => {
             console.log(checkStatusAndGetJSONResponse);
           })
