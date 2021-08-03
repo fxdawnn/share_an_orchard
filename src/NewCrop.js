@@ -17,6 +17,7 @@ import {
 import socketIOClient from 'socket.io-client';
 import MapView, {Marker, ProviderPropType} from 'react-native-maps';
 import RNPickerSelect from 'react-native-picker-select';
+import banana from './img/40.png';
 
 const {width, height} = Dimensions.get('window');
 
@@ -29,7 +30,7 @@ function log(eventName, e) {
   console.log(eventName, e.nativeEvent);
 }
 
-const ENDPOINT = 'http://10.101.9.144:3000';
+const ENDPOINT = 'http://34.121.9.120:3000';
 
 export default class NewCrop extends Component<{}> {
   constructor(props) {
@@ -101,6 +102,8 @@ export default class NewCrop extends Component<{}> {
                 }}>
                 <Marker
                   coordinate={this.state.a}
+                  image={banana}
+                  title={'New Crop Location'}
                   onSelect={(e) => log('onSelect', e)}
                   onDrag={(e) => log('onDrag', e)}
                   onDragStart={(e) => log('onDragStart', e)}

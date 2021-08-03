@@ -13,7 +13,7 @@ import socketIOClient from 'socket.io-client';
 import {useEffect, useState} from 'react';
 import {List, ListItem} from 'react-native-elements';
 //import logo from 'img/nature_tree.png';
-const ENDPOINT = 'http://10.101.9.144:3000';
+const ENDPOINT = 'http://34.121.9.120:3000';
 import TreeList from './TreeList';
 
 function TreeListScreen({navigation}) {
