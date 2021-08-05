@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   bg: {
     backgroundColor: '#43aa8b',
     flex: 1,
+    height: '80%',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -125,8 +126,8 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    height: 217,
-    width: 217,
+    height: '20%',
+    width: '30%',
     margin: 12,
   },
   separator: {
