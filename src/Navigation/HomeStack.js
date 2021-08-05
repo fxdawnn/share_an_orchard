@@ -9,10 +9,17 @@ import TreeInfoScreen from '../TreeInfoScreen';
 import TreeListScreen from '../TreeListScreen';
 import GrowerListScreen from '../GrowerListScreen';
 import FriendListScreen from '../FriendListScreen';
+import AddTreeMapScreen from '../screens/mapScreen';
 import LoginScreen from '../screens/LoginScreen';
 import AccountSetupScreen from '../screens/AccountSetUpScreens/AccountSetupScreen';
 import AddCropPhotoScreen from '../screens/AddCropPhotoScreen';
 import CommentsScreen from '../CommentsScreen';
+import NewCropPrivacy from '../screens/NewCropScreens/NewCropPrivacy';
+import NewCropSharing from '../screens/NewCropScreens/NewCropSharing';
+import AddCropNameScreen from '../screens/NewCropScreens/AddCropNameScreen';
+import NewCropLocationScreen from '../screens/NewCropScreens/NewCropLocationScreen';
+import AddCropAvailabilityScreen from '../screens/NewCropScreens/AddCropAvailabilityScreen';
+import NewCropLocation from '../screens/NewCropScreens/NewCropLocation';
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -46,9 +53,44 @@ export default function HomeStack() {
       <Stack.Screen name="AddTree" component={AddTreeScreen} />
       <Stack.Screen name="TreeInfo" component={TreeInfoScreen} />
       <Stack.Screen
+        name="CropPrivacy"
+        component={NewCropPrivacy}
+        options={{title: 'Add New Crop'}}
+      />
+      <Stack.Screen
+        name="CropSharing"
+        component={NewCropSharing}
+        options={{title: 'Add New Crop'}}
+      />
+      <Stack.Screen
+        name="CropAvailability"
+        component={AddCropAvailabilityScreen}
+        options={{title: 'Add New Crop'}}
+      />
+      <Stack.Screen
+        name="CropName"
+        component={AddCropNameScreen}
+        options={{title: 'Add New Crop'}}
+      />
+      <Stack.Screen
+        name="CropLocation"
+        component={NewCropLocationScreen}
+        options={{title: 'Add New Crop'}}
+      />
+      <Stack.Screen
+        name="CropLocationTest"
+        component={NewCropLocationScreen}
+        options={{title: 'Add New Crop'}}
+      />
+      <Stack.Screen
         name="TreeList"
         component={TreeListScreen}
         options={{title: 'Crops and Growers'}}
+      />
+      <Stack.Screen
+        name="AddCropMap"
+        component={AddTreeMapScreen}
+        options={{title: 'New Tree Location'}}
       />
       <Stack.Screen
         name="GrowerList"

@@ -1,5 +1,4 @@
 'use strict';
-
 import React, {Component, useState, useEffect} from 'react';
 
 import {
@@ -17,10 +16,9 @@ import {
 import socketIOClient from 'socket.io-client';
 import MapView, {Marker, ProviderPropType} from 'react-native-maps';
 import RNPickerSelect from 'react-native-picker-select';
-import banana from './img/40.png';
+import {withNavigation} from 'react-navigation';
 
 const {width, height} = Dimensions.get('window');
-
 const LATITUDE = 33.99632;
 const LONGITUDE = -118.48138;
 const ASPECT_RATIO = width / height;
@@ -32,7 +30,7 @@ function log(eventName, e) {
 
 const ENDPOINT = 'http://34.121.9.120:3000';
 
-export default class NewCrop extends Component<{}> {
+export default class NewCropLocation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,24 +44,25 @@ export default class NewCrop extends Component<{}> {
       CropOption: '', // Exchange or fREE
       CropAvailability: '',
       CropEmail: '',
+      Testing: props.CropCommonName,
     };
   }
+
   componentDidMount() {
     this.socket = socketIOClient(ENDPOINT);
     this.socket.on('plants nearby', (msg) => {
       let plants = JSON.parse(msg);
       console.log('plants nearby' + plants);
     });
-    // console.log('NewCrop socket' + this.state.CropCommonName);
   }
 
   submitCropCommonName() {
     let NewCrop = {
-      common_name: this.state.CropCommonName,
+      common_name: this.props.CropCommonName,
       coordinates: [this.state.a.longitude, this.state.a.latitude],
-      privacy: this.state.CropPrivacy,
-      option: this.state.CropOption,
-      availability: this.state.CropAvailability,
+      privacy: this.props.CropPrivacy,
+      option: this.props.CropSharing,
+      availability: this.props.CropAvailability,
     };
     console.log(
       'coordination:' + this.state.a.longitude + ' ' + this.state.a.latitude,
@@ -117,148 +116,16 @@ export default class NewCrop extends Component<{}> {
                 />
               </MapView>
             </View>
-            <View style={styles.body}>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionDescription}>
-                  <Text style={styles.highlight}>
-                    Crop Sharing Object Options
-                  </Text>
-                </Text>
-              </View>
-              <View style={styles.sectionContainer}>
-                <RNPickerSelect
-                  style={{
-                    ...pickerSelectStyles,
-                    iconContainer: {
-                      top: 20,
-                      right: 10,
-                    },
-                    placeholder: {
-                      color: 'purple',
-                      fontSize: 12,
-                      fontWeight: 'bold',
-                    },
-                  }}
-                  onValueChange={(value) => {
-                    this.state.CropPrivacy = value;
-                    console.log(this.state.CropPrivacy);
-                  }}
-                  placeholder={{
-                    label: 'Select a Sharing Objects...',
-                    value: null,
-                  }}
-                  items={[
-                    {label: 'Public', value: 'Public'},
-                    {label: 'Friends', value: 'Friends'},
-                    {label: 'Private', value: 'Private'},
-                  ]}
-                  Icon={() => {
-                    return (
-                      <View
-                        style={{
-                          backgroundColor: 'transparent',
-                          borderTopWidth: 10,
-                          borderTopColor: 'gray',
-                          borderRightWidth: 10,
-                          borderRightColor: 'transparent',
-                          borderLeftWidth: 10,
-                          borderLeftColor: 'transparent',
-                          width: 0,
-                          height: 0,
-                        }}
-                      />
-                    );
-                  }}
-                />
-              </View>
-            </View>
-            <View style={styles.body}>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionDescription}>
-                  <Text style={styles.highlight}>
-                    Crop Sharing Method Options
-                  </Text>
-                </Text>
-              </View>
-              <View style={styles.sectionContainer}>
-                <RNPickerSelect
-                  style={{
-                    ...pickerSelectStyles,
-                    iconContainer: {
-                      top: 20,
-                      right: 10,
-                    },
-                    placeholder: {
-                      color: 'purple',
-                      fontSize: 12,
-                      fontWeight: 'bold',
-                    },
-                  }}
-                  onValueChange={(value) => {
-                    this.state.CropOption = value;
-                    console.log(this.state.CropOption);
-                  }}
-                  placeholder={{
-                    label: 'Select a Sharing Method...',
-                    value: null,
-                  }}
-                  items={[
-                    {label: 'Exchange', value: 'Exchange'},
-                    {label: 'Free', value: 'Free'},
-                  ]}
-                  Icon={() => {
-                    return (
-                      <View
-                        style={{
-                          backgroundColor: 'transparent',
-                          borderTopWidth: 10,
-                          borderTopColor: 'gray',
-                          borderRightWidth: 10,
-                          borderRightColor: 'transparent',
-                          borderLeftWidth: 10,
-                          borderLeftColor: 'transparent',
-                          width: 0,
-                          height: 0,
-                        }}
-                      />
-                    );
-                  }}
-                />
-              </View>
-            </View>
             <View>
               <View style={styles.body}>
                 <View style={styles.sectionContainer}>
                   <Text style={styles.sectionDescription}>
-                    <Text style={styles.highlight}>Crop Common Name</Text>
+                    <Text style={styles.highlight}>
+                      Drag the pin to locate the crop
+                    </Text>
                   </Text>
                 </View>
               </View>
-              <TextInput
-                style={{height: 40, borderWidth: 1}}
-                autoCorrect={false}
-                value={this.state.CropCommonName}
-                //onSubmitEditing={() => this.submitCropCommonName()}
-                onChangeText={(CropCommonName) => {
-                  this.setState({CropCommonName});
-                }}
-              />
-              <View style={styles.body}>
-                <View style={styles.sectionContainer}>
-                  <Text style={styles.sectionDescription}>
-                    <Text style={styles.highlight}>Availability</Text>
-                  </Text>
-                </View>
-              </View>
-              <TextInput
-                style={{height: 40, borderWidth: 1}}
-                autoCorrect={false}
-                value={this.state.CropAvailability}
-                //onSubmitEditing={() => this.submitCropCommonName()}
-                onChangeText={(CropAvailability) => {
-                  this.setState({CropAvailability});
-                }}
-              />
               <TouchableOpacity
                 style={styles.secondaryButton}
                 onPress={() => this.submitCropCommonName()}
@@ -274,7 +141,7 @@ export default class NewCrop extends Component<{}> {
 }
 
 const imageWidth = Dimensions.get('window').width;
-NewCrop.propTypes = {
+NewCropLocation.propTypes = {
   provider: ProviderPropType,
 };
 
@@ -311,7 +178,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                    top: 630.17,*/
+                        top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -372,7 +239,7 @@ const pickerSelectStyles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
     borderWidth: 3,

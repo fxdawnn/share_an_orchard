@@ -34,7 +34,7 @@ function HomeScreen({navigation}) {
       <View style={styles.space} />
       <TouchableOpacity
         style={styles.mainButton}
-        onPress={() => navigation.navigate('AddTree')}
+        onPress={() => navigation.navigate('CropName')}
         underlayColor="#fff">
         <Text style={styles.mainButtonText}> Share Fruit </Text>
       </TouchableOpacity>
