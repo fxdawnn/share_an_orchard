@@ -7,13 +7,14 @@ import {
   Text,
   FlatList,
   SafeAreaView,
+  ScrollView,
 } from 'react-native';
 
 import socketIOClient from 'socket.io-client';
 import {useEffect, useState} from 'react';
 import {List, ListItem} from 'react-native-elements';
 //import logo from 'img/nature_tree.png';
-const ENDPOINT = 'http://192.168.1.246:3000';
+const ENDPOINT = 'http://34.121.9.120:3000';
 import TreeList from './TreeList';
 
 function TreeListScreen({navigation}) {
@@ -76,23 +77,24 @@ function TreeListScreen({navigation}) {
     <View>
       <TreeList />
 
-     {/* <SafeAreaView style={styles.listItemContainer}>
+      {/* <SafeAreaView style={styles.listItemContainer}>
         <FlatList
           data={this.state.data}
           renderItem={(item) => this.renderItemComponent(item)}
         />
       </SafeAreaView>*/}
-
-      <View>
-        {Fruitresponse.map((item, index) => (
-          <TouchableOpacity
-            key={item.title}
-            style={styles.ListObjContainer}
-            onPress={() => navigation.navigate('TreeInfo', {item})}>
-            <Text style={styles.text}>{item.title}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+      <SafeAreaView>
+        <ScrollView>
+          {Fruitresponse.map((item, index) => (
+            <TouchableOpacity
+              key={item.title}
+              style={styles.ListObjContainer}
+              onPress={() => navigation.navigate('TreeInfo', {item})}>
+              <Text style={styles.text}>{item.title}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }

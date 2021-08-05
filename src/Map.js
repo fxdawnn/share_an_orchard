@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import socketIOClient from 'socket.io-client';
+import banana from './img/40.png';
 
-const ENDPOINT = 'http://192.168.1.246:3000';
+const ENDPOINT = 'http://34.121.9.120:3000';
 
 export default class Map extends Component {
   constructor(props) {
@@ -100,7 +101,9 @@ export default class Map extends Component {
             <MapView.Marker
               coordinate={marker.coordinates}
               //description={marker.description}
-              title={marker.common_name}
+              title={marker.title}
+              image={banana}
+              //onPress={() => this.props.navigation.navigate('TreeInfo', {item})}>
             />
           ))}
           {/*{this.state.fruitsResponse.map((marker) => (

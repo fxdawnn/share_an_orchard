@@ -15,12 +15,6 @@ import SimpleImagePicker from '../CropImagePicker';
 function AddTreeScreen({navigation}) {
   return (
     <ScrollView>
-      <TouchableOpacity
-        style={styles.mainButton}
-        onPress={() => navigation.navigate('AddCropPhoto')}
-        underlayColor="#fff">
-        <Text style={styles.secondaryButtonText}> Add Crop Photo </Text>
-      </TouchableOpacity>
       <NewCrop />
       <View>
         {/*<Text style={styles.description}>Add A tree</Text>
