@@ -59,6 +59,11 @@ function TreeInfoScreen({route, navigation}) {
             onPress={() => navigation.navigate('AddCropPhoto')}>
             <Text>Sharing proof phtots</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Comments')}
+            style={styles.buttonContainer}>
+            <Text>Add comments</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

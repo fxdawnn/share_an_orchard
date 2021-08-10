@@ -1,42 +1,43 @@
 import * as React from 'react';
 import {StyleSheet, View, Image, TouchableOpacity, Text} from 'react-native';
 import logo from '../img/nature_tree.png';
+import banana from '../img/120.png';
 
 function HomeScreen({navigation}) {
   return (
     <View style={styles.bg}>
-      <Image style={styles.logo} source={logo} />
+      <Image style={styles.logo} source={banana} />
       <View style={styles}>
         <Text style={styles.titleText}> Fruit for All</Text>
       </View>
       <View style={styles.space} />
       <View style={styles.space} />
       <TouchableOpacity
-        style={styles.mainButton}
+        style={styles.buttonContainer}
         onPress={() => navigation.navigate('TreeList')}
         underlayColor="#fff">
-        <Text style={styles.mainButtonText}>Find Fruit</Text>
+        <Text style={styles.mainButtonText}>Find Shared Nearby Fruit</Text>
       </TouchableOpacity>
       <View style={styles.space} />
       <TouchableOpacity
-        style={styles.mainButton}
+        style={styles.buttonContainer}
         onPress={() => navigation.navigate('Friends')}
         underlayColor="#fff">
-        <Text style={styles.mainButtonText}> Find Mentor </Text>
+        <Text style={styles.mainButtonText}> Ask Nearby Mentor for Help </Text>
       </TouchableOpacity>
       <View style={styles.space} />
       <TouchableOpacity
-        style={styles.mainButton}
+        style={styles.buttonContainer}
         onPress={() => navigation.navigate('CropArea')}
         underlayColor="#fff">
-        <Text style={styles.mainButtonText}> Grow Fruit </Text>
+        <Text style={styles.mainButtonText}> Get Crop Choice Advice </Text>
       </TouchableOpacity>
       <View style={styles.space} />
       <TouchableOpacity
-        style={styles.mainButton}
+        style={styles.buttonContainer}
         onPress={() => navigation.navigate('CropName')}
         underlayColor="#fff">
-        <Text style={styles.mainButtonText}> Share Fruit </Text>
+        <Text style={styles.mainButtonText}> Share Fruits with Neighbor </Text>
       </TouchableOpacity>
     </View>
   );
@@ -63,12 +64,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  buttonContainer: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: 305,
+    height: 42,
+    borderRadius: 22,
+    backgroundColor: '#00BFFF',
+  },
   mainButton: {
     /* Share an orchard */
 
     position: 'relative',
-    width: 275,
-    height: 51.83,
+    width: 305,
+    height: 42,
     /*left: 32.62,
                     top: 630.17,*/
     backgroundColor: '#dd5252',
@@ -86,10 +98,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Red Hat Display',
     fontStyle: 'normal',
     fontWeight: 'bold',
-    fontSize: 34,
-    lineHeight: 45,
+    fontSize: 22,
+    lineHeight: 40,
     textAlign: 'center',
-    color: '#254441',
+    color: '#FFFFF0',
   },
   secondaryButton: {
     /* Share an orchard */
@@ -122,13 +134,14 @@ const styles = StyleSheet.create({
     fontSize: 40,
     lineHeight: 45,
     textAlign: 'center',
-    color: '#254441',
+    color: '#FFFFF0',
   },
 
   logo: {
-    height: '20%',
-    width: '30%',
+    height: '16%',
+    width: '24%',
     margin: 12,
+    borderRadius: 40,
   },
   separator: {
     marginVertical: 8,

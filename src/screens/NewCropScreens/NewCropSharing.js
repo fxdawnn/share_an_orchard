@@ -131,14 +131,14 @@ const styles = StyleSheet.create({
     /* Share an orchard */
 
     position: 'relative',
-    width: 150,
-    height: 51.83,
+    width: 75,
+    height: 25,
     /*left: 32.62,
                             top: 630.17,*/
     backgroundColor: '#48BBEC',
     borderRadius: 22,
-    borderWidth: 3,
-    borderColor: '#48BBEC',
+    alignItems: 'center',
+    justifyContent: 'center',
 
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
   },
@@ -161,10 +161,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Red Hat Display',
     fontStyle: 'normal',
     fontWeight: 'normal',
-    fontSize: 34,
-    lineHeight: 45,
+    fontSize: 16,
+    lineHeight: 20,
     textAlign: 'center',
-    color: '#254441',
+    color: '#FFFFF0',
   },
 });
 const pickerSelectStyles = StyleSheet.create({

@@ -16,6 +16,7 @@ import {List, ListItem} from 'react-native-elements';
 //import logo from 'img/nature_tree.png';
 const ENDPOINT = 'http://34.121.9.120:3000';
 import TreeList from './TreeList';
+import banana from './img/40.png';
 
 function TreeListScreen({navigation}) {
   const [Fruitresponse, setFruitResponse] = useState([]);
@@ -74,32 +75,92 @@ function TreeListScreen({navigation}) {
     socket.emit('get neighbor crops', 'testing');
   }
   return (
-    <View>
-      <TreeList />
-
-      {/* <SafeAreaView style={styles.listItemContainer}>
-        <FlatList
-          data={this.state.data}
-          renderItem={(item) => this.renderItemComponent(item)}
-        />
-      </SafeAreaView>*/}
-      <SafeAreaView>
-        <ScrollView>
-          {Fruitresponse.map((item, index) => (
-            <TouchableOpacity
-              key={item.title}
-              style={styles.ListObjContainer}
-              onPress={() => navigation.navigate('TreeInfo', {item})}>
-              <Text style={styles.text}>{item.title}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </SafeAreaView>
-    </View>
+    <ScrollView>
+      <View>
+        <TreeList />
+        <SafeAreaView>
+          <ScrollView>
+            <FlatList
+              style={styles.root}
+              data={Fruitresponse}
+              ItemSeparatorComponent={() => {
+                return <View style={styles.CommentSeparator} />;
+              }}
+              keyExtractor={(item) => {
+                return item.title;
+              }}
+              renderItem={(item) => {
+                const Notification = item.item;
+                return (
+                  <View style={styles.CommentContainer}>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('TreeInfo', {item})}>
+                      <Image style={styles.image} source={banana} />
+                    </TouchableOpacity>
+                    <View style={styles.content}>
+                      <View style={styles.contentHeader}>
+                        <TouchableOpacity
+                          onPress={() =>
+                            navigation.navigate('TreeInfo', {item})
+                          }>
+                          <Text style={styles.name}>{Notification.title}</Text>
+                        </TouchableOpacity>
+                        <Text style={styles.time}>9:58 am</Text>
+                      </View>
+                      <Text rkType="primary3 mediumLine">
+                        This is about testing the crop
+                      </Text>
+                    </View>
+                  </View>
+                );
+              }}
+            />
+          </ScrollView>
+        </SafeAreaView>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  root: {
+    backgroundColor: '#ffffff',
+    marginTop: 10,
+  },
+  CommentContainer: {
+    paddingLeft: 19,
+    paddingRight: 16,
+    paddingVertical: 12,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  content: {
+    marginLeft: 16,
+    flex: 1,
+  },
+  contentHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 6,
+  },
+  CommentSeparator: {
+    height: 1,
+    backgroundColor: '#CCCCCC',
+  },
+  image: {
+    width: 45,
+    height: 45,
+    borderRadius: 20,
+    marginLeft: 20,
+  },
+  time: {
+    fontSize: 11,
+    color: '#808080',
+  },
+  name: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
   bg: {
     backgroundColor: '#43aa8b',
     flex: 1,

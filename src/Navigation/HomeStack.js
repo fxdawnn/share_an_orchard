@@ -20,7 +20,9 @@ import AddCropNameScreen from '../screens/NewCropScreens/AddCropNameScreen';
 import NewCropLocationScreen from '../screens/NewCropScreens/NewCropLocationScreen';
 import AddCropAvailabilityScreen from '../screens/NewCropScreens/AddCropAvailabilityScreen';
 import NewCropLocation from '../screens/NewCropScreens/NewCropLocation';
+import AddCropBioScreen from '../screens/NewCropScreens/AddCropBioScreen';
 import * as React from 'react';
+import banana from '../img/40.png';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
@@ -38,7 +40,10 @@ export default function HomeStack() {
         },
         headerRight: () => (
           <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-            <Image style={{width: 28, height: 28, margin: 12}} source={logo} />
+            <Image
+              style={{width: 28, height: 28, margin: 12}}
+              source={banana}
+            />
           </TouchableOpacity>
         ),
       })}>
@@ -83,9 +88,14 @@ export default function HomeStack() {
         options={{title: 'Add New Crop'}}
       />
       <Stack.Screen
+        name="CropBio"
+        component={AddCropBioScreen}
+        options={{title: 'Add New Crop'}}
+      />
+      <Stack.Screen
         name="TreeList"
         component={TreeListScreen}
-        options={{title: 'Crops and Growers'}}
+        options={{title: 'Nearby Available Crops'}}
       />
       <Stack.Screen
         name="AddCropMap"
