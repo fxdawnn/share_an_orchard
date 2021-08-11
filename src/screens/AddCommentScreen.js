@@ -14,13 +14,13 @@ import {
 import {useForm, Controller} from 'react-hook-form';
 import {styles} from '../styles';
 import socketIOClient from 'socket.io-client';
-import CropComments from '../CropComment';
 const ENDPOINT = 'http://34.121.9.120:3000';
 const socket = socketIOClient(ENDPOINT);
 
 export default function AddCommentScreen({navigation, route}) {
   const [Info, setInfo] = useState('');
   const {item} = route.params.item;
+
   async function submitCropComment() {
     let CropComment = {text: Info, crop_id: route.params.item.index};
     socket.emit('plant comment', JSON.stringify(CropComment));

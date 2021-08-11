@@ -48,13 +48,17 @@ function TreeInfoScreen({route, navigation}) {
             </Text>
             <Text style={styles.description}>{item.description}</Text>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Comments', route.params.item)}
+              onPress={() =>
+                navigation.navigate('CropComments', {item: route.params.item})
+              }
               style={styles.buttonContainer}>
               <Text>See comments</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonContainer}
-              onPress={() => navigation.navigate('AddCropPhoto', item)}>
+              onPress={() =>
+                navigation.navigate('AddCropPhoto', {item: route.params.item})
+              }>
               <Text>Sharing proof photos</Text>
             </TouchableOpacity>
             <TouchableOpacity

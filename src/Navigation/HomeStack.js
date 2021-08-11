@@ -19,6 +19,7 @@ import NewCropSharing from '../screens/NewCropScreens/NewCropSharing';
 import AddCropNameScreen from '../screens/NewCropScreens/AddCropNameScreen';
 import NewCropLocationScreen from '../screens/NewCropScreens/NewCropLocationScreen';
 import AddCropAvailabilityScreen from '../screens/NewCropScreens/AddCropAvailabilityScreen';
+import CropCommentScreen from '../CropCommentScreen';
 import NewCropLocation from '../screens/NewCropScreens/NewCropLocation';
 import AddCropBioScreen from '../screens/NewCropScreens/AddCropBioScreen';
 import AddCropInfoScreen from '../screens/NewCropScreens/AddCropInfoScreen';
@@ -118,6 +119,11 @@ export default function HomeStack() {
         name="GrowerList"
         component={GrowerListScreen}
         options={{title: 'Growers List'}}
+      />
+      <Stack.Screen
+        name="CropComments"
+        component={CropCommentScreen}
+        options={{title: 'Crop Comments'}}
       />
       <Stack.Screen name="Friends" component={GrowerListScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />

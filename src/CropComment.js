@@ -68,6 +68,8 @@ export default class CropComments extends Component {
   }
 
   render() {
+    /*const {params} = this.props.navigation.state.params;
+    const crop = params ? params.item : null;*/
     return (
       <FlatList
         style={styles.root}
@@ -95,6 +97,7 @@ export default class CropComments extends Component {
                   <Text style={styles.time}>9:58 am</Text>
                 </View>
                 <Text rkType="primary3 mediumLine">{Notification.comment}</Text>
+                <Text rkType="primary3 mediumLine">{JSON.stringify(this.props.navigation.state.params)}</Text>
               </View>
             </View>
           );
