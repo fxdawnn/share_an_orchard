@@ -11,6 +11,7 @@ import AccountSetupGreyWaterScreen from '../screens/AccountSetUpScreens/AccountG
 import AccountSetupGMOScreen from '../screens/AccountSetUpScreens/AccountGMOScreen';
 import AccountBioScreen from '../screens/AccountSetUpScreens/AccountBioScreen';
 import UserProfileScreen from '../screens/UserProfileScreen';
+import AccountNameScreen from '../screens/AccountSetUpScreens/AccountNameScreen';
 import {ProfileContext} from './ProfileSwitch';
 
 const Stack = createStackNavigator();
@@ -43,6 +44,7 @@ export default function UserProfileSetupStack() {
             </TouchableOpacity>
           ),
         })}>
+        <Stack.Screen name="Name" component={AccountNameScreen} />
         <Stack.Screen name="Setup" component={AccountSetupScreen} />
         <Stack.Screen name="SharingSetup" component={AccountSetupExScreen} />
         <Stack.Screen
