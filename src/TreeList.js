@@ -56,7 +56,7 @@ export default class TreeList extends Component {
         crop.title = crop.common_name;
         PlantsReturn.push({
           title: crop.title,
-          description: 'new crops for testing add',
+          description: crop.description,
           coordinates: {
             latitude: crop.latitude,
             longitude: crop.longitude,
@@ -76,37 +76,6 @@ export default class TreeList extends Component {
   }
 
   componentDidMount() {
-    /*this.socket.on('plants nearby', (msg) => {
-      var plants = JSON.parse(msg);
-      this.state.nearbyFruits = plants.crops;
-      var PlantsReturn = [];
-      this.state.nearbyFruits.map((crop) => {
-        // console.log('plant:' + crop.common_name);
-        crop.coordinates = {
-          latitude: crop.latitude,
-          longitude: crop.longitude,
-        };
-        crop.title = crop.common_name;
-        PlantsReturn.push({
-          title: crop.title,
-          description: 'new crops for testing add',
-          coordinates: {
-            latitude: crop.latitude,
-            longitude: crop.longitude,
-          },
-        });
-        console.log(
-          'plant coordination:' +
-            JSON.stringify(crop.coordinates) +
-            'crop title: ' +
-            crop.common_name,
-        );
-      });
-      this.setState({
-        markers: PlantsReturn,
-      });
-    });*/
-
     this.socket.on('FruitsFromAPI', (data) => {
       this.fruitsResponse = data;
       //console.log("fruit from api" +  JSON.stringify(data))
@@ -127,18 +96,8 @@ export default class TreeList extends Component {
     </TouchableOpacity>
   );
   renderItem = ({item}) => (
-    /*<TouchableOpacity
-        //onPress={() => navigation.navigate('TreeInfo')}
-        style={[styles.bubble, styles.button]}>
-        <Text style={styles.item}>{item.title}</Text>
-      </TouchableOpacity>*/
     <ListItem
       title={
-        /* <TouchableOpacity
-              //onPress={() => navigation.navigate('TreeInfo')}
-              style={[styles.bubble]}>
-              <Text style={styles.item}>{item.title}</Text>
-            </TouchableOpacity>*/
         'Testing title'
       }
       subtitle={'santa monica'}
@@ -148,13 +107,6 @@ export default class TreeList extends Component {
 
   render() {
     return (
-      /*<SafeAreaView style={styles.listItemContainer}>
-        <FlatList
-            data={this.state.markers}
-            renderItem={(item) => this.renderItemComponent(item)}
-        />
-      </SafeAreaView>*/
-
       <View style={styles.mapContainer}>
         <MapView
           style={styles.map}
@@ -178,23 +130,6 @@ export default class TreeList extends Component {
             />
           ))}
         </MapView>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={() => this.getNeighborCrops()}
-            style={[styles.bubble, styles.button]}>
-            <Text>All</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.getNeighborCrops()}
-            style={[styles.bubble, styles.button]}>
-            <Text>Growers</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.getNeighborCrops()}
-            style={[styles.bubble, styles.button]}>
-            <Text>Crops</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     );
   }

@@ -18,104 +18,66 @@ const ENDPOINT = 'http://34.121.9.120:3000';
 import TreeList from './TreeList';
 import banana from './img/40.png';
 
-function TreeListScreen({navigation}) {
-  const [Fruitresponse, setFruitResponse] = useState([]);
-  const [NeighborCrops, setNeighbourCrops] = useState('');
+function CropCommentScreen({navigation, route}) {
+  const [CommentResponse, setCommentResponse] = useState([]);
   const socket = socketIOClient(ENDPOINT);
+  const {cropInfo} = route.params.item;
 
   useEffect(() => {
-    setFruitResponse([
+    setCommentResponse([
       {
-        title: 'TestingCrop',
-        description: 'new crops for testing add',
+        title: 'No Comment yet',
+        description: 'Go back and add comments',
       },
     ]);
-    socket.emit('get neighbor crops', 'testing');
-    socket.on('FruitsFromAPI', (data) => {
-      setFruitResponse(data);
-    });
-    socket.on('neighbor plants', (data) => {
-      setNeighbourCrops(data);
-    });
-    socket.on('plants nearby', (msg) => {
-      var plants = JSON.parse(msg);
-      var nearbyFruits = plants.crops;
-      var PlantsReturn = [];
-      console.log(plants);
+    socket.emit('get crop comments', JSON.stringify(route.params.item));
+
+    socket.on('crop comments', (msg) => {
+      var message = JSON.parse(msg);
+      var comments = message.comments;
+      console.log(comments);
       console.log('plants neaby rturn');
-      nearbyFruits.map((crop) => {
-        // console.log('plant:' + crop.common_name);
-        crop.coordinates = {
-          latitude: crop.latitude,
-          longitude: crop.longitude,
-        };
-        crop.title = crop.common_name;
-        PlantsReturn.push({
-          title: crop.title,
-          description: crop.description,
-          coordinates: {
-            latitude: crop.latitude,
-            longitude: crop.longitude,
-          },
-          option: crop.option,
-          privacy: crop.privacy,
-        });
-        console.log(
-          'plant coordination:' +
-            JSON.stringify(crop.coordinates) +
-            'crop title: ' +
-            crop.common_name,
-        );
-      });
-      setFruitResponse(PlantsReturn);
+      setCommentResponse(comments);
     });
   }, []);
 
-  function getNeighborCrops() {
-    socket.emit('get neighbor crops', 'testing');
-  }
   return (
     <ScrollView>
       <View>
-        <TreeList />
         <SafeAreaView>
-          <ScrollView>
-            <FlatList
-              style={styles.root}
-              data={Fruitresponse}
-              ItemSeparatorComponent={() => {
-                return <View style={styles.CommentSeparator} />;
-              }}
-              keyExtractor={(item) => {
-                return item.title;
-              }}
-              renderItem={(item) => {
-                const Notification = item.item;
-                return (
-                  <View style={styles.CommentContainer}>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate('TreeInfo', {item})}>
-                      <Image style={styles.image} source={banana} />
-                    </TouchableOpacity>
-                    <View style={styles.content}>
-                      <View style={styles.contentHeader}>
-                        <TouchableOpacity
-                          onPress={() =>
-                            navigation.navigate('TreeInfo', {item})
-                          }>
-                          <Text style={styles.name}>{Notification.title}</Text>
-                        </TouchableOpacity>
-                        <Text style={styles.time}>9:58 am</Text>
-                      </View>
-                      <Text rkType="primary3 mediumLine">
-                        {Notification.description}
-                      </Text>
+          <FlatList
+            style={styles.root}
+            data={CommentResponse}
+            ItemSeparatorComponent={() => {
+              return <View style={styles.CommentSeparator} />;
+            }}
+            keyExtractor={(item) => {
+              return item.id;
+            }}
+            renderItem={(item) => {
+              const Notification = item.item;
+              return (
+                <View style={styles.CommentContainer}>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('TreeInfo', {item})}>
+                    <Image style={styles.image} source={banana} />
+                  </TouchableOpacity>
+                  <View style={styles.content}>
+                    <View style={styles.contentHeader}>
+                      <TouchableOpacity
+                        onPress={() => navigation.navigate('TreeInfo', {item})}>
+                        <Text style={styles.name}>Anonymous</Text>
+                      </TouchableOpacity>
+                      <Text style={styles.time}>{Notification.createdAt}</Text>
                     </View>
+                    <Text rkType="primary3 mediumLine">
+                      {Notification.text}
+                    </Text>
                   </View>
-                );
-              }}
-            />
-          </ScrollView>
+                </View>
+              );
+            }}
+          />
         </SafeAreaView>
       </View>
     </ScrollView>
@@ -193,7 +155,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#dd5252',
     borderRadius: 22,
     borderWidth: 3,
@@ -217,7 +179,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -252,4 +214,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TreeListScreen;
+export default CropCommentScreen;

@@ -12,11 +12,23 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import socketIOClient from 'socket.io-client';
-import MapView, {Marker, ProviderPropType} from 'react-native-maps';
-import RNPickerSelect from 'react-native-picker-select';
-import {withNavigation} from 'react-navigation';
+import MapView, {
+  Marker,
+  ProviderPropType,
+  AnimatedRegion,
+  Animated,
+} from 'react-native-maps';
+import Geolocation from '@react-native-community/geolocation';
+
+const locationConfig = {
+  skipPermissionRequests: true,
+  authorizationLevel: 'whenInUse',
+};
+
+Geolocation.setRNConfiguration(locationConfig);
 
 const {width, height} = Dimensions.get('window');
 const LATITUDE = 33.99632;
@@ -45,10 +57,77 @@ export default class NewCropLocation extends Component {
       CropAvailability: '',
       CropEmail: '',
       Testing: props.CropCommonName,
+      initialRegion: {
+        latitude: 33.99632,
+        longitude: -118.48138,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0922 * ASPECT_RATIO,
+      },
+      location: null,
     };
   }
 
+  findCoordinates = () => {
+    Geolocation.requestAuthorization();
+    Geolocation.requestAuthorization('always').then((res) => {
+      Alert.alert(res);
+    });
+    Geolocation.getCurrentPosition(
+      (position) => {
+        const location = JSON.stringify(position);
+
+        this.setState({location});
+      },
+      (error) => Alert.alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
+  };
+
+  getLocationUser = async () => {
+    Geolocation.requestAuthorization('whenInUse');
+    await Geolocation.getCurrentPosition(
+      (position) => {
+        const location = JSON.stringify(position);
+        this.setState({location});
+      },
+      (error) => {
+        console.log(error);
+        Alert.alert(error.message);
+      },
+    );
+  };
+
+  /*async getCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        let region = {
+          latitude: parseFloat(position.coords.latitude),
+          longitude: parseFloat(position.coords.longitude),
+          latitudeDelta: 5,
+          longitudeDelta: 5,
+        };
+        this.setState({
+          initialRegion: region,
+        });
+      },
+      (error) => console.log(error),
+      {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 1000,
+      },
+    );
+  }*/
+  /*goToInitialLocation() {
+    let initialRegion = Object.assign({}, this.state.initialRegion);
+    initialRegion.latitudeDelta = 0.005;
+    initialRegion.longitudeDelta = 0.005;
+    this.mapView.animateToRegion(initialRegion, 2000);
+  }*/
+
   componentDidMount() {
+    //this.getCurrentLocation();
+    Geolocation.requestAuthorization();
     this.socket = socketIOClient(ENDPOINT);
     this.socket.on('plants nearby', (msg) => {
       let plants = JSON.parse(msg);
@@ -63,6 +142,7 @@ export default class NewCropLocation extends Component {
       privacy: this.props.CropPrivacy,
       option: this.props.CropSharing,
       availability: this.props.CropAvailability,
+      description: this.props.CropBio,
     };
     console.log(
       'coordination:' + this.state.a.longitude + ' ' + this.state.a.latitude,
@@ -116,19 +196,39 @@ export default class NewCropLocation extends Component {
                 />
               </MapView>
             </View>
-            <View>
+            <View style={styles.bg}>
               <View style={styles.body}>
                 <View style={styles.sectionContainer}>
-                  <Text style={styles.sectionDescription}>
-                    <Text style={styles.highlight}>
-                      Drag the pin to locate the crop
-                    </Text>
+                  <Text style={styles.highlight}>
+                    Drag the pin to locate the crop
                   </Text>
                 </View>
               </View>
+              {/*<View style={styles.sectionContainer}>
+                <TouchableOpacity onPress={this.getLocationUser}>
+                  <Text style={styles.highlight}>Find My Coords?</Text>
+                  <Text>Location: {this.state.location}</Text>
+                </TouchableOpacity>
+              </View>*/}
               <TouchableOpacity
                 style={styles.secondaryButton}
-                onPress={() => this.submitCropCommonName()}
+                onPress={() => {
+                  this.submitCropCommonName();
+                  this.props.navigation.navigate('AddCropInfo', {
+                    item: {
+                      item: {
+                        title: this.props.CropCommonName,
+                        description: this.props.CropBio,
+                        coordinates: {
+                          latitude: this.state.a.latitude,
+                          longitude: this.state.a.longitude,
+                        },
+                        option: this.props.CropSharing,
+                        privacy: this.props.CropPrivacy,
+                      },
+                    },
+                  });
+                }}
                 underlayColor="#fff">
                 <Text style={styles.secondaryButtonText}> Add Crop </Text>
               </TouchableOpacity>
@@ -173,17 +273,18 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     /* Share an orchard */
-
     position: 'relative',
-    width: 315.77,
-    height: 51.83,
+    width: 80,
+    height: 40,
+    marginTop: 5,
     /*left: 32.62,
                         top: 630.17,*/
-    backgroundColor: '#43aa8b',
+    backgroundColor: '#48BBEC',
     borderRadius: 22,
     borderWidth: 3,
-    borderColor: '#DD5252',
-
+    borderColor: '#48BBEC',
+    alignItems: 'center',
+    justifyContent: 'center',
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
   },
   map: {
@@ -205,10 +306,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Red Hat Display',
     fontStyle: 'normal',
     fontWeight: 'normal',
-    fontSize: 34,
-    lineHeight: 45,
+    fontSize: 16,
+    lineHeight: 20,
     textAlign: 'center',
-    color: '#254441',
+    color: '#FFFFF0',
+  },
+  bg: {
+    backgroundColor: '#43aa8b',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 const pickerSelectStyles = StyleSheet.create({
@@ -231,6 +338,13 @@ const pickerSelectStyles = StyleSheet.create({
     borderRadius: 8,
     color: 'black',
     paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  highlight: {
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 16,
+    textAlign: 'center',
+    color: '#254441',
   },
   mainButton: {
     /* Share an orchard */

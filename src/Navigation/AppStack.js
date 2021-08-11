@@ -71,7 +71,7 @@ export default function AppStack() {
           name="Fruits"
           component={GrowerListScreen}
           options={{
-            tabBarLabel: 'Fruits',
+            tabBarLabel: 'My Crops',
             tabBarIcon: ({color, size}) => (
               <MaterialCommunityIcons name="apple" color={color} size={size} />
             ),

@@ -19,7 +19,7 @@ export default function AddCropAvailabilityScreen({navigation, route}) {
     <View style={styles.bg}>
       <View>
         <Text>
-          <Text style={styles.highlight}>Availability(e.g 2 lbs)</Text>
+          <Text style={styles.highlight}>Amount(e.g 2 lbs)</Text>
         </Text>
       </View>
       <View>
@@ -37,7 +37,7 @@ export default function AddCropAvailabilityScreen({navigation, route}) {
         <TouchableOpacity
           style={styles.secondaryButton}
           onPress={() =>
-            navigation.navigate('CropLocation', {
+            navigation.navigate('CropBio', {
               CropCommonName: route.params.CropCommonName,
               CropPrivacy: route.params.CropPrivacy,
               CropSharing: route.params.CropSharing,
