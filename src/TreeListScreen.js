@@ -52,7 +52,7 @@ function TreeListScreen({navigation}) {
         crop.title = crop.common_name;
         PlantsReturn.push({
           title: crop.title,
-          description: 'new crops for testing add',
+          description: crop.description,
           coordinates: {
             latitude: crop.latitude,
             longitude: crop.longitude,
@@ -108,7 +108,7 @@ function TreeListScreen({navigation}) {
                         <Text style={styles.time}>9:58 am</Text>
                       </View>
                       <Text rkType="primary3 mediumLine">
-                        This is about testing the crop
+                        {Notification.description}
                       </Text>
                     </View>
                   </View>

@@ -56,7 +56,7 @@ export default class TreeList extends Component {
         crop.title = crop.common_name;
         PlantsReturn.push({
           title: crop.title,
-          description: 'new crops for testing add',
+          description: crop.description,
           coordinates: {
             latitude: crop.latitude,
             longitude: crop.longitude,
@@ -76,7 +76,6 @@ export default class TreeList extends Component {
   }
 
   componentDidMount() {
-
     this.socket.on('FruitsFromAPI', (data) => {
       this.fruitsResponse = data;
       //console.log("fruit from api" +  JSON.stringify(data))

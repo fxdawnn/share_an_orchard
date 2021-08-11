@@ -21,6 +21,8 @@ import NewCropLocationScreen from '../screens/NewCropScreens/NewCropLocationScre
 import AddCropAvailabilityScreen from '../screens/NewCropScreens/AddCropAvailabilityScreen';
 import NewCropLocation from '../screens/NewCropScreens/NewCropLocation';
 import AddCropBioScreen from '../screens/NewCropScreens/AddCropBioScreen';
+import AddCropInfoScreen from '../screens/NewCropScreens/AddCropInfoScreen';
+import AddCommentScreen from '../screens/AddCommentScreen';
 import * as React from 'react';
 import banana from '../img/40.png';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -93,9 +95,19 @@ export default function HomeStack() {
         options={{title: 'Add New Crop'}}
       />
       <Stack.Screen
+        name="AddComment"
+        component={AddCommentScreen}
+        options={{title: 'Add Comment'}}
+      />
+      <Stack.Screen
         name="TreeList"
         component={TreeListScreen}
         options={{title: 'Nearby Available Crops'}}
+      />
+      <Stack.Screen
+        name="AddCropInfo"
+        component={AddCropInfoScreen}
+        options={{title: 'Add Crop Completed'}}
       />
       <Stack.Screen
         name="AddCropMap"

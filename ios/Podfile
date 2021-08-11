@@ -11,7 +11,7 @@ target 'Testing_react_ios_project' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
-
+  pod 'react-native-geolocation', path: '../node_modules/@react-native-community/geolocation'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
@@ -26,6 +26,7 @@ target 'Testing_react_ios_project' do
 # For example, to use Firebase Authentication and Cloud Firestore
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+
   target 'Testing_react_ios_projectTests' do
     inherit! :complete
     # Pods for testing

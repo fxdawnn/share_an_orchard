@@ -11,10 +11,10 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
-import logo from './img/nature_tree.png';
+import logo from '../../img/nature_tree.png'
 import {Card, Icon} from 'react-native-elements';
 
-function TreeInfoScreen({route, navigation}) {
+function AddCropInfoScreen({route, navigation}) {
   const {item} = route.params.item;
   return (
     <ScrollView>
@@ -48,21 +48,14 @@ function TreeInfoScreen({route, navigation}) {
             </Text>
             <Text style={styles.description}>{item.description}</Text>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Comments', route.params.item)}
+              onPress={() => navigation.navigate('Home')}
               style={styles.buttonContainer}>
-              <Text>See comments</Text>
+              <Text>Home</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonContainer}
-              onPress={() => navigation.navigate('AddCropPhoto', item)}>
-              <Text>Sharing proof photos</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('AddComment', {item: route.params.item})
-              }
-              style={styles.buttonContainer}>
-              <Text>Add comments</Text>
+              onPress={() => navigation.navigate('AddCropPhoto')}>
+              <Text>Sharing proof phtots</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -114,7 +107,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -232,4 +225,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TreeInfoScreen;
+export default AddCropInfoScreen;

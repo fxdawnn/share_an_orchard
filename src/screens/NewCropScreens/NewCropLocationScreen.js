@@ -18,13 +18,15 @@ export default function NewCropLocationScreen({navigation, route}) {
         CropPrivacy={route.params.CropPrivacy}
         CropSharing={route.params.CropSharing}
         CropAvailability={route.params.CropAvailability}
+        CropBio={route.params.CropBio}
+        navigation={navigation}
       />
       <View style={styles.bg}>
         <TouchableOpacity
           style={styles.secondaryButton}
           onPress={() => navigation.navigate('Home')}
           underlayColor="#fff">
-          <Text style={styles.secondaryButtonText}>Back</Text>
+          <Text style={styles.secondaryButtonText}>Home</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.spacebg}></View>

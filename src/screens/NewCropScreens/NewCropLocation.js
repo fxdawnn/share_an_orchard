@@ -12,16 +12,23 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import socketIOClient from 'socket.io-client';
 import MapView, {
   Marker,
   ProviderPropType,
   AnimatedRegion,
-  navigator,
+  Animated,
 } from 'react-native-maps';
-import RNPickerSelect from 'react-native-picker-select';
-import {withNavigation} from 'react-navigation';
+import Geolocation from '@react-native-community/geolocation';
+
+const locationConfig = {
+  skipPermissionRequests: true,
+  authorizationLevel: 'whenInUse',
+};
+
+Geolocation.setRNConfiguration(locationConfig);
 
 const {width, height} = Dimensions.get('window');
 const LATITUDE = 33.99632;
@@ -56,8 +63,39 @@ export default class NewCropLocation extends Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0922 * ASPECT_RATIO,
       },
+      location: null,
     };
   }
+
+  findCoordinates = () => {
+    Geolocation.requestAuthorization();
+    Geolocation.requestAuthorization('always').then((res) => {
+      Alert.alert(res);
+    });
+    Geolocation.getCurrentPosition(
+      (position) => {
+        const location = JSON.stringify(position);
+
+        this.setState({location});
+      },
+      (error) => Alert.alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
+  };
+
+  getLocationUser = async () => {
+    Geolocation.requestAuthorization('whenInUse');
+    await Geolocation.getCurrentPosition(
+      (position) => {
+        const location = JSON.stringify(position);
+        this.setState({location});
+      },
+      (error) => {
+        console.log(error);
+        Alert.alert(error.message);
+      },
+    );
+  };
 
   /*async getCurrentLocation() {
     navigator.geolocation.getCurrentPosition(
@@ -89,6 +127,7 @@ export default class NewCropLocation extends Component {
 
   componentDidMount() {
     //this.getCurrentLocation();
+    Geolocation.requestAuthorization();
     this.socket = socketIOClient(ENDPOINT);
     this.socket.on('plants nearby', (msg) => {
       let plants = JSON.parse(msg);
@@ -103,6 +142,7 @@ export default class NewCropLocation extends Component {
       privacy: this.props.CropPrivacy,
       option: this.props.CropSharing,
       availability: this.props.CropAvailability,
+      description: this.props.CropBio,
     };
     console.log(
       'coordination:' + this.state.a.longitude + ' ' + this.state.a.latitude,
@@ -164,9 +204,31 @@ export default class NewCropLocation extends Component {
                   </Text>
                 </View>
               </View>
+              {/*<View style={styles.sectionContainer}>
+                <TouchableOpacity onPress={this.getLocationUser}>
+                  <Text style={styles.highlight}>Find My Coords?</Text>
+                  <Text>Location: {this.state.location}</Text>
+                </TouchableOpacity>
+              </View>*/}
               <TouchableOpacity
                 style={styles.secondaryButton}
-                onPress={() => this.submitCropCommonName()}
+                onPress={() => {
+                  this.submitCropCommonName();
+                  this.props.navigation.navigate('AddCropInfo', {
+                    item: {
+                      item: {
+                        title: this.props.CropCommonName,
+                        description: this.props.CropBio,
+                        coordinates: {
+                          latitude: this.state.a.latitude,
+                          longitude: this.state.a.longitude,
+                        },
+                        option: this.props.CropSharing,
+                        privacy: this.props.CropPrivacy,
+                      },
+                    },
+                  });
+                }}
                 underlayColor="#fff">
                 <Text style={styles.secondaryButtonText}> Add Crop </Text>
               </TouchableOpacity>
