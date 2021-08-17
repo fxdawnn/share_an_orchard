@@ -14,15 +14,16 @@ import {
 import {useForm, Controller} from 'react-hook-form';
 import {styles} from '../../styles';
 import {ProfileContext} from '../../Navigation/ProfileSwitch';
-import auth from '@react-native-firebase/auth';
-import UserProfileScreen from '../UserProfileScreen';
 import socketIOClient from 'socket.io-client';
 const ENDPOINT = 'http://34.121.9.120:3000';
 const socket = socketIOClient(ENDPOINT);
+import {AuthContext} from '../../Navigation/AuthNavigator';
+import {login} from '../../Store';
 
 export default function AccountBioScreen({navigation, route}) {
   const [Info, setInfo] = useState('');
   const [profile, setProfile] = useContext(ProfileContext);
+  const user = useContext(AuthContext);
   async function InputBio() {
     try {
       ProfileContext.Bio = Info;
@@ -40,8 +41,10 @@ export default function AccountBioScreen({navigation, route}) {
       experience: route.params.experience,
       graywater: route.params.grayWater,
       bio: Info,
+      firebase_token: user.uid,
     };
-    socket.emit('new profile', JSON.stringify(NewProfile));
+    /*socket.emit('new profile', JSON.stringify(NewProfile));*/
+    login(NewProfile, navigation);
   }
 
   const {control, handleSubmit, errors} = useForm();
@@ -70,14 +73,6 @@ export default function AccountBioScreen({navigation, route}) {
           onPress={submitProfile}
           underlayColor="#fff">
           <Text style={styles.mainButtonText}> Finish </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{marginTop: 20}}>
-        <TouchableOpacity
-          style={styles.mainButton}
-          onPress={() => navigation.navigate('ProfileFinal')}
-          underlayColor="#fff">
-          <Text style={styles.mainButtonText}> View Profile </Text>
         </TouchableOpacity>
       </View>
     </View>

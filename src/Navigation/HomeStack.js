@@ -1,5 +1,5 @@
 import {Image, TouchableOpacity} from 'react-native';
-import logo from '../img/nature_tree.png';
+import banana from '../img/banana.png';
 import HomeScreen from '../screens/homeScreen';
 import CropAreaScreen from '../screens/CropAreaScreen';
 import CropYieldScreen from '../screens/CropYieldScreen';
@@ -8,7 +8,6 @@ import AddTreeScreen from '../screens/AddTreeScreen';
 import TreeInfoScreen from '../TreeInfoScreen';
 import TreeListScreen from '../TreeListScreen';
 import GrowerListScreen from '../GrowerListScreen';
-import FriendListScreen from '../FriendListScreen';
 import AddTreeMapScreen from '../screens/mapScreen';
 import LoginScreen from '../screens/LoginScreen';
 import AccountSetupScreen from '../screens/AccountSetUpScreens/AccountSetupScreen';
@@ -25,7 +24,6 @@ import AddCropBioScreen from '../screens/NewCropScreens/AddCropBioScreen';
 import AddCropInfoScreen from '../screens/NewCropScreens/AddCropInfoScreen';
 import AddCommentScreen from '../screens/AddCommentScreen';
 import * as React from 'react';
-import banana from '../img/40.png';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();

@@ -14,9 +14,10 @@ import {useEffect, useState} from 'react';
 import {List, ListItem} from 'react-native-elements';
 //import logo from 'img/nature_tree.png';
 const ENDPOINT = 'http://34.121.9.120:3000';
-import TreeList from './TreeList';
+import TreeList from '../../TreeList';
+import {connect} from 'react-redux';
 
-function FriendListScreen({navigation}) {
+function FriendListScreen({navigation, route}) {
   const [Fruitresponse, setFruitResponse] = useState([]);
   const [NeighborCrops, setNeighbourCrops] = useState('');
   const [Friendresponse, setFriendResponse] = useState([]);
@@ -91,13 +92,14 @@ function FriendListScreen({navigation}) {
   }
   return (
     <View>
+      {/*<Text>{JSON.stringify(route.params.users)}</Text>*/}
       <View>
-        {Friendresponse.map((item, index) => (
+        {route.params.users.map((item, index) => (
           <TouchableOpacity
-            key={item.title}
+            key={item.id}
             style={styles.ListObjContainer}
-            onPress={() => navigation.navigate('Chat')}>
-            <Text style={styles.text}>{item.title}</Text>
+            onPress={() => navigation.navigate('OldChat', {item, receiver: route.params.user})}>
+            <Text style={styles.text}>{item.name}</Text>
           </TouchableOpacity>
         ))}
       </View>

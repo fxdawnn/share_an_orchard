@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {StyleSheet, View, Image, TouchableOpacity, Text} from 'react-native';
-import logo from '../img/nature_tree.png';
 import banana from '../img/120.png';
 
 function HomeScreen({navigation}) {
@@ -28,7 +27,7 @@ function HomeScreen({navigation}) {
       <View style={styles.space} />
       <TouchableOpacity
         style={styles.buttonContainer}
-        onPress={() => navigation.navigate('CropArea')}
+        onPress={() => navigation.navigate('CropYield')}
         underlayColor="#fff">
         <Text style={styles.mainButtonText}> Get Crop Choice Advice </Text>
       </TouchableOpacity>

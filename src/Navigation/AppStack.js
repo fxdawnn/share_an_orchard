@@ -1,5 +1,5 @@
 import {NavigationContainer} from '@react-navigation/native';
-import FriendListScreen from '../FriendListScreen';
+import FriendListScreen from '../screens/UsersFunctions/FriendListScreen';
 import GrowerListScreen from '../GrowerListScreen';
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';

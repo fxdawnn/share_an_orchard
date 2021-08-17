@@ -14,13 +14,13 @@ import {
 import logo from '../img/nature_tree.png';
 import {Card, Icon} from 'react-native-elements';
 
-function UserProfileScreen({navigation}) {
+function UserProfileScreen({navigation, route}) {
   return (
     <View style={styles.bg}>
       <View style={styles.headerContainer}>
         <View style={styles.headerColumn}>
           <Image style={styles.userImage} source={{uri: logo}} />
-          <Text style={styles.userNameText}>{'Test User'}</Text>
+          <Text style={styles.userNameText}>{route.params.name}</Text>
           <View style={styles.userAddressRow}>
             <View>
               <Icon
@@ -32,7 +32,7 @@ function UserProfileScreen({navigation}) {
             </View>
             <View style={styles.userCityRow}>
               <Text style={styles.userCityText}>
-                {'Santa Monica'}, {'CA'}
+                {'Irvine'}, {'CA'}
               </Text>
             </View>
           </View>
@@ -41,16 +41,14 @@ function UserProfileScreen({navigation}) {
       <View>
         <View style={styles.bodyContent}>
           <Text style={styles.info}>
-            {' '}
-            {'Experienced Grower'} / {'Sustainable'}
+            {'Experienced Grower:' + route.params.experience} / {'Sustainable'}
           </Text>
           <Text style={styles.description}>
-            Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum
-            electram expetendis, omittam deseruisse consequuntur ius an,
+            {route.params.bio}
           </Text>
-          <TouchableOpacity style={styles.buttonContainer}>
+          {/*<TouchableOpacity style={styles.buttonContainer}>
             <Text>Edit Profile</Text>
-          </TouchableOpacity>
+          </TouchableOpacity>*/}
         </View>
       </View>
     </View>

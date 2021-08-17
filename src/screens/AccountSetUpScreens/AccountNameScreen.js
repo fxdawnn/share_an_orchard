@@ -20,7 +20,7 @@ export default function AccountNameScreen({navigation}) {
     <View style={styles.bg}>
       <View>
         <Text>
-          <Text style={styles.highlight}>Nick Name</Text>
+          <Text style={styles.highlight}>Nickname</Text>
         </Text>
       </View>
       <View>

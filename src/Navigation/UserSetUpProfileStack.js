@@ -12,6 +12,7 @@ import AccountSetupGMOScreen from '../screens/AccountSetUpScreens/AccountGMOScre
 import AccountBioScreen from '../screens/AccountSetUpScreens/AccountBioScreen';
 import UserProfileScreen from '../screens/UserProfileScreen';
 import AccountNameScreen from '../screens/AccountSetUpScreens/AccountNameScreen';
+import GrowersScreen from '../screens/UsersFunctions/GrowersScreen';
 import {ProfileContext} from './ProfileSwitch';
 
 const Stack = createStackNavigator();
@@ -54,6 +55,7 @@ export default function UserProfileSetupStack() {
         <Stack.Screen name="GMOSetup" component={AccountSetupGMOScreen} />
         <Stack.Screen name="BioSetup" component={AccountBioScreen} />
         <Stack.Screen name="ProfileFinal" component={UserProfileScreen} />
+        <Stack.Screen name="Friends" component={GrowersScreen} />
       </Stack.Navigator>
     </ProfileContext.Provider>
   );

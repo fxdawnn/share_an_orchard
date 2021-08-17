@@ -12,7 +12,7 @@ import {
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import socketIOClient from 'socket.io-client';
 import {ListItem} from 'react-native-elements';
-import banana from './img/40.png';
+import banana from './img/banana_small.png';
 
 const ENDPOINT = 'http://34.121.9.120:3000';
 
