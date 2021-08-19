@@ -19,7 +19,7 @@ export default function AddCropAvailabilityScreen({navigation, route}) {
     <View style={styles.bg}>
       <View>
         <Text>
-          <Text style={styles.highlight}>Amount(e.g 2 lbs)</Text>
+          <Text style={styles.mainButtonText}>Amount(e.g 2 lbs)</Text>
         </Text>
       </View>
       <View>
@@ -35,7 +35,7 @@ export default function AddCropAvailabilityScreen({navigation, route}) {
       </View>
       <View>
         <TouchableOpacity
-          style={styles.secondaryButton}
+          style={styles.buttonContainer}
           onPress={() =>
             navigation.navigate('CropBio', {
               CropCommonName: route.params.CropCommonName,
@@ -45,7 +45,7 @@ export default function AddCropAvailabilityScreen({navigation, route}) {
             })
           }
           underlayColor="#fff">
-          <Text style={styles.secondaryButtonText}> Next </Text>
+          <Text style={styles.mainButtonText}> Next </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -67,6 +67,26 @@ const styles = StyleSheet.create({
     borderColor: '#d3d3d3',
     borderBottomWidth: 1,
     borderRadius: 8,
+  },
+  buttonContainer: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: 305,
+    height: 42,
+    borderRadius: 22,
+    backgroundColor: '#00BFFF',
+  },
+  mainButtonText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 22,
+    lineHeight: 40,
+    textAlign: 'center',
+    color: '#FFFFF0',
   },
   highlight: {
     fontStyle: 'normal',

@@ -23,6 +23,7 @@ import NewCropLocation from '../screens/NewCropScreens/NewCropLocation';
 import AddCropBioScreen from '../screens/NewCropScreens/AddCropBioScreen';
 import AddCropInfoScreen from '../screens/NewCropScreens/AddCropInfoScreen';
 import AddCommentScreen from '../screens/AddCommentScreen';
+import FriendListScreen from '../screens/UsersFunctions/FriendListScreen';
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -102,6 +103,11 @@ export default function HomeStack() {
         name="TreeList"
         component={TreeListScreen}
         options={{title: 'Nearby Available Crops'}}
+      />
+      <Stack.Screen
+        name="FriendsList"
+        component={FriendListScreen}
+        options={{title: 'Nearby Growers'}}
       />
       <Stack.Screen
         name="AddCropInfo"

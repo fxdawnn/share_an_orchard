@@ -1,20 +1,13 @@
-import {
-  Button,
-  StyleSheet,
-  Text,
-  ScrollView,
-  StatusBar,
-} from 'react-native';
+import {Button, StyleSheet, Text, ScrollView, StatusBar} from 'react-native';
 import * as React from 'react';
-import NewCrop from '../NewCrop';
-import TreeForm from '../forms/AddTreeForm';
 import SimpleImagePicker from '../CropImagePicker';
 
-function AddCropPhotoScreen({navigation}) {
+function AddCropPhotoScreen({navigation, route}) {
   return (
     <ScrollView>
       <StatusBar barStyle="light-content" />
-      <SimpleImagePicker />
+      <SimpleImagePicker crop={route.params.crop} />
+      <Text>{route.params.crop.title}</Text>
     </ScrollView>
   );
 }

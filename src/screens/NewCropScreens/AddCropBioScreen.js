@@ -23,7 +23,9 @@ export default function AddCropBioScreen({navigation, route}) {
   const [text, setText] = useState('');
   return (
     <View style={styles.bg}>
-      <Text style={styles.titleText}>Crop Bio(Tell us about the crop!)</Text>
+      <Text style={styles.mainButtonText}>
+        Crop Bio(Tell us about the crop!)
+      </Text>
       <View style={{padding: 10}}>
         <TextInput
           style={{
@@ -38,7 +40,7 @@ export default function AddCropBioScreen({navigation, route}) {
       </View>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
-          style={styles.mainButton}
+          style={styles.buttonContainer}
           onPress={() =>
             navigation.navigate('CropLocation', {
               CropCommonName: route.params.CropCommonName,

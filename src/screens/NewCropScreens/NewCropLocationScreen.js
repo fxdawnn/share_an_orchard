@@ -23,10 +23,10 @@ export default function NewCropLocationScreen({navigation, route}) {
       />
       <View style={styles.bg}>
         <TouchableOpacity
-          style={styles.secondaryButton}
+          style={styles.buttonContainer}
           onPress={() => navigation.navigate('Home')}
           underlayColor="#fff">
-          <Text style={styles.secondaryButtonText}>Home</Text>
+          <Text style={styles.mainButtonText}>Home</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.spacebg}></View>
@@ -40,6 +40,26 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonContainer: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: 305,
+    height: 42,
+    borderRadius: 22,
+    backgroundColor: '#00BFFF',
+  },
+  mainButtonText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 22,
+    lineHeight: 40,
+    textAlign: 'center',
+    color: '#FFFFF0',
   },
   spacebg: {
     width: '100%', // or whatever size you need

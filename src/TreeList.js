@@ -95,15 +95,6 @@ export default class TreeList extends Component {
       {/*<Image style={styles.image} source={{uri: itemData.item.url}} /> // 3*/}
     </TouchableOpacity>
   );
-  renderItem = ({item}) => (
-    <ListItem
-      title={
-        'Testing title'
-      }
-      subtitle={'santa monica'}
-      bottomDivider={true}
-    />
-  );
 
   render() {
     return (

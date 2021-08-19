@@ -211,7 +211,7 @@ export default class NewCropLocation extends Component {
                 </TouchableOpacity>
               </View>*/}
               <TouchableOpacity
-                style={styles.secondaryButton}
+                style={styles.buttonContainer}
                 onPress={() => {
                   this.submitCropCommonName();
                   this.props.navigation.navigate('AddCropInfo', {
@@ -230,7 +230,7 @@ export default class NewCropLocation extends Component {
                   });
                 }}
                 underlayColor="#fff">
-                <Text style={styles.secondaryButtonText}> Add Crop </Text>
+                <Text style={styles.mainButtonText}> Add Crop </Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
@@ -251,6 +251,26 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     color: '#656565',
+  },
+  buttonContainer: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: 305,
+    height: 42,
+    borderRadius: 22,
+    backgroundColor: '#00BFFF',
+  },
+  mainButtonText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 22,
+    lineHeight: 40,
+    textAlign: 'center',
+    color: '#FFFFF0',
   },
   container: {
     padding: 30,

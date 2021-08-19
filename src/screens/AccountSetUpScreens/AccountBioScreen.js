@@ -69,7 +69,7 @@ export default function AccountBioScreen({navigation, route}) {
       </View>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
-          style={styles.mainButton}
+          style={styles.buttonContainer}
           onPress={submitProfile}
           underlayColor="#fff">
           <Text style={styles.mainButtonText}> Finish </Text>

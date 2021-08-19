@@ -19,6 +19,7 @@ function TreeInfoScreen({route, navigation}) {
   return (
     <ScrollView>
       <View style={styles.bg}>
+        <View style={styles.space}></View>
         <View style={styles.headerContainer}>
           <View style={styles.headerColumn}>
             <Image style={styles.userImage} source={{uri: logo}} />
@@ -54,13 +55,15 @@ function TreeInfoScreen({route, navigation}) {
               style={styles.buttonContainer}>
               <Text>See comments</Text>
             </TouchableOpacity>
+            <View style={styles.space}></View>
             <TouchableOpacity
               style={styles.buttonContainer}
               onPress={() =>
-                navigation.navigate('AddCropPhoto', {item: route.params.item})
+                navigation.navigate('AddCropPhoto', {crop: item})
               }>
               <Text>Sharing proof photos</Text>
             </TouchableOpacity>
+            <View style={styles.space}></View>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate('AddComment', {item: route.params.item})
@@ -68,6 +71,10 @@ function TreeInfoScreen({route, navigation}) {
               style={styles.buttonContainer}>
               <Text>Add comments</Text>
             </TouchableOpacity>
+            <View style={styles.space}></View>
+            <View style={styles.space}></View>
+            <View style={styles.space}></View>
+            <View style={styles.space}></View>
           </View>
         </View>
       </View>
@@ -110,6 +117,10 @@ const styles = StyleSheet.create({
     width: 250,
     borderRadius: 30,
     backgroundColor: '#00BFFF',
+  },
+  space: {
+    width: 20, // or whatever size you need
+    height: 20,
   },
   secondaryButton: {
     /* Share an orchard */
@@ -160,7 +171,7 @@ const styles = StyleSheet.create({
   },
   headerBackgroundImage: {
     paddingBottom: 20,
-    paddingTop: 45,
+    paddingTop: 70,
   },
   headerContainer: {},
   headerColumn: {

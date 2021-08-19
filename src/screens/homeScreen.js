@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {StyleSheet, View, Image, TouchableOpacity, Text} from 'react-native';
-import banana from '../img/120.png';
+import banana from '../img/banana.png';
 
 function HomeScreen({navigation}) {
   return (
     <View style={styles.bg}>
       <Image style={styles.logo} source={banana} />
       <View style={styles}>
-        <Text style={styles.titleText}> Fruit for All</Text>
+        <Text style={styles.titleText}> Neighbor Fruit </Text>
       </View>
       <View style={styles.space} />
       <View style={styles.space} />
@@ -15,28 +15,28 @@ function HomeScreen({navigation}) {
         style={styles.buttonContainer}
         onPress={() => navigation.navigate('TreeList')}
         underlayColor="#fff">
-        <Text style={styles.mainButtonText}>Find Shared Nearby Fruit</Text>
+        <Text style={styles.mainButtonText}>Get Tree Crops</Text>
       </TouchableOpacity>
       <View style={styles.space} />
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.buttonContainer}
-        onPress={() => navigation.navigate('Friends')}
+        onPress={() => navigation.navigate('FriendsList')}
         underlayColor="#fff">
         <Text style={styles.mainButtonText}> Ask Nearby Mentor for Help </Text>
       </TouchableOpacity>
-      <View style={styles.space} />
+      <View style={styles.space} />*/}
       <TouchableOpacity
         style={styles.buttonContainer}
         onPress={() => navigation.navigate('CropYield')}
         underlayColor="#fff">
-        <Text style={styles.mainButtonText}> Get Crop Choice Advice </Text>
+        <Text style={styles.mainButtonText}> Planting Choice Advice </Text>
       </TouchableOpacity>
       <View style={styles.space} />
       <TouchableOpacity
         style={styles.buttonContainer}
         onPress={() => navigation.navigate('CropName')}
         underlayColor="#fff">
-        <Text style={styles.mainButtonText}> Share Fruits with Neighbor </Text>
+        <Text style={styles.mainButtonText}> Share Your Orchard </Text>
       </TouchableOpacity>
     </View>
   );
@@ -140,7 +140,6 @@ const styles = StyleSheet.create({
     height: '16%',
     width: '24%',
     margin: 12,
-    borderRadius: 40,
   },
   separator: {
     marginVertical: 8,

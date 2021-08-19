@@ -66,7 +66,7 @@ export default function AccountSetupScreen({navigation, route}) {
       </View>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
-          style={styles.mainButton}
+          style={styles.buttonContainer}
           onPress={() =>
             navigation.navigate('SharingSetup', {
               name: route.params.name,

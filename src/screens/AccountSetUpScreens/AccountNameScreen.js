@@ -20,7 +20,7 @@ export default function AccountNameScreen({navigation}) {
     <View style={styles.bg}>
       <View>
         <Text>
-          <Text style={styles.highlight}>Nickname</Text>
+          <Text style={styles.mainButtonText}>Nickname</Text>
         </Text>
       </View>
       <View>
@@ -36,14 +36,14 @@ export default function AccountNameScreen({navigation}) {
       </View>
       <View>
         <TouchableOpacity
-          style={styles.secondaryButton}
+          style={styles.buttonContainer}
           onPress={() =>
             navigation.navigate('Setup', {
               name: Name,
             })
           }
           underlayColor="#fff">
-          <Text style={styles.secondaryButtonText}> Next </Text>
+          <Text style={styles.mainButtonText}> Next </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -56,6 +56,26 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonContainer: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: 305,
+    height: 42,
+    borderRadius: 22,
+    backgroundColor: '#00BFFF',
+  },
+  mainButtonText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 22,
+    lineHeight: 40,
+    textAlign: 'center',
+    color: '#FFFFF0',
   },
   inputBox: {
     width: 150,

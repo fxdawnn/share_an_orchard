@@ -42,7 +42,7 @@ export default function AccountSetupGreyWaterScreen({navigation, route}) {
       </View>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
-          style={styles.mainButton}
+          style={styles.buttonContainer}
           onPress={() =>
             navigation.navigate('BioSetup', {
               area: route.params.area,

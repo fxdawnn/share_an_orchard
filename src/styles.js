@@ -39,28 +39,35 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   mainButton: {
-    /* Share an orchard */
-
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     position: 'relative',
-    width: 315.77,
-    height: 51.83,
-    /*left: 32.62,
-                        top: 630.17,*/
-    backgroundColor: '#dd5252',
+    width: 305,
+    height: 42,
     borderRadius: 22,
-    borderWidth: 3,
-    borderColor: '#254441',
-
-    /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
+    backgroundColor: '#00BFFF',
+  },
+  buttonContainer: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: 305,
+    height: 42,
+    borderRadius: 22,
+    backgroundColor: '#00BFFF',
   },
   mainButtonText: {
     fontFamily: 'Red Hat Display',
     fontStyle: 'normal',
     fontWeight: 'bold',
-    fontSize: 34,
-    lineHeight: 45,
+    fontSize: 22,
+    lineHeight: 40,
     textAlign: 'center',
-    color: '#254441',
+    color: '#FFFFF0',
   },
   secondaryButton: {
     /* Share an orchard */

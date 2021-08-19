@@ -75,7 +75,7 @@ export default function AccountSetupExScreen({navigation, route}) {
       </View>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
-          style={styles.mainButton}
+          style={styles.buttonContainer}
           onPress={() =>
             navigation.navigate('GreyWaterSetup', {
               name: route.params.name,

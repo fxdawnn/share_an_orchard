@@ -20,6 +20,7 @@ import banana from './img/40.png';
 function TreeListScreen({navigation}) {
   const [Fruitresponse, setFruitResponse] = useState([]);
   const [NeighborCrops, setNeighbourCrops] = useState('');
+  const [TestImage, setTestImage] = useState('');
   const socket = socketIOClient(ENDPOINT);
 
   useEffect(() => {
@@ -35,6 +36,15 @@ function TreeListScreen({navigation}) {
     });
     socket.on('neighbor plants', (data) => {
       setNeighbourCrops(data);
+    });
+    socket.on('crop image', function (image, buffer) {
+      if (image) {
+        console.log(' image: from client side');
+        // code to handle buffer like drawing with canvas** <--- is canvas drawing/library a requirement?  is there an alternative? another quick and dirty solution?
+        console.log(image);
+        setTestImage('data:image/jpeg;base64,' + image.buffer);
+        // what can we do here to serve the image onto an img tag?
+      }
     });
     socket.on('plants nearby', (msg) => {
       var plants = JSON.parse(msg);
@@ -56,6 +66,8 @@ function TreeListScreen({navigation}) {
             latitude: crop.latitude,
             longitude: crop.longitude,
           },
+          id: crop.id,
+          time: crop.createdAt,
           option: crop.option,
           privacy: crop.privacy,
         });
@@ -94,7 +106,7 @@ function TreeListScreen({navigation}) {
                   <View style={styles.CommentContainer}>
                     <TouchableOpacity
                       onPress={() => navigation.navigate('TreeInfo', {item})}>
-                      <Image style={styles.image} source={banana} />
+                      <Image style={styles.image} source={{uri: TestImage}} />
                     </TouchableOpacity>
                     <View style={styles.content}>
                       <View style={styles.contentHeader}>

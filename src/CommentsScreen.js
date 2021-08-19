@@ -14,13 +14,6 @@ function CommentsScreen({navigation}) {
   return (
     <ScrollView>
       <CropComments />
-      <View>
-        {/*<Text style={styles.description}>Add A tree</Text>
-        <TextInput style={styles.searchInput} placeholder="Tree Type" />
-        <TextInput style={styles.searchInput} placeholder="Annual yield" />
-        <Button onPress={() => {}} color="#48BBEC" title="Go" />*/}
-        {/*<TreeForm />*/}
-      </View>
     </ScrollView>
   );
 }

@@ -57,7 +57,7 @@ export default function AppStack() {
           name="Friends"
           component={ChatStack}
           options={{
-            tabBarLabel: 'Friends',
+            tabBarLabel: 'Growers',
             tabBarIcon: ({color, size}) => (
               <MaterialCommunityIcons
                 name="nature-people"
@@ -67,7 +67,7 @@ export default function AppStack() {
             ),
           }}
         />
-        <Tab.Screen
+       {/* <Tab.Screen
           name="Fruits"
           component={GrowerListScreen}
           options={{
@@ -76,7 +76,7 @@ export default function AppStack() {
               <MaterialCommunityIcons name="apple" color={color} size={size} />
             ),
           }}
-        />
+        />*/}
       </Tab.Navigator>
     </NavigationContainer>
   );

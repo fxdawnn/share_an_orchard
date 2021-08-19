@@ -17,7 +17,7 @@ import {
 } from 'react-native-image-picker';
 //import * as ImagePicker from 'react-native-image-picker';
 
-export default function SimpleImagePicker() {
+export default function SimpleImagePicker(props) {
   const [imageSource, setImageSource] = useState(null);
   const [filePath, setFilePath] = useState({});
   const requestCameraPermission = async () => {
@@ -101,6 +101,7 @@ export default function SimpleImagePicker() {
         setFilePath(response);
         const data = new FormData();
         data.append('name', 'avatar');
+        data.append('crop_id', props.crop.id);
         data.append('fileData', {
           uri: response.uri,
           type: response.type,
@@ -161,7 +162,7 @@ export default function SimpleImagePicker() {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <Text style={styles.titleText}>Choose or take photos of the crops</Text>
+      <Text style={styles.titleText}>Take photos of the crops</Text>
       <View style={styles.container}>
         {/* <Image
           source={{
@@ -169,36 +170,23 @@ export default function SimpleImagePicker() {
           }}
           style={styles.imageStyle}
         /> */}
+        <Text style={styles.secondaryButtonText}>{props.crop.title}</Text>
         <Image source={{uri: filePath.uri}} style={styles.imageStyle} />
-        <Text style={styles.textStyle}>{filePath.uri}</Text>
         <TouchableOpacity
           activeOpacity={0.5}
           style={styles.secondaryButton}
           onPress={() => captureImage('photo')}>
-          <Text style={styles.secondaryButtonText}>
-            Launch Camera for Image
-          </Text>
+          <Text style={styles.secondaryButtonText}>Capture Crop Image</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.secondaryButton}
-          onPress={() => captureImage('video')}>
-          <Text style={styles.secondaryButtonText}>
-            Launch Camera for Video
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+        {/*<TouchableOpacity
           activeOpacity={0.5}
           style={styles.secondaryButton}
           onPress={() => chooseFile('photo')}>
           <Text style={styles.secondaryButtonText}>Choose Image</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.secondaryButton}
-          onPress={() => chooseFile('video')}>
-          <Text style={styles.secondaryButtonText}>Choose Video</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>*/}
+        {/*<Text style={styles.secondaryButtonText}>
+          {JSON.stringify(props.crop)}
+        </Text>*/}
       </View>
     </SafeAreaView>
   );
