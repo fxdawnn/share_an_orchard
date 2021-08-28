@@ -7,7 +7,7 @@ function HomeScreen({navigation}) {
     <View style={styles.bg}>
       <Image style={styles.logo} source={banana} />
       <View style={styles}>
-        <Text style={styles.titleText}> Neighbor Fruit </Text>
+        <Text style={styles.titleText}> Fruit4All </Text>
       </View>
       <View style={styles.space} />
       <View style={styles.space} />
@@ -15,28 +15,21 @@ function HomeScreen({navigation}) {
         style={styles.buttonContainer}
         onPress={() => navigation.navigate('TreeList')}
         underlayColor="#fff">
-        <Text style={styles.mainButtonText}>Get Tree Crops</Text>
-      </TouchableOpacity>
-      <View style={styles.space} />
-      {/* <TouchableOpacity
-        style={styles.buttonContainer}
-        onPress={() => navigation.navigate('FriendsList')}
-        underlayColor="#fff">
-        <Text style={styles.mainButtonText}> Ask Nearby Mentor for Help </Text>
-      </TouchableOpacity>
-      <View style={styles.space} />*/}
-      <TouchableOpacity
-        style={styles.buttonContainer}
-        onPress={() => navigation.navigate('CropYield')}
-        underlayColor="#fff">
-        <Text style={styles.mainButtonText}> Planting Choice Advice </Text>
+        <Text style={styles.mainButtonText}>Get Food</Text>
       </TouchableOpacity>
       <View style={styles.space} />
       <TouchableOpacity
         style={styles.buttonContainer}
         onPress={() => navigation.navigate('CropName')}
         underlayColor="#fff">
-        <Text style={styles.mainButtonText}> Share Your Orchard </Text>
+        <Text style={styles.mainButtonText}>Share Food</Text>
+      </TouchableOpacity>
+      <View style={styles.space} />
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={() => navigation.navigate('CropYield')}
+        underlayColor="#fff">
+        <Text style={styles.mainButtonText}>Grow Food</Text>
       </TouchableOpacity>
     </View>
   );

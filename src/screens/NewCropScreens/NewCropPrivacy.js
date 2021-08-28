@@ -21,7 +21,7 @@ export default function NewCropPrivacy({navigation, route}) {
       <View>
         <Text>
           <Text style={styles.mainButtonText}>
-            Who would you like to share your {route.params.CropCommonName} with?
+            How would you like to share?
           </Text>
         </Text>
       </View>

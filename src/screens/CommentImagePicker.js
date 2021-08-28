@@ -17,7 +17,7 @@ import {
 } from 'react-native-image-picker';
 //import * as ImagePicker from 'react-native-image-picker';
 
-export default function SimpleImagePicker(props) {
+export default function CommentImageImagePicker(props) {
   const [imageSource, setImageSource] = useState(null);
   const [filePath, setFilePath] = useState({});
   const requestCameraPermission = async () => {
@@ -102,6 +102,7 @@ export default function SimpleImagePicker(props) {
         const data = new FormData();
         data.append('name', 'avatar');
         data.append('crop_id', props.crop.id);
+        data.append('userId', props.userId);
         data.append('fileData', {
           uri: response.uri,
           type: response.type,
@@ -115,7 +116,7 @@ export default function SimpleImagePicker(props) {
           },
           body: data,
         };
-        fetch('http://34.121.9.120:3001/' + 'upload', config)
+        fetch('http://34.121.9.120:3001/' + 'uploadComment', config)
           .then((checkStatusAndGetJSONResponse) => {
             console.log(checkStatusAndGetJSONResponse);
           })

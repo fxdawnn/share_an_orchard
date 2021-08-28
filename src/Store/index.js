@@ -34,6 +34,11 @@ export const login = (credentials, navigation) => {
   navigate = navigation.navigate;
 };
 
+export const findUser = (firebase_token, navigation) => {
+  socket.emit('findUser', firebase_token);
+  navigate = navigation.navigate;
+};
+
 export const openChat = (users) => {
   socket.emit('chat', users);
 };

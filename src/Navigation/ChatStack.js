@@ -40,7 +40,7 @@ export default function ChatStack() {
             fontWeight: 'bold',
           },
           headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.navigate('Friends')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Users')}>
               <Image
                 style={{width: 28, height: 28, margin: 12}}
                 source={logo}

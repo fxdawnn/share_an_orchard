@@ -41,8 +41,10 @@ class Login extends React.Component {
           placeholder="Password"
           secureTextEntry={true}
         />
-        <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={this.handleLogin}>
+          <Text style={styles.mainButtonText}>Login</Text>
         </TouchableOpacity>
         <Button
           title="Don't have an account yet? Sign up"
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffe2ff',
+    backgroundColor: '#43aa8b',
   },
   title: {
     marginTop: 20,
@@ -88,6 +90,26 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '500',
     color: '#7f78d2',
+  },
+  buttonContainer: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: 305,
+    height: 42,
+    borderRadius: 22,
+    backgroundColor: '#00BFFF',
+  },
+  mainButtonText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 22,
+    lineHeight: 40,
+    textAlign: 'center',
+    color: '#FFFFF0',
   },
   button: {
     flexDirection: 'row',

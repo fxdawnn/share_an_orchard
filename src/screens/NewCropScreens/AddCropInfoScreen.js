@@ -53,14 +53,9 @@ function AddCropInfoScreen({route, navigation}) {
             <TouchableOpacity
               onPress={() => navigation.navigate('Home')}
               style={styles.buttonContainer}>
-              <Text style={styles.mainButtonText}>Home</Text>
+              <Text style={styles.mainButtonText}>Finish</Text>
             </TouchableOpacity>
             <View style={styles.space}></View>
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={() => navigation.navigate('AddCropPhoto', {crop: item})}>
-              <Text style={styles.mainButtonText}>Sharing proof phtots</Text>
-            </TouchableOpacity>
             <View style={styles.space}></View>
             <View style={styles.space}></View>
             <View style={styles.space}></View>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   Text,
   View,
@@ -9,8 +9,10 @@ import {
 } from 'react-native';
 import NewCrop from '../../NewCrop';
 import NewCropLocation from './NewCropLocation';
+import {AuthContext} from '../../Navigation/AuthNavigator';
 
 export default function NewCropLocationScreen({navigation, route}) {
+  const user = useContext(AuthContext);
   return (
     <ScrollView>
       <NewCropLocation
@@ -20,15 +22,17 @@ export default function NewCropLocationScreen({navigation, route}) {
         CropAvailability={route.params.CropAvailability}
         CropBio={route.params.CropBio}
         navigation={navigation}
+        user={user}
       />
       <View style={styles.bg}>
         <TouchableOpacity
           style={styles.buttonContainer}
           onPress={() => navigation.navigate('Home')}
           underlayColor="#fff">
-          <Text style={styles.mainButtonText}>Home</Text>
+          <Text style={styles.mainButtonText}>Cancel</Text>
         </TouchableOpacity>
       </View>
+      <View><Text>{JSON.stringify(user.user.id)}</Text></View>
       <View style={styles.spacebg}></View>
     </ScrollView>
   );

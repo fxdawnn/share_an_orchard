@@ -19,7 +19,7 @@ import AddCropNameScreen from '../screens/NewCropScreens/AddCropNameScreen';
 import NewCropLocationScreen from '../screens/NewCropScreens/NewCropLocationScreen';
 import AddCropAvailabilityScreen from '../screens/NewCropScreens/AddCropAvailabilityScreen';
 import CropCommentScreen from '../CropCommentScreen';
-import NewCropLocation from '../screens/NewCropScreens/NewCropLocation';
+import Chat from '../screens/UsersFunctions/NewChat';
 import AddCropBioScreen from '../screens/NewCropScreens/AddCropBioScreen';
 import AddCropInfoScreen from '../screens/NewCropScreens/AddCropInfoScreen';
 import AddCommentScreen from '../screens/AddCommentScreen';
@@ -57,42 +57,55 @@ export default function HomeStack() {
         component={MapScreen}
         options={{title: 'Tree Map'}}
       />
-      <Stack.Screen name="AddTree" component={AddTreeScreen} />
-      <Stack.Screen name="TreeInfo" component={TreeInfoScreen} />
+      <Stack.Screen
+        name="AddTree"
+        component={AddTreeScreen}
+        options={{title: 'Add Food'}}
+      />
+      <Stack.Screen
+        name="TreeInfo"
+        options={{title: 'Details'}}
+        component={TreeInfoScreen}
+      />
       <Stack.Screen
         name="CropPrivacy"
         component={NewCropPrivacy}
-        options={{title: 'Add New Crop'}}
+        options={{title: 'Add Food'}}
       />
       <Stack.Screen
         name="CropSharing"
         component={NewCropSharing}
-        options={{title: 'Add New Crop'}}
+        options={{title: 'Add Food'}}
+      />
+      <Stack.Screen
+        name="ChatFood"
+        component={Chat}
+        options={{title: 'Chat'}}
       />
       <Stack.Screen
         name="CropAvailability"
         component={AddCropAvailabilityScreen}
-        options={{title: 'Add New Crop'}}
+        options={{title: 'Add Food'}}
       />
       <Stack.Screen
         name="CropName"
         component={AddCropNameScreen}
-        options={{title: 'Add New Crop'}}
+        options={{title: 'Add Food'}}
       />
       <Stack.Screen
         name="CropLocation"
         component={NewCropLocationScreen}
-        options={{title: 'Add New Crop'}}
+        options={{title: 'Add Food'}}
       />
       <Stack.Screen
         name="CropLocationTest"
         component={NewCropLocationScreen}
-        options={{title: 'Add New Crop'}}
+        options={{title: 'Add Food'}}
       />
       <Stack.Screen
         name="CropBio"
         component={AddCropBioScreen}
-        options={{title: 'Add New Crop'}}
+        options={{title: 'Add Food'}}
       />
       <Stack.Screen
         name="AddComment"
@@ -102,7 +115,7 @@ export default function HomeStack() {
       <Stack.Screen
         name="TreeList"
         component={TreeListScreen}
-        options={{title: 'Nearby Available Crops'}}
+        options={{title: 'Available Food'}}
       />
       <Stack.Screen
         name="FriendsList"

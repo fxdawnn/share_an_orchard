@@ -10,19 +10,26 @@ import {
   Alert,
   TouchableHighlight,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {styles} from '../styles';
-import socketIOClient from 'socket.io-client';
-const ENDPOINT = 'http://34.121.9.120:3000';
-const socket = socketIOClient(ENDPOINT);
-
+import socket from '../Store/socket';
+import {AuthContext} from '../Navigation/AuthNavigator';
+import SimpleImagePicker from '../CropImagePicker';
+import CommentImageImagePicker from './CommentImagePicker';
+import propsToAriaRole from 'react-native-web/dist/modules/AccessibilityUtil/propsToAriaRole';
 export default function AddCommentScreen({navigation, route}) {
   const [Info, setInfo] = useState('');
   const {item} = route.params.item;
+  const user = useContext(AuthContext);
 
   async function submitCropComment() {
-    let CropComment = {text: Info, crop_id: route.params.item.index};
+    let CropComment = {
+      text: Info,
+      crop_id: route.params.item.index,
+      userId: user.user.id,
+    };
     socket.emit('plant comment', JSON.stringify(CropComment));
     setInfo('done sending');
   }
@@ -31,10 +38,9 @@ export default function AddCommentScreen({navigation, route}) {
   const onSubmit = (data) => console.log(data);
   const [text, setText] = useState('');
   return (
-    <View style={styles.bg}>
-      <Text style={styles.titleText}>
-        Tell everyone what you think about the {item.title}!
-      </Text>
+    <ScrollView style={styles.bg}>
+      <StatusBar barStyle="light-content" />
+      <CommentImageImagePicker crop={item} userId={user.user.id}/>
       <View style={{padding: 10}}>
         <TextInput
           style={{
@@ -55,6 +61,6 @@ export default function AddCommentScreen({navigation, route}) {
           <Text style={styles.mainButtonText}> Add Comment </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }

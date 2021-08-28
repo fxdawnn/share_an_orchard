@@ -14,11 +14,8 @@ import {
 import {useForm, Controller} from 'react-hook-form';
 import {styles} from '../../styles';
 import {ProfileContext} from '../../Navigation/ProfileSwitch';
-import socketIOClient from 'socket.io-client';
-const ENDPOINT = 'http://34.121.9.120:3000';
-const socket = socketIOClient(ENDPOINT);
 import {AuthContext} from '../../Navigation/AuthNavigator';
-import {login} from '../../Store';
+import {login, findUser} from '../../Store';
 
 export default function AccountBioScreen({navigation, route}) {
   const [Info, setInfo] = useState('');
@@ -43,8 +40,13 @@ export default function AccountBioScreen({navigation, route}) {
       bio: Info,
       firebase_token: user.uid,
     };
-    /*socket.emit('new profile', JSON.stringify(NewProfile));*/
     login(NewProfile, navigation);
+  }
+  async function findProfile() {
+    let Profile = {
+      firebase_token: user.uid,
+    };
+    findUser(Profile, navigation);
   }
 
   const {control, handleSubmit, errors} = useForm();

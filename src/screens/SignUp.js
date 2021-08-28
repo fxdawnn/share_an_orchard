@@ -10,7 +10,6 @@ import auth from '@react-native-firebase/auth';
 
 class Signup extends React.Component {
   state = {
-    name: '',
     email: '',
     password: '',
   };
@@ -27,12 +26,6 @@ class Signup extends React.Component {
       <View style={styles.container}>
         <TextInput
           style={styles.inputBox}
-          value={this.state.name}
-          onChangeText={(name) => this.setState({name})}
-          placeholder="Full Name"
-        />
-        <TextInput
-          style={styles.inputBox}
           value={this.state.email}
           onChangeText={(email) => this.setState({email})}
           placeholder="Email"
@@ -45,8 +38,10 @@ class Signup extends React.Component {
           placeholder="Password"
           secureTextEntry={true}
         />
-        <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
-          <Text style={styles.buttonText}>Signup</Text>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={this.handleSignUp}>
+          <Text style={styles.mainButtonText}>Signup</Text>
         </TouchableOpacity>
       </View>
     );
@@ -55,7 +50,7 @@ class Signup extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#43aa8b',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -72,6 +67,26 @@ const styles = StyleSheet.create({
       fontSize: 20,
       fontWeight: 'bold',
     },
+  },
+  buttonContainer: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: 305,
+    height: 42,
+    borderRadius: 22,
+    backgroundColor: '#00BFFF',
+  },
+  mainButtonText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 22,
+    lineHeight: 40,
+    textAlign: 'center',
+    color: '#FFFFF0',
   },
   button: {
     marginTop: 30,

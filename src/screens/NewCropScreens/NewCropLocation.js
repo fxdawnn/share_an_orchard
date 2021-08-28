@@ -1,5 +1,5 @@
 'use strict';
-import React, {Component, useState, useEffect} from 'react';
+import React, {Component, useState, useEffect, useContext} from 'react';
 
 import {
   StyleSheet,
@@ -22,6 +22,7 @@ import MapView, {
   Animated,
 } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
+import socket from '../../Store/socket';
 
 const locationConfig = {
   skipPermissionRequests: true,
@@ -39,8 +40,6 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 function log(eventName, e) {
   console.log(eventName, e.nativeEvent);
 }
-
-const ENDPOINT = 'http://34.121.9.120:3000';
 
 export default class NewCropLocation extends Component {
   constructor(props) {
@@ -64,6 +63,7 @@ export default class NewCropLocation extends Component {
         longitudeDelta: 0.0922 * ASPECT_RATIO,
       },
       location: null,
+
     };
   }
 
@@ -128,7 +128,7 @@ export default class NewCropLocation extends Component {
   componentDidMount() {
     //this.getCurrentLocation();
     Geolocation.requestAuthorization();
-    this.socket = socketIOClient(ENDPOINT);
+    this.socket = socket;
     this.socket.on('plants nearby', (msg) => {
       let plants = JSON.parse(msg);
       console.log('plants nearby' + plants);
@@ -143,6 +143,7 @@ export default class NewCropLocation extends Component {
       option: this.props.CropSharing,
       availability: this.props.CropAvailability,
       description: this.props.CropBio,
+      firebase_token: this.props.user.uid,
     };
     console.log(
       'coordination:' + this.state.a.longitude + ' ' + this.state.a.latitude,
@@ -225,6 +226,7 @@ export default class NewCropLocation extends Component {
                         },
                         option: this.props.CropSharing,
                         privacy: this.props.CropPrivacy,
+                        firebase_token: this.props.user.uid,
                       },
                     },
                   });

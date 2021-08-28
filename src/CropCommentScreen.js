@@ -12,17 +12,14 @@ import {
 
 import socketIOClient from 'socket.io-client';
 import {useEffect, useState} from 'react';
-import {List, ListItem} from 'react-native-elements';
-//import logo from 'img/nature_tree.png';
-const ENDPOINT = 'http://34.121.9.120:3000';
 import TreeList from './TreeList';
 import banana from './img/40.png';
+import socket from './Store/socket';
 
 function CropCommentScreen({navigation, route}) {
   const [CommentResponse, setCommentResponse] = useState([]);
   const [CommentImage, setCommentImage] = useState();
   const [TestImage, setTestImage] = useState('');
-  const socket = socketIOClient(ENDPOINT);
   const {cropInfo} = route.params.item;
 
   useEffect(() => {
@@ -72,7 +69,7 @@ function CropCommentScreen({navigation, route}) {
                 <View style={styles.CommentContainer}>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('TreeInfo', {item})}>
-                    <Image style={styles.image} source={{uri: TestImage}} />
+                    <Image style={styles.image} source={{uri: 'data:image/jpeg;base64,' + Notification.image}} />
                   </TouchableOpacity>
                   <View style={styles.content}>
                     <View style={styles.contentHeader}>

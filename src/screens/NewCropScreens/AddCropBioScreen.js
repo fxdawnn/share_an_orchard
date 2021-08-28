@@ -29,9 +29,11 @@ export default function AddCropBioScreen({navigation, route}) {
       <View style={{padding: 10}}>
         <TextInput
           style={{
-            height: 100,
+            width: '85%',
+            height: '30%',
             borderColor: '#7a42f4',
             borderWidth: 1,
+            fontSize: 16,
           }}
           placeholder="Type here about the crop!"
           onChangeText={(text) => setInfo(text)}

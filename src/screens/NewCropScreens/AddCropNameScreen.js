@@ -20,13 +20,13 @@ export default function AddCropNameScreen({navigation}) {
     <View style={styles.bg}>
       <View>
         <Text>
-          <Text style={styles.mainButtonText}>Crop Common Name</Text>
+          <Text style={styles.mainButtonText}>Food Name</Text>
         </Text>
       </View>
       <View>
         <TextInput
           style={styles.inputBox}
-          autoCorrect={false}
+          autoCorrect={true}
           value={CropName}
           //onSubmitEditing={() => this.submitCropCommonName()}
           onChangeText={(CropCommonName) => {

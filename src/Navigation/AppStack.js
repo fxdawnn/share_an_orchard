@@ -10,7 +10,6 @@ import UserProfileSetupStack from './UserSetUpProfileStack';
 import auth from '@react-native-firebase/auth';
 import ProfileSwitch from './ProfileSwitch';
 import ChatStack from './ChatStack';
-import {icon} from 'react-native-elements';
 import MaterialCommunityIcons from 'react-native-paper/src/components/MaterialCommunityIcon';
 
 const Tab = createBottomTabNavigator();

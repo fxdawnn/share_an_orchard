@@ -98,7 +98,12 @@ function FriendListScreen({navigation, route}) {
           <TouchableOpacity
             key={item.id}
             style={styles.ListObjContainer}
-            onPress={() => navigation.navigate('OldChat', {item, receiver: route.params.user})}>
+            onPress={() =>
+              navigation.navigate('OldChat', {
+                item,
+                receiver: route.params.user,
+              })
+            }>
             <Text style={styles.text}>{item.name}</Text>
           </TouchableOpacity>
         ))}

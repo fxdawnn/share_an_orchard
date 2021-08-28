@@ -10,18 +10,17 @@ import {
   ScrollView,
 } from 'react-native';
 
-import socketIOClient from 'socket.io-client';
 import {useEffect, useState} from 'react';
 import {List, ListItem} from 'react-native-elements';
-const ENDPOINT = 'http://34.121.9.120:3000';
 import TreeList from './TreeList';
 import banana from './img/40.png';
+import socket from './Store/socket';
 
 function TreeListScreen({navigation}) {
   const [Fruitresponse, setFruitResponse] = useState([]);
   const [NeighborCrops, setNeighbourCrops] = useState('');
   const [TestImage, setTestImage] = useState('');
-  const socket = socketIOClient(ENDPOINT);
+  const [msg, setMsg] = useState('');
 
   useEffect(() => {
     setFruitResponse([
@@ -31,9 +30,9 @@ function TreeListScreen({navigation}) {
       },
     ]);
     socket.emit('get neighbor crops', 'testing');
-    socket.on('FruitsFromAPI', (data) => {
+    /*socket.on('FruitsFromAPI', (data) => {
       setFruitResponse(data);
-    });
+    });*/
     socket.on('neighbor plants', (data) => {
       setNeighbourCrops(data);
     });
@@ -50,6 +49,7 @@ function TreeListScreen({navigation}) {
       var plants = JSON.parse(msg);
       var nearbyFruits = plants.crops;
       var PlantsReturn = [];
+      setMsg(msg);
       console.log(plants);
       console.log('plants neaby rturn');
       nearbyFruits.map((crop) => {
@@ -70,6 +70,7 @@ function TreeListScreen({navigation}) {
           time: crop.createdAt,
           option: crop.option,
           privacy: crop.privacy,
+          userId: crop.userId,
         });
         console.log(
           'plant coordination:' +
@@ -88,9 +89,10 @@ function TreeListScreen({navigation}) {
   return (
     <ScrollView>
       <View>
-        <TreeList />
+        <TreeList navigation={navigation} image={TestImage} />
         <SafeAreaView>
           <ScrollView>
+            {/*<Text>{JSON.stringify(Fruitresponse)}</Text>*/}
             <FlatList
               style={styles.root}
               data={Fruitresponse}
@@ -116,7 +118,7 @@ function TreeListScreen({navigation}) {
                           }>
                           <Text style={styles.name}>{Notification.title}</Text>
                         </TouchableOpacity>
-                        <Text style={styles.time}>9:58 am</Text>
+                        <Text style={styles.time}>{Notification.time}</Text>
                       </View>
                       <Text rkType="primary3 mediumLine">
                         {Notification.description}
