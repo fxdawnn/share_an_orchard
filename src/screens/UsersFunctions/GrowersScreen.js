@@ -9,6 +9,7 @@ import {
   FlatList,
 } from 'react-native';
 import {connect} from 'react-redux';
+import MaterialCommunityIcons from 'react-native-paper/src/components/MaterialCommunityIcon';
 
 class Users extends React.Component {
   constructor() {
@@ -45,13 +46,35 @@ class Users extends React.Component {
                 </TouchableOpacity>*/}
                 <View style={styles.content}>
                   <View style={styles.contentHeader}>
-                    <TouchableOpacity onPress={() => this.openChat(Notification)}>
+                    {/*<TouchableOpacity
+                      onPress={() => this.openChat(Notification)}>
                       <Text style={styles.name}>{Notification.name}</Text>
+                    </TouchableOpacity>*/}
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate(
+                          'Grower Profile',
+                          Notification,
+                        )
+                      }>
+                      <Text style={styles.name}>
+                        {Notification.name}
+                        <MaterialCommunityIcons
+                          name="account"
+                          /*color={color}
+                            size={size}*/
+                        />
+                      </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Grower Profile', Notification)}>
-                      <Text style={styles.name}>Profile</Text>
+                    <TouchableOpacity
+                      style={styles.time}
+                      onPress={() => this.openChat(Notification)}>
+                      <MaterialCommunityIcons
+                        name="chat"
+                        color={'#00BFFF'}
+                        size={20}
+                      />
                     </TouchableOpacity>
-                    <Text style={styles.time}>9:58 am</Text>
                   </View>
                   <Text rkType="primary3 mediumLine">{Notification.bio}</Text>
                   {/*<Text rkType="primary3 mediumLine">

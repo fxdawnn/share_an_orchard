@@ -39,7 +39,12 @@ function TreeInfoScreen({route, navigation}) {
         <View style={styles.space} />
         <View style={styles.headerContainer}>
           <View style={styles.headerColumn}>
-            <Image style={styles.userImage} source={{uri: TestImage}} />
+            <Image
+              style={styles.userImage}
+              source={{
+                uri: 'data:image/jpeg;base64,' + item.image,
+              }}
+            />
             <Text style={styles.userNameText}>{item.title}</Text>
             <View style={styles.userAddressRow}>
               <View>
@@ -76,11 +81,11 @@ function TreeInfoScreen({route, navigation}) {
               onPress={() => navigation.navigate('ChatFood', {crop: item})}>
               <Text>Chat about Food</Text>
             </TouchableOpacity>
-            <TouchableOpacity
+            {/*<TouchableOpacity
               style={styles.buttonContainer}
               onPress={() => navigation.navigate('AddCropPhoto', {crop: item})}>
               <Text>Sharing photos</Text>
-            </TouchableOpacity>
+            </TouchableOpacity>*/}
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate('AddComment', {item: route.params.item})

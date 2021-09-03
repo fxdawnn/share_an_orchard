@@ -16,9 +16,7 @@ import {useForm, Controller} from 'react-hook-form';
 import {styles} from '../styles';
 import socket from '../Store/socket';
 import {AuthContext} from '../Navigation/AuthNavigator';
-import SimpleImagePicker from '../CropImagePicker';
 import CommentImageImagePicker from './CommentImagePicker';
-import propsToAriaRole from 'react-native-web/dist/modules/AccessibilityUtil/propsToAriaRole';
 export default function AddCommentScreen({navigation, route}) {
   const [Info, setInfo] = useState('');
   const {item} = route.params.item;
@@ -40,17 +38,21 @@ export default function AddCommentScreen({navigation, route}) {
   return (
     <ScrollView style={styles.bg}>
       <StatusBar barStyle="light-content" />
-      <CommentImageImagePicker crop={item} userId={user.user.id}/>
+      <CommentImageImagePicker crop={item} userId={user.user.id} />
       <View style={{padding: 10}}>
         <TextInput
           style={{
-            height: 100,
-            borderColor: '#7a42f4',
+            width: 305,
+            height: 120,
+            borderColor: '#00BFFF',
             borderWidth: 1,
+            fontSize: 16,
           }}
           placeholder="Type here to comment about the crop!"
           onChangeText={(text) => setInfo(text)}
           defaultValue={text}
+          multiline={true}
+          numberOfLines={7}
         />
       </View>
       <View style={{marginTop: 20}}>

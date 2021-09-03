@@ -35,7 +35,7 @@ export default function NewCropPrivacy({navigation, route}) {
               right: 10,
             },
             placeholder: {
-              color: 'purple',
+              color: '#00BFFF',
               fontSize: 16,
               fontWeight: 'bold',
             },

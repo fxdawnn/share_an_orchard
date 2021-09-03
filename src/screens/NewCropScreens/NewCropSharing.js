@@ -35,7 +35,7 @@ export default function NewCropSharing({navigation, route}) {
               right: 10,
             },
             placeholder: {
-              color: 'purple',
+              color: '#00BFFF',
               fontSize: 12,
               fontWeight: 'bold',
             },

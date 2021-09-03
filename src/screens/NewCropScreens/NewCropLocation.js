@@ -1,6 +1,5 @@
 'use strict';
 import React, {Component, useState, useEffect, useContext} from 'react';
-
 import {
   StyleSheet,
   Text,
@@ -63,7 +62,7 @@ export default class NewCropLocation extends Component {
         longitudeDelta: 0.0922 * ASPECT_RATIO,
       },
       location: null,
-
+      foodCreated: null,
     };
   }
 
@@ -132,6 +131,9 @@ export default class NewCropLocation extends Component {
     this.socket.on('plants nearby', (msg) => {
       let plants = JSON.parse(msg);
       console.log('plants nearby' + plants);
+    });
+    this.socket.on('plant created', (msg) => {
+      this.setState({foodCreated: msg});
     });
   }
 
@@ -229,6 +231,7 @@ export default class NewCropLocation extends Component {
                         firebase_token: this.props.user.uid,
                       },
                     },
+                    foodCreated: this.foodCreated,
                   });
                 }}
                 underlayColor="#fff">

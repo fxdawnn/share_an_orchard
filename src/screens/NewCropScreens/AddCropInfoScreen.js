@@ -7,19 +7,27 @@ import {
   Text,
   FlatList,
   ImageBackground,
-  Linking,
   Platform,
   ScrollView,
 } from 'react-native';
 import logo from '../../img/nature_tree.png';
 import {Card, Icon} from 'react-native-elements';
+import {useEffect, useState} from 'react';
+import socket from '../../Store/socket';
 
 function AddCropInfoScreen({route, navigation}) {
   const {item} = route.params.item;
+  const [msg, setMsg] = useState('');
+  useEffect(() => {
+    //socket.emit('find food info', item);
+    socket.on('plant created', (plant) => {
+      setMsg(plant);
+    });
+  });
   return (
     <ScrollView>
       <View style={styles.bg}>
-        <View style={styles.space}></View>
+        <View style={styles.space} />
         <View style={styles.headerContainer}>
           <View style={styles.headerColumn}>
             <Image style={styles.userImage} source={{uri: logo}} />
@@ -33,7 +41,7 @@ function AddCropInfoScreen({route, navigation}) {
                   onPress={this.onPressPlace}
                 />
               </View>
-              <View style={styles.space}></View>
+              <View style={styles.space} />
               <View style={styles.userCityRow}>
                 <Text style={styles.userCityText}>
                   {'Irvine'}, {'CA'}
@@ -42,23 +50,34 @@ function AddCropInfoScreen({route, navigation}) {
             </View>
           </View>
         </View>
+
         <View>
           <View style={styles.bodyContent}>
             <Text style={styles.info}>
               {' '}
               {item.privacy} / {item.option}
             </Text>
-            <View style={styles.space}></View>
+            <View style={styles.space} />
             <Text style={styles.description}>{item.description}</Text>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('AddCropPhoto', {crop: msg[0][0]})
+              }
+              style={styles.buttonContainer}>
+              <Text style={styles.mainButtonText}>Add photo</Text>
+            </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate('Home')}
               style={styles.buttonContainer}>
               <Text style={styles.mainButtonText}>Finish</Text>
             </TouchableOpacity>
-            <View style={styles.space}></View>
-            <View style={styles.space}></View>
-            <View style={styles.space}></View>
-            <View style={styles.space}></View>
+            <View>
+              <Text>cool {JSON.stringify(route.params.foodCreated)}</Text>
+            </View>
+            <View style={styles.space} />
+            <View style={styles.space} />
+            <View style={styles.space} />
+            <View style={styles.space} />
           </View>
         </View>
       </View>

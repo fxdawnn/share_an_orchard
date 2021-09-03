@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import NewCrop from '../../NewCrop';
 import NewCropLocation from './NewCropLocation';
 import {AuthContext} from '../../Navigation/AuthNavigator';
 
@@ -32,8 +31,10 @@ export default function NewCropLocationScreen({navigation, route}) {
           <Text style={styles.mainButtonText}>Cancel</Text>
         </TouchableOpacity>
       </View>
-      <View><Text>{JSON.stringify(user.user.id)}</Text></View>
-      <View style={styles.spacebg}></View>
+      {/*<View>
+        <Text>{JSON.stringify(user.id)}</Text>
+      </View>*/}
+      <View style={styles.spacebg} />
     </ScrollView>
   );
 }

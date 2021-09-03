@@ -164,7 +164,7 @@ export default function SimpleImagePicker(props) {
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.headerContainer}>
         <Text style={styles.titleText}>
-          Take photo of the {props.crop.title}
+          Take photo of the {props.crop.common_name}
         </Text>
         {/* <Image
           source={{

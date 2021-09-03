@@ -26,18 +26,20 @@ export default function AddCropBioScreen({navigation, route}) {
       <Text style={styles.mainButtonText}>
         Crop Bio(Tell us about the crop!)
       </Text>
-      <View style={{padding: 10}}>
+      <View>
         <TextInput
           style={{
-            width: '85%',
-            height: '30%',
-            borderColor: '#7a42f4',
+            width: 305,
+            height: 120,
+            borderColor: '#00BFFF',
             borderWidth: 1,
             fontSize: 16,
           }}
-          placeholder="Type here about the crop!"
+          placeholder="Tell us about the food! (e.g. This is a great banana and text me before picking up.)"
           onChangeText={(text) => setInfo(text)}
           defaultValue={text}
+          multiline={true}
+          numberOfLines={7}
         />
       </View>
       <View style={{marginTop: 20}}>

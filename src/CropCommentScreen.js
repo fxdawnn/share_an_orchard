@@ -69,7 +69,12 @@ function CropCommentScreen({navigation, route}) {
                 <View style={styles.CommentContainer}>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('TreeInfo', {item})}>
-                    <Image style={styles.image} source={{uri: 'data:image/jpeg;base64,' + Notification.image}} />
+                    <Image
+                      style={styles.image}
+                      source={{
+                        uri: 'data:image/jpeg;base64,' + Notification.image,
+                      }}
+                    />
                   </TouchableOpacity>
                   <View style={styles.content}>
                     <View style={styles.contentHeader}>

@@ -71,6 +71,7 @@ function TreeListScreen({navigation}) {
           option: crop.option,
           privacy: crop.privacy,
           userId: crop.userId,
+          image: crop.image,
         });
         console.log(
           'plant coordination:' +
@@ -108,7 +109,12 @@ function TreeListScreen({navigation}) {
                   <View style={styles.CommentContainer}>
                     <TouchableOpacity
                       onPress={() => navigation.navigate('TreeInfo', {item})}>
-                      <Image style={styles.image} source={{uri: TestImage}} />
+                      <Image
+                        style={styles.image}
+                        source={{
+                          uri: 'data:image/jpeg;base64,' + Notification.image,
+                        }}
+                      />
                     </TouchableOpacity>
                     <View style={styles.content}>
                       <View style={styles.contentHeader}>

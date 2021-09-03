@@ -10,11 +10,7 @@ import {
   Image,
   Platform,
 } from 'react-native';
-import {
-  ImagePicker,
-  launchCamera,
-  launchImageLibrary,
-} from 'react-native-image-picker';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 //import * as ImagePicker from 'react-native-image-picker';
 
 export default function CommentImageImagePicker(props) {

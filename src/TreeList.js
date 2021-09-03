@@ -67,6 +67,7 @@ export default class TreeList extends Component {
           time: crop.createdAt,
           option: crop.option,
           privacy: crop.privacy,
+          image: crop.image,
         });
         console.log(
           'plant coordination:' +
@@ -139,8 +140,9 @@ export default class TreeList extends Component {
                       }>
                       <Image
                         style={styles.image}
-                        source={{uri: this.props.image}}
-                        resizeMode="cover"
+                        source={{
+                          uri: 'data:image/jpeg;base64,' + marker.image,
+                        }}
                       />
                     </TouchableOpacity>
                     <Text style={styles.name}>{marker.title}</Text>
