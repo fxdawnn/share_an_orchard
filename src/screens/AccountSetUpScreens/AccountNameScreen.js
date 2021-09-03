@@ -7,29 +7,30 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
+  Button,
   StatusBar,
   SafeAreaView,
 } from 'react-native';
 import NewCrop from '../../NewCrop';
 import RNPickerSelect from 'react-native-picker-select';
 
-export default function AddCropAvailabilityScreen({navigation, route}) {
-  const [CropAvailability, setCropAvailability] = useState('');
+export default function AccountNameScreen({navigation}) {
+  const [Name, setName] = useState('');
   return (
     <View style={styles.bg}>
       <View>
         <Text>
-          <Text style={styles.mainButtonText}>Amount(e.g 2 lbs)</Text>
+          <Text style={styles.mainButtonText}>Nickname</Text>
         </Text>
       </View>
       <View>
         <TextInput
           style={styles.inputBox}
           autoCorrect={false}
-          value={CropAvailability}
+          value={Name}
           //onSubmitEditing={() => this.submitCropCommonName()}
-          onChangeText={(CropAvailability) => {
-            setCropAvailability(CropAvailability);
+          onChangeText={(CropCommonName) => {
+            setName(CropCommonName);
           }}
         />
       </View>
@@ -37,11 +38,8 @@ export default function AddCropAvailabilityScreen({navigation, route}) {
         <TouchableOpacity
           style={styles.buttonContainer}
           onPress={() =>
-            navigation.navigate('CropBio', {
-              CropCommonName: route.params.CropCommonName,
-              CropPrivacy: route.params.CropPrivacy,
-              CropSharing: route.params.CropSharing,
-              CropAvailability: CropAvailability,
+            navigation.navigate('Setup', {
+              name: Name,
             })
           }
           underlayColor="#fff">
@@ -58,15 +56,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  inputBox: {
-    width: 150,
-    margin: 10,
-    padding: 15,
-    fontSize: 16,
-    borderColor: '#d3d3d3',
-    borderBottomWidth: 1,
-    borderRadius: 8,
   },
   buttonContainer: {
     marginTop: 5,
@@ -88,10 +77,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#FFFFF0',
   },
+  inputBox: {
+    width: 150,
+    margin: 10,
+    padding: 15,
+    fontSize: 16,
+    borderColor: '#d3d3d3',
+    borderBottomWidth: 1,
+    borderRadius: 8,
+  },
   highlight: {
     fontStyle: 'normal',
     fontWeight: 'normal',
-    fontSize: 16,
+    fontSize: 20,
     textAlign: 'center',
     color: '#254441',
   },
@@ -127,8 +125,8 @@ const styles = StyleSheet.create({
                                 top: 630.17,*/
     backgroundColor: '#48BBEC',
     borderRadius: 22,
-    borderWidth: 3,
-    borderColor: '#48BBEC',
+    alignItems: 'center',
+    justifyContent: 'center',
 
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
   },
@@ -154,7 +152,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 20,
     textAlign: 'center',
-    color: '#254441',
+    color: '#FFFFF0',
   },
 });
 const pickerSelectStyles = StyleSheet.create({

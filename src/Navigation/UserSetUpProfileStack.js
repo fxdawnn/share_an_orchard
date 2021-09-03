@@ -11,6 +11,9 @@ import AccountSetupGreyWaterScreen from '../screens/AccountSetUpScreens/AccountG
 import AccountSetupGMOScreen from '../screens/AccountSetUpScreens/AccountGMOScreen';
 import AccountBioScreen from '../screens/AccountSetUpScreens/AccountBioScreen';
 import UserProfileScreen from '../screens/UserProfileScreen';
+import AccountNameScreen from '../screens/AccountSetUpScreens/AccountNameScreen';
+import GrowersScreen from '../screens/UsersFunctions/GrowersScreen';
+import ProfileControlScreen from '../screens/AccountSetUpScreens/ProfileControl';
 import {ProfileContext} from './ProfileSwitch';
 
 const Stack = createStackNavigator();
@@ -43,15 +46,46 @@ export default function UserProfileSetupStack() {
             </TouchableOpacity>
           ),
         })}>
-        <Stack.Screen name="Setup" component={AccountSetupScreen} />
-        <Stack.Screen name="SharingSetup" component={AccountSetupExScreen} />
+        <Stack.Screen
+          name="Profile"
+          component={ProfileControlScreen}
+          options={{title: 'Tree Map'}}
+        />
+        <Stack.Screen
+          name="Name"
+          component={AccountNameScreen}
+          options={{title: 'Profile Setup'}}
+        />
+        <Stack.Screen
+          name="Setup"
+          component={AccountSetupScreen}
+          options={{title: 'Profile Setup'}}
+        />
+        <Stack.Screen
+          name="SharingSetup"
+          component={AccountSetupExScreen}
+          options={{title: 'Profile Setup'}}
+        />
         <Stack.Screen
           name="GreyWaterSetup"
           component={AccountSetupGreyWaterScreen}
         />
-        <Stack.Screen name="GMOSetup" component={AccountSetupGMOScreen} />
-        <Stack.Screen name="BioSetup" component={AccountBioScreen} />
-        <Stack.Screen name="ProfileFinal" component={UserProfileScreen} />
+        <Stack.Screen
+          name="GMOSetup"
+          component={AccountSetupGMOScreen}
+          options={{title: 'Profile Setup'}}
+        />
+        <Stack.Screen
+          name="BioSetup"
+          component={AccountBioScreen}
+          options={{title: 'Profile Setup'}}
+        />
+        <Stack.Screen
+          name="ProfileFinal"
+          component={UserProfileScreen}
+          options={{title: 'Profile'}}
+        />
+        <Stack.Screen name="Friends" component={GrowersScreen} />
       </Stack.Navigator>
     </ProfileContext.Provider>
   );

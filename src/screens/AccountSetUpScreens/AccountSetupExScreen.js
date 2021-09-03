@@ -15,14 +15,19 @@ import {useForm, Controller} from 'react-hook-form';
 import Slider from '@react-native-community/slider';
 import {styles} from '../../styles';
 
-export default function AccountSetupExScreen({navigation}) {
+export default function AccountSetupExScreen({navigation, route}) {
   const {control, handleSubmit, errors} = useForm();
   const onSubmit = (data) => console.log(data);
+  const [accountSharing, setAccountSharing] = useState(0);
+  const [accountDistance, setAccountDistance] = useState(0);
   return (
     <View style={styles.bg}>
       <Text style={styles.titleText}>Sharing Settings</Text>
       <View style={{marginTop: 20}}>
-        <Text style={styles.smallText}> How do you score your sharing habits? </Text>
+        <Text style={styles.smallText}>
+          {' '}
+          How do you score your sharing habits?{' '}
+        </Text>
         <Controller
           name="Experience"
           defaultValue=""
@@ -33,12 +38,14 @@ export default function AccountSetupExScreen({navigation}) {
               maximumValue={4}
               minimumTrackTintColor="#254441"
               maximumTrackTintColor="#FFFFFF"
-              onValueChange={(sliderValue) => onChange(sliderValue)}
+              onValueChange={(sliderValue) => setAccountSharing(sliderValue)}
               value={1}
               step={1}
             />
           )}
-          rules={{required: {value: true, message: 'Experience is required'}}}
+          rules={{
+            required: {value: true, message: 'Sharing Habits is required'},
+          }}
           control={control}
         />
         <Text style={styles.smallText}>
@@ -55,7 +62,7 @@ export default function AccountSetupExScreen({navigation}) {
               maximumValue={4}
               minimumTrackTintColor="#254441"
               maximumTrackTintColor="#FFFFFF"
-              onValueChange={(sliderValue) => onChange(sliderValue)}
+              onValueChange={(sliderValue) => setAccountDistance(sliderValue)}
               value={1}
               step={1}
             />
@@ -68,8 +75,16 @@ export default function AccountSetupExScreen({navigation}) {
       </View>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
-          style={styles.mainButton}
-          onPress={() => navigation.navigate('GreyWaterSetup')}
+          style={styles.buttonContainer}
+          onPress={() =>
+            navigation.navigate('GreyWaterSetup', {
+              name: route.params.name,
+              area: route.params.area,
+              experience: route.params.experience,
+              distance: accountDistance,
+              sharing: accountSharing,
+            })
+          }
           underlayColor="#fff">
           <Text style={styles.mainButtonText}> Next </Text>
         </TouchableOpacity>

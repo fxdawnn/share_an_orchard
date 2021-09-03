@@ -49,20 +49,6 @@ export default class CropComments extends Component {
           comment:
             'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
         },
-        {
-          id: 6,
-          image: 'https://bootdey.com/img/Content/avatar/avatar4.png',
-          name: 'Clark June Boom!',
-          comment:
-            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
-        },
-        {
-          id: 7,
-          image: 'https://bootdey.com/img/Content/avatar/avatar5.png',
-          name: 'The googler',
-          comment:
-            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
-        },
       ],
     };
   }

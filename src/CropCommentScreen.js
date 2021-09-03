@@ -12,15 +12,14 @@ import {
 
 import socketIOClient from 'socket.io-client';
 import {useEffect, useState} from 'react';
-import {List, ListItem} from 'react-native-elements';
-//import logo from 'img/nature_tree.png';
-const ENDPOINT = 'http://34.121.9.120:3000';
 import TreeList from './TreeList';
 import banana from './img/40.png';
+import socket from './Store/socket';
 
 function CropCommentScreen({navigation, route}) {
   const [CommentResponse, setCommentResponse] = useState([]);
-  const socket = socketIOClient(ENDPOINT);
+  const [CommentImage, setCommentImage] = useState();
+  const [TestImage, setTestImage] = useState('');
   const {cropInfo} = route.params.item;
 
   useEffect(() => {
@@ -38,6 +37,16 @@ function CropCommentScreen({navigation, route}) {
       console.log(comments);
       console.log('plants neaby rturn');
       setCommentResponse(comments);
+    });
+    socket.on('crop comment image', function (image, buffer) {
+      if (image) {
+        console.log(' image: from client side');
+        // code to handle buffer like drawing with canvas** <--- is canvas drawing/library a requirement?  is there an alternative? another quick and dirty solution?
+        console.log(image);
+        setCommentImage(image);
+        setTestImage('data:image/jpeg;base64,' + image.buffer);
+        // what can we do here to serve the image onto an img tag?
+      }
     });
   }, []);
 
@@ -60,7 +69,12 @@ function CropCommentScreen({navigation, route}) {
                 <View style={styles.CommentContainer}>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('TreeInfo', {item})}>
-                    <Image style={styles.image} source={banana} />
+                    <Image
+                      style={styles.image}
+                      source={{
+                        uri: 'data:image/jpeg;base64,' + Notification.image,
+                      }}
+                    />
                   </TouchableOpacity>
                   <View style={styles.content}>
                     <View style={styles.contentHeader}>
@@ -72,6 +86,7 @@ function CropCommentScreen({navigation, route}) {
                     </View>
                     <Text rkType="primary3 mediumLine">
                       {Notification.text}
+                      {/*{TestImage}*/}
                     </Text>
                   </View>
                 </View>

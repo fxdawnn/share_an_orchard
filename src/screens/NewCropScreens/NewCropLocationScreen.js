@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   Text,
   View,
@@ -7,10 +7,11 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import NewCrop from '../../NewCrop';
 import NewCropLocation from './NewCropLocation';
+import {AuthContext} from '../../Navigation/AuthNavigator';
 
 export default function NewCropLocationScreen({navigation, route}) {
+  const user = useContext(AuthContext);
   return (
     <ScrollView>
       <NewCropLocation
@@ -20,16 +21,20 @@ export default function NewCropLocationScreen({navigation, route}) {
         CropAvailability={route.params.CropAvailability}
         CropBio={route.params.CropBio}
         navigation={navigation}
+        user={user}
       />
       <View style={styles.bg}>
         <TouchableOpacity
-          style={styles.secondaryButton}
+          style={styles.buttonContainer}
           onPress={() => navigation.navigate('Home')}
           underlayColor="#fff">
-          <Text style={styles.secondaryButtonText}>Home</Text>
+          <Text style={styles.mainButtonText}>Cancel</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.spacebg}></View>
+      {/*<View>
+        <Text>{JSON.stringify(user.id)}</Text>
+      </View>*/}
+      <View style={styles.spacebg} />
     </ScrollView>
   );
 }
@@ -40,6 +45,26 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonContainer: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: 305,
+    height: 42,
+    borderRadius: 22,
+    backgroundColor: '#00BFFF',
+  },
+  mainButtonText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 22,
+    lineHeight: 40,
+    textAlign: 'center',
+    color: '#FFFFF0',
   },
   spacebg: {
     width: '100%', // or whatever size you need

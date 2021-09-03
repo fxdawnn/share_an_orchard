@@ -1,5 +1,5 @@
 import {NavigationContainer} from '@react-navigation/native';
-import FriendListScreen from '../FriendListScreen';
+import FriendListScreen from '../screens/UsersFunctions/FriendListScreen';
 import GrowerListScreen from '../GrowerListScreen';
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -10,7 +10,6 @@ import UserProfileSetupStack from './UserSetUpProfileStack';
 import auth from '@react-native-firebase/auth';
 import ProfileSwitch from './ProfileSwitch';
 import ChatStack from './ChatStack';
-import {icon} from 'react-native-elements';
 import MaterialCommunityIcons from 'react-native-paper/src/components/MaterialCommunityIcon';
 
 const Tab = createBottomTabNavigator();
@@ -57,7 +56,7 @@ export default function AppStack() {
           name="Friends"
           component={ChatStack}
           options={{
-            tabBarLabel: 'Friends',
+            tabBarLabel: 'Growers',
             tabBarIcon: ({color, size}) => (
               <MaterialCommunityIcons
                 name="nature-people"
@@ -67,7 +66,7 @@ export default function AppStack() {
             ),
           }}
         />
-        <Tab.Screen
+       {/* <Tab.Screen
           name="Fruits"
           component={GrowerListScreen}
           options={{
@@ -76,7 +75,7 @@ export default function AppStack() {
               <MaterialCommunityIcons name="apple" color={color} size={size} />
             ),
           }}
-        />
+        />*/}
       </Tab.Navigator>
     </NavigationContainer>
   );

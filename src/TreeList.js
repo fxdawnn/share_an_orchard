@@ -8,18 +8,20 @@ import {
   TouchableOpacity,
   FlatList,
   SafeAreaView,
+  TouchableHighlight,
 } from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import socketIOClient from 'socket.io-client';
 import {ListItem} from 'react-native-elements';
-import banana from './img/40.png';
+import banana from './img/banana_small.png';
+import testing_icon from './img/120.png';
 
-const ENDPOINT = 'http://34.121.9.120:3000';
+import socket from './Store/socket';
 
 export default class TreeList extends Component {
   constructor(props) {
     super(props);
-    this.socket = socketIOClient(ENDPOINT);
+    this.socket = socket;
     this.getNeighborCrops();
     this.state = {
       markers: [
@@ -61,6 +63,11 @@ export default class TreeList extends Component {
             latitude: crop.latitude,
             longitude: crop.longitude,
           },
+          id: crop.id,
+          time: crop.createdAt,
+          option: crop.option,
+          privacy: crop.privacy,
+          image: crop.image,
         });
         console.log(
           'plant coordination:' +
@@ -95,15 +102,6 @@ export default class TreeList extends Component {
       {/*<Image style={styles.image} source={{uri: itemData.item.url}} /> // 3*/}
     </TouchableOpacity>
   );
-  renderItem = ({item}) => (
-    <ListItem
-      title={
-        'Testing title'
-      }
-      subtitle={'santa monica'}
-      bottomDivider={true}
-    />
-  );
 
   render() {
     return (
@@ -123,11 +121,36 @@ export default class TreeList extends Component {
         >
           {this.state.markers.map((marker) => (
             <MapView.Marker
+              key={marker.id}
               coordinate={marker.coordinates}
-              //description={marker.description}
+              description={marker.description}
               title={marker.title}
               image={banana}
-            />
+              icon={{uri: testing_icon}}>
+              <MapView.Callout tooltip>
+                <TouchableHighlight
+                  onPress={() =>
+                    this.props.navigation.navigate('TreeInfo', {marker})
+                  }
+                  underlayColor="#dddddd">
+                  <View>
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate('TreeInfo', {marker})
+                      }>
+                      <Image
+                        style={styles.image}
+                        source={{
+                          uri: 'data:image/jpeg;base64,' + marker.image,
+                        }}
+                      />
+                    </TouchableOpacity>
+                    <Text style={styles.name}>{marker.title}</Text>
+                    <Text rkType="primary3">{marker.description}</Text>
+                  </View>
+                </TouchableHighlight>
+              </MapView.Callout>
+            </MapView.Marker>
           ))}
         </MapView>
       </View>
@@ -166,5 +189,28 @@ const styles = StyleSheet.create({
     marginVertical: 3,
     marginHorizontal: 5,
     backgroundColor: 'transparent',
+  },
+  CommentContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  name: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  image: {
+    width: 45,
+    height: 45,
+    borderRadius: 20,
+    marginLeft: 20,
+  },
+  secondaryButtonText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 34,
+    lineHeight: 45,
+    textAlign: 'center',
+    color: '#254441',
   },
 });

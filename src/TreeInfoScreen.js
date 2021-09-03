@@ -13,15 +13,38 @@ import {
 } from 'react-native';
 import logo from './img/nature_tree.png';
 import {Card, Icon} from 'react-native-elements';
-
+import socketIOClient from 'socket.io-client';
+import {useEffect, useState} from 'react';
+import socket from './Store/socket';
 function TreeInfoScreen({route, navigation}) {
   const {item} = route.params.item;
+  const [TestImage, setTestImage] = useState('');
+
+  useEffect(() => {
+    socket.emit('get crop image', item.id);
+    socket.on('crop image for info', function (image, buffer) {
+      if (image) {
+        console.log(' image: from client side');
+        // code to handle buffer like drawing with canvas** <--- is canvas drawing/library a requirement?  is there an alternative? another quick and dirty solution?
+        console.log(image);
+        setTestImage('data:image/jpeg;base64,' + image.buffer);
+        // what can we do here to serve the image onto an img tag?
+      }
+    });
+  });
+
   return (
     <ScrollView>
       <View style={styles.bg}>
+        <View style={styles.space} />
         <View style={styles.headerContainer}>
           <View style={styles.headerColumn}>
-            <Image style={styles.userImage} source={{uri: logo}} />
+            <Image
+              style={styles.userImage}
+              source={{
+                uri: 'data:image/jpeg;base64,' + item.image,
+              }}
+            />
             <Text style={styles.userNameText}>{item.title}</Text>
             <View style={styles.userAddressRow}>
               <View>
@@ -43,7 +66,6 @@ function TreeInfoScreen({route, navigation}) {
         <View>
           <View style={styles.bodyContent}>
             <Text style={styles.info}>
-              {' '}
               {item.privacy} / {item.option}
             </Text>
             <Text style={styles.description}>{item.description}</Text>
@@ -56,11 +78,14 @@ function TreeInfoScreen({route, navigation}) {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonContainer}
-              onPress={() =>
-                navigation.navigate('AddCropPhoto', {item: route.params.item})
-              }>
-              <Text>Sharing proof photos</Text>
+              onPress={() => navigation.navigate('ChatFood', {crop: item})}>
+              <Text>Chat about Food</Text>
             </TouchableOpacity>
+            {/*<TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => navigation.navigate('AddCropPhoto', {crop: item})}>
+              <Text>Sharing photos</Text>
+            </TouchableOpacity>*/}
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate('AddComment', {item: route.params.item})
@@ -68,6 +93,10 @@ function TreeInfoScreen({route, navigation}) {
               style={styles.buttonContainer}>
               <Text>Add comments</Text>
             </TouchableOpacity>
+            <View style={styles.space} />
+            <View style={styles.space} />
+            <View style={styles.space} />
+            <View style={styles.space} />
           </View>
         </View>
       </View>
@@ -110,6 +139,10 @@ const styles = StyleSheet.create({
     width: 250,
     borderRadius: 30,
     backgroundColor: '#00BFFF',
+  },
+  space: {
+    width: 20, // or whatever size you need
+    height: 20,
   },
   secondaryButton: {
     /* Share an orchard */
@@ -160,7 +193,7 @@ const styles = StyleSheet.create({
   },
   headerBackgroundImage: {
     paddingBottom: 20,
-    paddingTop: 45,
+    paddingTop: 70,
   },
   headerContainer: {},
   headerColumn: {
@@ -224,8 +257,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   info: {
-    fontSize: 16,
-    color: '#00BFFF',
+    fontSize: 19,
+    color: '#FFF',
     marginTop: 10,
   },
   description: {

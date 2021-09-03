@@ -10,9 +10,10 @@ import {useForm, Controller} from 'react-hook-form';
 import Slider from '@react-native-community/slider';
 import {styles} from '../../styles';
 
-export default function AccountSetupGreyWaterScreen({navigation}) {
+export default function AccountSetupGreyWaterScreen({navigation, route}) {
   const {control, handleSubmit, errors} = useForm();
   const onSubmit = (data) => console.log(data);
+  const [accountGrayWater, setAccountGrayWater] = useState(0);
   return (
     <View style={styles.bg}>
       <Text style={styles.titleText}>Grey Water Info Settings</Text>
@@ -28,7 +29,7 @@ export default function AccountSetupGreyWaterScreen({navigation}) {
               maximumValue={4}
               minimumTrackTintColor="#254441"
               maximumTrackTintColor="#FFFFFF"
-              onValueChange={(sliderValue) => onChange(sliderValue)}
+              onValueChange={(sliderValue) => setAccountGrayWater(sliderValue)}
               value={1}
               step={1}
             />
@@ -41,8 +42,17 @@ export default function AccountSetupGreyWaterScreen({navigation}) {
       </View>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
-          style={styles.mainButton}
-          onPress={() => navigation.navigate('GMOSetup')}
+          style={styles.buttonContainer}
+          onPress={() =>
+            navigation.navigate('BioSetup', {
+              area: route.params.area,
+              name: route.params.name,
+              sharing: route.params.sharing,
+              distance: route.params.distance,
+              experience: route.params.experience,
+              grayWater: accountGrayWater,
+            })
+          }
           underlayColor="#fff">
           <Text style={styles.mainButtonText}> Next </Text>
         </TouchableOpacity>

@@ -2,6 +2,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import NewCropLocationScreen from '../screens/NewCropScreens/NewCropLocationScreen';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {ProfileContext} from './ProfileSwitch';
+
 import * as React from 'react';
 const Stack = createStackNavigator();
 
@@ -16,11 +17,11 @@ export default function NewCropStack() {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-        headerRight: () => (
+        /*headerRight: () => (
           <TouchableOpacity style={styles.button} onPress={logOut}>
             <Text style={styles.buttonText}>Log out</Text>
           </TouchableOpacity>
-        ),
+        ),*/
       })}>
       <Stack.Screen name="NewCrop" component={NewCropLocationScreen} />
     </Stack.Navigator>

@@ -20,13 +20,13 @@ export default function AddCropNameScreen({navigation}) {
     <View style={styles.bg}>
       <View>
         <Text>
-          <Text style={styles.highlight}>Crop Common Name</Text>
+          <Text style={styles.mainButtonText}>Food Name</Text>
         </Text>
       </View>
       <View>
         <TextInput
           style={styles.inputBox}
-          autoCorrect={false}
+          autoCorrect={true}
           value={CropName}
           //onSubmitEditing={() => this.submitCropCommonName()}
           onChangeText={(CropCommonName) => {
@@ -36,14 +36,14 @@ export default function AddCropNameScreen({navigation}) {
       </View>
       <View>
         <TouchableOpacity
-          style={styles.secondaryButton}
+          style={styles.buttonContainer}
           onPress={() =>
             navigation.navigate('CropPrivacy', {
               CropCommonName: CropName,
             })
           }
           underlayColor="#fff">
-          <Text style={styles.secondaryButtonText}> Next </Text>
+          <Text style={styles.mainButtonText}> Next </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -73,7 +73,26 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#254441',
   },
-
+  buttonContainer: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: 305,
+    height: 42,
+    borderRadius: 22,
+    backgroundColor: '#00BFFF',
+  },
+  mainButtonText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 22,
+    lineHeight: 40,
+    textAlign: 'center',
+    color: '#FFFFF0',
+  },
   description: {
     marginBottom: 20,
     fontSize: 18,

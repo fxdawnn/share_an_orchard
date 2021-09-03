@@ -10,19 +10,24 @@ import {
   Alert,
   TouchableHighlight,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {styles} from '../styles';
-import socketIOClient from 'socket.io-client';
-const ENDPOINT = 'http://34.121.9.120:3000';
-const socket = socketIOClient(ENDPOINT);
-
+import socket from '../Store/socket';
+import {AuthContext} from '../Navigation/AuthNavigator';
+import CommentImageImagePicker from './CommentImagePicker';
 export default function AddCommentScreen({navigation, route}) {
   const [Info, setInfo] = useState('');
   const {item} = route.params.item;
+  const user = useContext(AuthContext);
 
   async function submitCropComment() {
-    let CropComment = {text: Info, crop_id: route.params.item.index};
+    let CropComment = {
+      text: Info,
+      crop_id: route.params.item.index,
+      userId: user.user.id,
+    };
     socket.emit('plant comment', JSON.stringify(CropComment));
     setInfo('done sending');
   }
@@ -31,20 +36,23 @@ export default function AddCommentScreen({navigation, route}) {
   const onSubmit = (data) => console.log(data);
   const [text, setText] = useState('');
   return (
-    <View style={styles.bg}>
-      <Text style={styles.titleText}>
-        Tell everyone what you think about the {item.title}!
-      </Text>
+    <ScrollView style={styles.bg}>
+      <StatusBar barStyle="light-content" />
+      <CommentImageImagePicker crop={item} userId={user.user.id} />
       <View style={{padding: 10}}>
         <TextInput
           style={{
-            height: 100,
-            borderColor: '#7a42f4',
+            width: 305,
+            height: 120,
+            borderColor: '#00BFFF',
             borderWidth: 1,
+            fontSize: 16,
           }}
           placeholder="Type here to comment about the crop!"
           onChangeText={(text) => setInfo(text)}
           defaultValue={text}
+          multiline={true}
+          numberOfLines={7}
         />
       </View>
       <View style={{marginTop: 20}}>
@@ -55,6 +63,6 @@ export default function AddCommentScreen({navigation, route}) {
           <Text style={styles.mainButtonText}> Add Comment </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }

@@ -10,18 +10,17 @@ import {
   ScrollView,
 } from 'react-native';
 
-import socketIOClient from 'socket.io-client';
 import {useEffect, useState} from 'react';
 import {List, ListItem} from 'react-native-elements';
-//import logo from 'img/nature_tree.png';
-const ENDPOINT = 'http://34.121.9.120:3000';
 import TreeList from './TreeList';
 import banana from './img/40.png';
+import socket from './Store/socket';
 
 function TreeListScreen({navigation}) {
   const [Fruitresponse, setFruitResponse] = useState([]);
   const [NeighborCrops, setNeighbourCrops] = useState('');
-  const socket = socketIOClient(ENDPOINT);
+  const [TestImage, setTestImage] = useState('');
+  const [msg, setMsg] = useState('');
 
   useEffect(() => {
     setFruitResponse([
@@ -31,16 +30,26 @@ function TreeListScreen({navigation}) {
       },
     ]);
     socket.emit('get neighbor crops', 'testing');
-    socket.on('FruitsFromAPI', (data) => {
+    /*socket.on('FruitsFromAPI', (data) => {
       setFruitResponse(data);
-    });
+    });*/
     socket.on('neighbor plants', (data) => {
       setNeighbourCrops(data);
+    });
+    socket.on('crop image', function (image, buffer) {
+      if (image) {
+        console.log(' image: from client side');
+        // code to handle buffer like drawing with canvas** <--- is canvas drawing/library a requirement?  is there an alternative? another quick and dirty solution?
+        console.log(image);
+        setTestImage('data:image/jpeg;base64,' + image.buffer);
+        // what can we do here to serve the image onto an img tag?
+      }
     });
     socket.on('plants nearby', (msg) => {
       var plants = JSON.parse(msg);
       var nearbyFruits = plants.crops;
       var PlantsReturn = [];
+      setMsg(msg);
       console.log(plants);
       console.log('plants neaby rturn');
       nearbyFruits.map((crop) => {
@@ -57,8 +66,12 @@ function TreeListScreen({navigation}) {
             latitude: crop.latitude,
             longitude: crop.longitude,
           },
+          id: crop.id,
+          time: crop.createdAt,
           option: crop.option,
           privacy: crop.privacy,
+          userId: crop.userId,
+          image: crop.image,
         });
         console.log(
           'plant coordination:' +
@@ -77,9 +90,10 @@ function TreeListScreen({navigation}) {
   return (
     <ScrollView>
       <View>
-        <TreeList />
+        <TreeList navigation={navigation} image={TestImage} />
         <SafeAreaView>
           <ScrollView>
+            {/*<Text>{JSON.stringify(Fruitresponse)}</Text>*/}
             <FlatList
               style={styles.root}
               data={Fruitresponse}
@@ -95,7 +109,12 @@ function TreeListScreen({navigation}) {
                   <View style={styles.CommentContainer}>
                     <TouchableOpacity
                       onPress={() => navigation.navigate('TreeInfo', {item})}>
-                      <Image style={styles.image} source={banana} />
+                      <Image
+                        style={styles.image}
+                        source={{
+                          uri: 'data:image/jpeg;base64,' + Notification.image,
+                        }}
+                      />
                     </TouchableOpacity>
                     <View style={styles.content}>
                       <View style={styles.contentHeader}>
@@ -105,7 +124,7 @@ function TreeListScreen({navigation}) {
                           }>
                           <Text style={styles.name}>{Notification.title}</Text>
                         </TouchableOpacity>
-                        <Text style={styles.time}>9:58 am</Text>
+                        <Text style={styles.time}>{Notification.time}</Text>
                       </View>
                       <Text rkType="primary3 mediumLine">
                         {Notification.description}

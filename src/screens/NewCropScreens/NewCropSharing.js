@@ -20,8 +20,8 @@ export default function NewCropSharing({navigation, route}) {
     <View style={styles.bg}>
       <View>
         <Text>
-          <Text style={styles.highlight}>
-            How would you like to share your {route.params.CropCommonName}?
+          <Text style={styles.mainButtonText}>
+            How would you like to share your food?
           </Text>
         </Text>
       </View>
@@ -35,7 +35,7 @@ export default function NewCropSharing({navigation, route}) {
               right: 10,
             },
             placeholder: {
-              color: 'purple',
+              color: '#00BFFF',
               fontSize: 12,
               fontWeight: 'bold',
             },
@@ -74,7 +74,7 @@ export default function NewCropSharing({navigation, route}) {
       <View style={styles.space} />
       <View>
         <TouchableOpacity
-          style={styles.secondaryButton}
+          style={styles.buttonContainer}
           onPress={() =>
             navigation.navigate('CropAvailability', {
               CropCommonName: route.params.CropCommonName,
@@ -83,7 +83,7 @@ export default function NewCropSharing({navigation, route}) {
             })
           }
           underlayColor="#fff">
-          <Text style={styles.secondaryButtonText}> Next </Text>
+          <Text style={styles.mainButtonText}> Next </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -96,6 +96,26 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonContainer: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: 305,
+    height: 42,
+    borderRadius: 22,
+    backgroundColor: '#00BFFF',
+  },
+  mainButtonText: {
+    fontFamily: 'Red Hat Display',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 22,
+    lineHeight: 40,
+    textAlign: 'center',
+    color: '#FFFFF0',
   },
   highlight: {
     fontStyle: 'normal',

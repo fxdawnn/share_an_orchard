@@ -48,7 +48,7 @@ export default function AccountSetupGMOScreen({navigation}) {
       </View>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
-          style={styles.mainButton}
+          style={styles.buttonContainer}
           onPress={() => navigation.navigate('BioSetup')}
           underlayColor="#fff">
           <Text style={styles.mainButtonText}> Next </Text>
