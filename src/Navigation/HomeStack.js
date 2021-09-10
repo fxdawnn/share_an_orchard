@@ -19,11 +19,12 @@ import AddCropNameScreen from '../screens/NewCropScreens/AddCropNameScreen';
 import NewCropLocationScreen from '../screens/NewCropScreens/NewCropLocationScreen';
 import AddCropAvailabilityScreen from '../screens/NewCropScreens/AddCropAvailabilityScreen';
 import CropCommentScreen from '../CropCommentScreen';
-import Chat from '../screens/UsersFunctions/NewChat';
+import FoodChat from '../screens/UsersFunctions/FoodChat';
 import AddCropBioScreen from '../screens/NewCropScreens/AddCropBioScreen';
 import AddCropInfoScreen from '../screens/NewCropScreens/AddCropInfoScreen';
 import AddCommentScreen from '../screens/AddCommentScreen';
 import FriendListScreen from '../screens/UsersFunctions/FriendListScreen';
+import MessaggeInitScreen from '../screens/UsersFunctions/MessageInit';
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -51,11 +52,20 @@ export default function HomeStack() {
       })}>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="CropArea" component={CropAreaScreen} />
-      <Stack.Screen name="CropYield" component={CropYieldScreen} />
+      <Stack.Screen
+        name="CropYield"
+        component={CropYieldScreen}
+        options={{title: 'Food Recommendation'}}
+      />
       <Stack.Screen
         name="Map"
         component={MapScreen}
         options={{title: 'Tree Map'}}
+      />
+      <Stack.Screen
+        name="SendMessage"
+        component={MessaggeInitScreen}
+        options={{title: 'Send First Message'}}
       />
       <Stack.Screen
         name="AddTree"
@@ -79,7 +89,7 @@ export default function HomeStack() {
       />
       <Stack.Screen
         name="ChatFood"
-        component={Chat}
+        component={FoodChat}
         options={{title: 'Chat'}}
       />
       <Stack.Screen
@@ -125,7 +135,7 @@ export default function HomeStack() {
       <Stack.Screen
         name="AddCropInfo"
         component={AddCropInfoScreen}
-        options={{title: 'Add Crop Completed'}}
+        options={{title: 'Info'}}
       />
       <Stack.Screen
         name="AddCropMap"
@@ -140,7 +150,7 @@ export default function HomeStack() {
       <Stack.Screen
         name="CropComments"
         component={CropCommentScreen}
-        options={{title: 'Crop Comments'}}
+        options={{title: 'Comments'}}
       />
       <Stack.Screen name="Friends" component={GrowerListScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />

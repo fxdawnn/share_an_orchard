@@ -37,6 +37,9 @@ function CropCommentScreen({navigation, route}) {
       console.log(comments);
       console.log('plants neaby rturn');
       setCommentResponse(comments);
+      CommentResponse.map((comment) => {
+        comment.updatedAt = comment.updatedAt.split('T')[0];
+      });
     });
     socket.on('crop comment image', function (image, buffer) {
       if (image) {
@@ -67,15 +70,6 @@ function CropCommentScreen({navigation, route}) {
               const Notification = item.item;
               return (
                 <View style={styles.CommentContainer}>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('TreeInfo', {item})}>
-                    <Image
-                      style={styles.image}
-                      source={{
-                        uri: 'data:image/jpeg;base64,' + Notification.image,
-                      }}
-                    />
-                  </TouchableOpacity>
                   <View style={styles.content}>
                     <View style={styles.contentHeader}>
                       <TouchableOpacity
@@ -89,6 +83,15 @@ function CropCommentScreen({navigation, route}) {
                       {/*{TestImage}*/}
                     </Text>
                   </View>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('TreeInfo', {item})}>
+                    <Image
+                      style={styles.image}
+                      source={{
+                        uri: 'data:image/jpeg;base64,' + Notification.image,
+                      }}
+                    />
+                  </TouchableOpacity>
                 </View>
               );
             }}

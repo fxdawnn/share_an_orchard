@@ -5,6 +5,7 @@ import SignOutStack from './SignOutStack';
 import SwitchNavigator from './SwitchNavigator';
 import AppStack from './AppStack';
 import socket from '../Store/socket';
+import {initialization} from '../Store';
 
 export const AuthContext = createContext(null);
 
@@ -28,6 +29,10 @@ export default function AuthNavigator() {
     const authSubscriber = auth().onAuthStateChanged(onAuthStateChanged);
     socket.on('user return', (msg) => {
       setUser(msg);
+    });
+    socket.on('user initialization', (response) => {
+      const {grower, growers} = response;
+      initialization(grower, growers);
     });
     // unsubscribe on unmount
     return authSubscriber;

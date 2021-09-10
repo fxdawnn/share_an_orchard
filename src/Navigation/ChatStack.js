@@ -5,9 +5,11 @@ import Chat from '../screens/UsersFunctions/NewChat';
 import Users from '../screens/UsersFunctions/GrowersScreen';
 import * as React from 'react';
 import {Provider} from 'react-redux';
+import banana from '../img/banana.png';
 import store from '../Store';
 import {createStackNavigator} from '@react-navigation/stack';
 import UserProfileScreen from '../screens/UserProfileScreen';
+import ChatControlScreen from '../screens/UsersFunctions/ChatControl';
 const Stack = createStackNavigator();
 
 export default function ChatStack() {
@@ -43,12 +45,17 @@ export default function ChatStack() {
             <TouchableOpacity onPress={() => navigation.navigate('Users')}>
               <Image
                 style={{width: 28, height: 28, margin: 12}}
-                source={logo}
+                source={banana}
               />
             </TouchableOpacity>
           ),
         })}>
-        <Stack.Screen name="Users" component={Users} />
+          <Stack.Screen name="ChatOptions" component={ChatControlScreen} />
+        <Stack.Screen
+          name="Users"
+          component={Users}
+          options={{title: 'Growers'}}
+        />
         <Stack.Screen name="Friends" component={FriendListScreen} />
         <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="Grower Profile" component={UserProfileScreen} />

@@ -49,7 +49,7 @@ export default function UserProfileSetupStack() {
         <Stack.Screen
           name="Profile"
           component={ProfileControlScreen}
-          options={{title: 'Tree Map'}}
+          options={{title: 'Profile Center'}}
         />
         <Stack.Screen
           name="Name"
@@ -110,15 +110,15 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginTop: 10,
     marginBottom: 10,
-    width: 100,
-    height: 40,
+    width: 90,
+    height: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#481380',
+    backgroundColor: '#00BFFF',
   },
   buttonText: {
-    color: '#ffe2ff',
-    fontSize: 24,
+    color: '#FFFFF0',
+    fontSize: 18,
     marginRight: 5,
   },
 });

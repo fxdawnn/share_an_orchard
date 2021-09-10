@@ -21,7 +21,7 @@ export default function NewCropPrivacy({navigation, route}) {
       <View>
         <Text>
           <Text style={styles.mainButtonText}>
-            How would you like to share?
+            Who would you like to share with?
           </Text>
         </Text>
       </View>
@@ -36,7 +36,7 @@ export default function NewCropPrivacy({navigation, route}) {
             },
             placeholder: {
               color: '#00BFFF',
-              fontSize: 16,
+              fontSize: 20,
               fontWeight: 'bold',
             },
           }}
@@ -195,7 +195,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 4,
-    color: 'black',
+    color: '#FFFFF0',
     paddingRight: 30, // to ensure the text is never behind the icon
   },
   inputAndroid: {

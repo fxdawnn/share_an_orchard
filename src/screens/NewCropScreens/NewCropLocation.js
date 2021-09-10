@@ -61,16 +61,21 @@ export default class NewCropLocation extends Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0922 * ASPECT_RATIO,
       },
-      location: null,
+      location: {
+        latitude: LATITUDE,
+        longitude: LONGITUDE,
+      },
       foodCreated: null,
     };
   }
 
   findCoordinates = () => {
-    Geolocation.requestAuthorization();
-    Geolocation.requestAuthorization('always').then((res) => {
+    Geolocation.requestAuthorization('whenInUse').then((res) => {
       Alert.alert(res);
     });
+    /*Geolocation.requestAuthorization('whenInUse').then((res) => {
+      Alert.alert(res);
+    });*/
     Geolocation.getCurrentPosition(
       (position) => {
         const location = JSON.stringify(position);
@@ -96,7 +101,7 @@ export default class NewCropLocation extends Component {
     );
   };
 
-  /*async getCurrentLocation() {
+  async getCurrentLocation() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         let region = {
@@ -116,7 +121,7 @@ export default class NewCropLocation extends Component {
         maximumAge: 1000,
       },
     );
-  }*/
+  }
   /*goToInitialLocation() {
     let initialRegion = Object.assign({}, this.state.initialRegion);
     initialRegion.latitudeDelta = 0.005;
@@ -125,8 +130,8 @@ export default class NewCropLocation extends Component {
   }*/
 
   componentDidMount() {
-    //this.getCurrentLocation();
     Geolocation.requestAuthorization();
+    this.getCurrentLocation();
     this.socket = socket;
     this.socket.on('plants nearby', (msg) => {
       let plants = JSON.parse(msg);
@@ -135,6 +140,7 @@ export default class NewCropLocation extends Component {
     this.socket.on('plant created', (msg) => {
       this.setState({foodCreated: msg});
     });
+    this.getLocationUser();
   }
 
   submitCropCommonName() {
@@ -176,14 +182,16 @@ export default class NewCropLocation extends Component {
               <MapView
                 provider={this.props.provider}
                 style={styles.map}
-                initialRegion={{
+                initialRegion={
+                  this.state.initialRegion
+                  /*{
                   latitude: LATITUDE,
                   longitude: LONGITUDE,
                   latitudeDelta: LATITUDE_DELTA,
                   longitudeDelta: LONGITUDE_DELTA,
-                }}>
+                }*/}>
                 <Marker
-                  coordinate={this.state.a}
+                  coordinate={this.state.location}
                   title={'New Crop Location'}
                   onSelect={(e) => log('onSelect', e)}
                   onDrag={(e) => log('onDrag', e)}

@@ -58,12 +58,13 @@ class Users extends React.Component {
                         )
                       }>
                       <Text style={styles.name}>
-                        {Notification.name}
                         <MaterialCommunityIcons
                           name="account"
+                          size={22}
                           /*color={color}
-                            size={size}*/
+                              size={size}*/
                         />
+                        {Notification.name}
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity

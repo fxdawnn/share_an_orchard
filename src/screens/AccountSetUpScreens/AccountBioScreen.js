@@ -33,12 +33,13 @@ export default function AccountBioScreen({navigation, route}) {
     let NewProfile = {
       area: route.params.area,
       name: route.params.name,
-      sharing: route.params.sharing,
-      distance: route.params.distance,
+      sharing: 0,
+      distance: 0,
       experience: route.params.experience,
-      graywater: route.params.grayWater,
+      graywater: 0,
       bio: Info,
       firebase_token: user.uid,
+      id: user.user.id,
     };
     login(NewProfile, navigation);
   }

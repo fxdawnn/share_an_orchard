@@ -36,7 +36,7 @@ export default function NewCropSharing({navigation, route}) {
             },
             placeholder: {
               color: '#00BFFF',
-              fontSize: 12,
+              fontSize: 20,
               fontWeight: 'bold',
             },
           }}
@@ -195,7 +195,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 4,
-    color: 'black',
+    color: '#FFFFF0',
     paddingRight: 30, // to ensure the text is never behind the icon
   },
   inputAndroid: {
@@ -205,7 +205,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: 'purple',
     borderRadius: 8,
-    color: 'black',
+    color: '#FFFFF0',
     paddingRight: 30, // to ensure the text is never behind the icon
   },
   mainButton: {

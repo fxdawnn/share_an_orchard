@@ -14,14 +14,18 @@ import {
 import logo from './img/nature_tree.png';
 import {Card, Icon} from 'react-native-elements';
 import socketIOClient from 'socket.io-client';
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import socket from './Store/socket';
+import {AuthContext} from './Navigation/AuthNavigator';
+
 function TreeInfoScreen({route, navigation}) {
   const {item} = route.params.item;
   const [TestImage, setTestImage] = useState('');
-
+  const user = useContext(AuthContext);
+  const [receiver, setReceiver] = useState(null);
   useEffect(() => {
-    socket.emit('get crop image', item.id);
+    socket.emit('get receiver info', item.userId);
+    //socket.emit('get crop image', item.id);
     socket.on('crop image for info', function (image, buffer) {
       if (image) {
         console.log(' image: from client side');
@@ -29,6 +33,11 @@ function TreeInfoScreen({route, navigation}) {
         console.log(image);
         setTestImage('data:image/jpeg;base64,' + image.buffer);
         // what can we do here to serve the image onto an img tag?
+      }
+    });
+    socket.on('receiver info', function (receiver) {
+      if (receiver) {
+        setReceiver(receiver);
       }
     });
   });
@@ -69,6 +78,7 @@ function TreeInfoScreen({route, navigation}) {
               {item.privacy} / {item.option}
             </Text>
             <Text style={styles.description}>{item.description}</Text>
+            <View style={styles.space} />
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate('CropComments', {item: route.params.item})
@@ -78,9 +88,16 @@ function TreeInfoScreen({route, navigation}) {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonContainer}
-              onPress={() => navigation.navigate('ChatFood', {crop: item})}>
-              <Text>Chat about Food</Text>
+              onPress={() =>
+                navigation.navigate('SendMessage', {
+                  user: user.user,
+                  receivingUser: receiver,
+                })
+              }>
+              <Text>Send Message</Text>
             </TouchableOpacity>
+            {/*<Text>{JSON.stringify(receiver)}</Text>
+            <Text>USERS:{JSON.stringify(user.user)}</Text>*/}
             {/*<TouchableOpacity
               style={styles.buttonContainer}
               onPress={() => navigation.navigate('AddCropPhoto', {crop: item})}>
@@ -93,7 +110,6 @@ function TreeInfoScreen({route, navigation}) {
               style={styles.buttonContainer}>
               <Text>Add comments</Text>
             </TouchableOpacity>
-            <View style={styles.space} />
             <View style={styles.space} />
             <View style={styles.space} />
             <View style={styles.space} />
@@ -192,7 +208,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   headerBackgroundImage: {
-    paddingBottom: 20,
+    paddingBottom: 5,
     paddingTop: 70,
   },
   headerContainer: {},
@@ -226,13 +242,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   userCityText: {
-    color: '#A5A5A5',
+    color: 'black',
     fontSize: 15,
     fontWeight: '600',
     textAlign: 'center',
   },
   userImage: {
     borderColor: '#FFF',
+    backgroundColor: "#737373",
     borderRadius: 85,
     borderWidth: 3,
     height: 170,
@@ -249,7 +266,7 @@ const styles = StyleSheet.create({
 
   bodyContent: {
     alignItems: 'center',
-    padding: 30,
+    padding: 5,
   },
   name: {
     fontSize: 28,
@@ -263,7 +280,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 16,
-    color: '#696969',
+    color: 'black',
     marginTop: 10,
     textAlign: 'center',
   },

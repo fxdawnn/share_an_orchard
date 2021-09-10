@@ -33,14 +33,6 @@ export default class TreeList extends Component {
             longitude: -118.48138,
           },
         },
-        {
-          title: 'pumpkin',
-          description: "This is Pam's pumpkin",
-          coordinates: {
-            latitude: 33.996,
-            longitude: -118.485,
-          },
-        },
       ],
       fruitsResponse: [],
       nearbyFruits: [],
@@ -133,7 +125,7 @@ export default class TreeList extends Component {
                     this.props.navigation.navigate('TreeInfo', {marker})
                   }
                   underlayColor="#dddddd">
-                  <View>
+                  <View style={styles.CommentContainer}>
                     <TouchableOpacity
                       onPress={() =>
                         this.props.navigation.navigate('TreeInfo', {marker})
@@ -145,7 +137,15 @@ export default class TreeList extends Component {
                         }}
                       />
                     </TouchableOpacity>
-                    <Text style={styles.name}>{marker.title}</Text>
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate('TreeInfo', {marker})
+                      }>
+                      <Text style={styles.name}>
+                        {marker.title}
+                        {'\n'}
+                      </Text>
+                    </TouchableOpacity>
                     <Text rkType="primary3">{marker.description}</Text>
                   </View>
                 </TouchableHighlight>
@@ -191,6 +191,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   CommentContainer: {
+    paddingLeft: 19,
+    paddingRight: 16,
+    paddingVertical: 12,
+    backgroundColor: '#fffff0',
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
