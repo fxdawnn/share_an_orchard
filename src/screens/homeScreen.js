@@ -1,8 +1,35 @@
 import * as React from 'react';
 import {StyleSheet, View, Image, TouchableOpacity, Text} from 'react-native';
 import banana from '../img/banana.png';
+import {useContext, useEffect} from 'react';
+import auth from '@react-native-firebase/auth';
+import socket from '../Store/socket';
+import {initialization} from '../Store';
+import {AuthContext} from '../Navigation/AuthNavigator';
+import {findUser} from '../Store';
 
 function HomeScreen({navigation}) {
+  const user = useContext(AuthContext);
+  async function findProfile() {
+    let Profile = {
+      firebase_token: user.uid,
+      id: user.user.id,
+    };
+    findUser(Profile, navigation);
+  }
+  useEffect(() => {
+    let Profile = {
+      //firebase_token: user.uid,
+      //id: user.user.id,
+    };
+    //socket.emit('findUser', Profile);
+    //socket.on('usersCreated', (response) => {
+    //   const {grower, growers} = response;
+    //initialization(grower, growers);
+    //});
+    // unsubscribe on unmount
+  });
+
   return (
     <View style={styles.bg}>
       <Image style={styles.logo} source={banana} />
@@ -18,6 +45,7 @@ function HomeScreen({navigation}) {
         <Text style={styles.mainButtonText}>Get Food</Text>
       </TouchableOpacity>
       <View style={styles.space} />
+      {/*<Text style={styles.mainButtonText}>{JSON.stringify(user.user)}</Text>*/}
       <TouchableOpacity
         style={styles.buttonContainer}
         onPress={() => navigation.navigate('CropName')}

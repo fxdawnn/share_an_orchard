@@ -18,7 +18,14 @@ socket.on('userCreated', (response) => {
   const {user, users} = response;
   store.dispatch(gotUser(user));
   store.dispatch(gotUsers(users));
-  navigate('ProfileFinal', user);
+  navigate('Users', users);
+});
+
+socket.on('usersCreated', (response) => {
+  const {user, users} = response;
+  store.dispatch(gotUser(user));
+  store.dispatch(gotUsers(users));
+  navigate('Profile', user);
 });
 
 socket.on('newUser', (user) => {
@@ -28,6 +35,11 @@ socket.on('newUser', (user) => {
 socket.on('incomingMessage', (message) => {
   store.dispatch(gotNewMessage(message));
 });
+
+export const initialization = (user, users) => {
+  store.dispatch(gotUser(user));
+  store.dispatch(gotUsers(users));
+};
 
 export const login = (credentials, navigation) => {
   socket.emit('newUser', credentials);

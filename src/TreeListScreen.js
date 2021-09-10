@@ -67,7 +67,7 @@ function TreeListScreen({navigation}) {
             longitude: crop.longitude,
           },
           id: crop.id,
-          time: crop.createdAt,
+          time: crop.updatedAt.split('T')[0],
           option: crop.option,
           privacy: crop.privacy,
           userId: crop.userId,
@@ -80,7 +80,7 @@ function TreeListScreen({navigation}) {
             crop.common_name,
         );
       });
-      setFruitResponse(PlantsReturn);
+      setFruitResponse(PlantsReturn.reverse());
     });
   }, []);
 

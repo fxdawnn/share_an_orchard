@@ -71,9 +71,11 @@ function AddCropInfoScreen({route, navigation}) {
               style={styles.buttonContainer}>
               <Text style={styles.mainButtonText}>Finish</Text>
             </TouchableOpacity>
-            <View>
+            {/*<View>
               <Text>cool {JSON.stringify(route.params.foodCreated)}</Text>
-            </View>
+            </View>*/}
+            <View style={styles.space} />
+            <View style={styles.space} />
             <View style={styles.space} />
             <View style={styles.space} />
             <View style={styles.space} />

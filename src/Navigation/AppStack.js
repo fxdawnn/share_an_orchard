@@ -66,7 +66,7 @@ export default function AppStack() {
             ),
           }}
         />
-       {/* <Tab.Screen
+        {/* <Tab.Screen
           name="Fruits"
           component={GrowerListScreen}
           options={{

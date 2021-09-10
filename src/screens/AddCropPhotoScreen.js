@@ -7,7 +7,7 @@ function AddCropPhotoScreen({navigation, route}) {
     <ScrollView>
       <StatusBar barStyle="light-content" />
       <SimpleImagePicker crop={route.params.crop} />
-      <Text>{JSON.stringify(route.params.crop)}</Text>
+      {/*<Text>{JSON.stringify(route.params.crop)}</Text>*/}
     </ScrollView>
   );
 }

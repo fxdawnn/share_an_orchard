@@ -16,12 +16,89 @@ import RNPickerSelect from 'react-native-picker-select';
 
 export default function AddCropNameScreen({navigation}) {
   const [CropName, setCropName] = useState('');
+  const [CropPrivacy, setCropPrivacy] = useState('');
   return (
     <View style={styles.bg}>
       <View>
         <Text>
           <Text style={styles.mainButtonText}>Food Name</Text>
         </Text>
+      </View>
+      <View>
+        <RNPickerSelect
+          style={{
+            ...pickerSelectStyles,
+            iconContainer: {
+              top: 20,
+              right: 10,
+            },
+            placeholder: {
+              color: '#00BFFF',
+              fontSize: 20,
+              fontWeight: 'bold',
+            },
+          }}
+          onValueChange={(value) => {
+            setCropPrivacy(value);
+            setCropName(value);
+            console.log(setCropPrivacy(value));
+          }}
+          placeholder={{
+            label: 'Choose From list or input on your own?',
+            value: null,
+          }}
+          items={[
+            {label: 'Sapote', value: 'Sapote'},
+            {label: 'Fig', value: 'Fig'},
+            {label: 'Mulberry', value: 'Mulberry'},
+            {label: 'Guava', value: 'Guava'},
+            {label: 'Loquat', value: 'Loquat'},
+            {label: 'Avocado', value: 'Avocado'},
+            {label: 'Macadamia', value: 'Macadamia'},
+            {label: 'Gooseberry', value: 'Gooseberry'},
+            {label: 'Carob', value: 'Carob'},
+            {label: 'Olive', value: 'Olive'},
+            {label: 'Chrimoya', value: 'Chrimoya'},
+            {label: 'Passionfruit', value: 'Passionfruit'},
+            {label: 'Pomegranate', value: 'Pomegranate'},
+            {label: 'Longan', value: 'Longan'},
+            {label: 'Jaboticaba', value: 'Jaboticaba'},
+            {label: 'Bean', value: 'Bean'},
+            {label: 'Cherry', value: 'Cherry'},
+            {label: 'Lilikoi', value: 'Lilikoi'},
+            {label: 'Banana', value: 'Banana'},
+            {label: 'Lychee', value: 'Lychee'},
+            {label: 'Tomato', value: 'Tomato'},
+            {label: 'Coffee', value: 'Coffee'},
+            {label: 'Dragonfruit', value: 'Dragonfruit'},
+            {label: 'Mango', value: 'Mango'},
+            {label: 'Ginger', value: 'Ginger'},
+            {label: 'Turmeric', value: 'Turmeric'},
+            {label: 'Starfruit', value: 'Starfruit'},
+            {label: 'Papaya', value: 'Papaya'},
+            {label: 'Pineapple', value: 'Pineapple'},
+            {label: 'Peach', value: 'Peach'},
+            {label: 'Nectarine', value: 'Nectarine'},
+            {label: 'Plum', value: 'Plum'},
+          ]}
+          Icon={() => {
+            return (
+              <View
+                style={{
+                  backgroundColor: 'transparent',
+                  borderTopWidth: 10,
+                  borderTopColor: 'gray',
+                  borderRightWidth: 10,
+                  borderRightColor: 'transparent',
+                  borderLeftWidth: 10,
+                  borderLeftColor: 'transparent',
+                  width: 0,
+                  height: 0,
+                }}
+              />
+            );
+          }}
+        />
       </View>
       <View>
         <TextInput
@@ -160,9 +237,9 @@ const pickerSelectStyles = StyleSheet.create({
     paddingVertical: 22,
     paddingHorizontal: 10,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: '#FFFFF0',
     borderRadius: 4,
-    color: 'black',
+    color: '#FFFFF0',
     paddingRight: 30, // to ensure the text is never behind the icon
   },
   inputAndroid: {
@@ -170,7 +247,7 @@ const pickerSelectStyles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderWidth: 0.5,
-    borderColor: 'purple',
+    borderColor: '#FFFFF0',
     borderRadius: 8,
     color: 'black',
     paddingRight: 30, // to ensure the text is never behind the icon

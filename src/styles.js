@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   bg: {
@@ -99,11 +99,6 @@ export const styles = StyleSheet.create({
     width: 217,
     margin: 12,
   },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: '#737373',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
   button: {
     flexDirection: 'row',
     borderRadius: 30,
@@ -119,5 +114,98 @@ export const styles = StyleSheet.create({
     color: '#ffe2ff',
     fontSize: 24,
     marginRight: 5,
+  },
+  separator: {
+    marginVertical: 8,
+    borderBottomColor: '#737373',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  cardContainer: {
+    backgroundColor: '#FFF',
+    borderWidth: 0,
+    flex: 1,
+    margin: 0,
+    padding: 0,
+  },
+  emailContainer: {
+    backgroundColor: '#FFF',
+    flex: 1,
+    paddingTop: 30,
+  },
+  headerBackgroundImage: {
+    paddingBottom: 20,
+    paddingTop: 45,
+  },
+  headerContainer: {},
+  headerColumn: {
+    backgroundColor: 'transparent',
+    ...Platform.select({
+      ios: {
+        alignItems: 'center',
+        elevation: 1,
+        marginTop: -1,
+      },
+      android: {
+        alignItems: 'center',
+      },
+    }),
+  },
+  placeIcon: {
+    color: 'white',
+    fontSize: 26,
+  },
+  telContainer: {
+    backgroundColor: '#FFF',
+    flex: 1,
+    paddingTop: 30,
+  },
+  userAddressRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  userCityRow: {
+    backgroundColor: 'transparent',
+  },
+  userCityText: {
+    color: '#A5A5A5',
+    fontSize: 15,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  userImage: {
+    borderColor: '#FFF',
+    borderRadius: 85,
+    borderWidth: 3,
+    height: 170,
+    marginBottom: 15,
+    width: 170,
+  },
+  userNameText: {
+    color: '#FFF',
+    fontSize: 22,
+    fontWeight: 'bold',
+    paddingBottom: 8,
+    textAlign: 'center',
+  },
+
+  bodyContent: {
+    alignItems: 'center',
+    padding: 30,
+  },
+  name: {
+    fontSize: 28,
+    color: '#696969',
+    fontWeight: '600',
+  },
+  info: {
+    fontSize: 16,
+    color: '#00BFFF',
+    marginTop: 10,
+  },
+  description: {
+    fontSize: 16,
+    color: '#696969',
+    marginTop: 10,
+    textAlign: 'center',
   },
 });
