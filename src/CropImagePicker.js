@@ -163,9 +163,7 @@ export default function SimpleImagePicker(props) {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.headerContainer}>
-        <Text style={styles.titleText}>
-          Take photo of the {props.crop.common_name}
-        </Text>
+        <Text style={styles.titleText}>Take photo of the Food</Text>
         {/* <Image
           source={{
             uri: 'data:image/jpeg;base64,' + filePath.data,

@@ -49,12 +49,12 @@ export default function UserProfileSetupStack() {
         <Stack.Screen
           name="Profile"
           component={ProfileControlScreen}
-          options={{title: 'Profile Center'}}
+          options={{title: 'Profile'}}
         />
         <Stack.Screen
           name="Name"
           component={AccountNameScreen}
-          options={{title: 'Profile Setup'}}
+          options={{title: 'Nickname'}}
         />
         <Stack.Screen
           name="Setup"
@@ -64,7 +64,7 @@ export default function UserProfileSetupStack() {
         <Stack.Screen
           name="SharingSetup"
           component={AccountSetupExScreen}
-          options={{title: 'Profile Setup'}}
+          options={{title: 'Account Settings'}}
         />
         <Stack.Screen
           name="GreyWaterSetup"
@@ -78,7 +78,7 @@ export default function UserProfileSetupStack() {
         <Stack.Screen
           name="BioSetup"
           component={AccountBioScreen}
-          options={{title: 'Profile Setup'}}
+          options={{title: 'Profile Bio'}}
         />
         <Stack.Screen
           name="ProfileFinal"

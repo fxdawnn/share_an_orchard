@@ -20,16 +20,16 @@ function CropYieldScreen({navigation}) {
   const [isBanana, setBanana] = useState(false);
   const [isPineapple, setPineapple] = useState(false);
   return (
-    <ScrollView>
-      <View
-        style={{
-          backgroundColor: '#43AA8B',
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+    <View
+      style={{
+        backgroundColor: '#43AA8B',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <ScrollView>
         <View style={styles.container}>
-          <Text style={styles.mainButtonText}>We Recommend:</Text>
+          <Text style={styles.mainButtonText}>In this area, we Recommend:</Text>
           <RNPickerSelect
             style={{
               ...pickerSelectStyles,
@@ -54,38 +54,38 @@ function CropYieldScreen({navigation}) {
               value: null,
             }}
             items={[
-              {label: 'Sapote', value: 'Sapote'},
-              {label: 'Fig', value: 'Fig'},
-              {label: 'Mulberry', value: 'Mulberry'},
-              {label: 'Guava', value: 'Guava'},
-              {label: 'Loquat', value: 'Loquat'},
               {label: 'Avocado', value: 'Avocado'},
-              {label: 'Macadamia', value: 'Macadamia'},
-              {label: 'Gooseberry', value: 'Gooseberry'},
-              {label: 'Carob', value: 'Carob'},
-              {label: 'Olive', value: 'Olive'},
-              {label: 'Chrimoya', value: 'Chrimoya'},
-              {label: 'Passionfruit', value: 'Passionfruit'},
-              {label: 'Pomegranate', value: 'Pomegranate'},
-              {label: 'Longan', value: 'Longan'},
-              {label: 'Jaboticaba', value: 'Jaboticaba'},
-              {label: 'Bean', value: 'Bean'},
-              {label: 'Cherry', value: 'Cherry'},
-              {label: 'Lilikoi', value: 'Lilikoi'},
               {label: 'Banana', value: 'Banana'},
-              {label: 'Lychee', value: 'Lychee'},
-              {label: 'Tomato', value: 'Tomato'},
+              {label: 'Bean', value: 'Bean'},
+              {label: 'Carob', value: 'Carob'},
+              {label: 'Chrimoya', value: 'Chrimoya'},
+              {label: 'Cherry', value: 'Cherry'},
               {label: 'Coffee', value: 'Coffee'},
               {label: 'Dragonfruit', value: 'Dragonfruit'},
-              {label: 'Mango', value: 'Mango'},
+              {label: 'Fig', value: 'Fig'},
               {label: 'Ginger', value: 'Ginger'},
-              {label: 'Turmeric', value: 'Turmeric'},
-              {label: 'Starfruit', value: 'Starfruit'},
-              {label: 'Papaya', value: 'Papaya'},
-              {label: 'Pineapple', value: 'Pineapple'},
-              {label: 'Peach', value: 'Peach'},
+              {label: 'Gooseberry', value: 'Gooseberry'},
+              {label: 'Guava', value: 'Guava'},
+              {label: 'Jaboticaba', value: 'Jaboticaba'},
+              {label: 'Lilikoi', value: 'Lilikoi'},
+              {label: 'Longan', value: 'Longan'},
+              {label: 'Loquat', value: 'Loquat'},
+              {label: 'Lychee', value: 'Lychee'},
+              {label: 'Macadamia', value: 'Macadamia'},
+              {label: 'Mango', value: 'Mango'},
+              {label: 'Mulberry', value: 'Mulberry'},
               {label: 'Nectarine', value: 'Nectarine'},
+              {label: 'Olive', value: 'Olive'},
+              {label: 'Papaya', value: 'Papaya'},
+              {label: 'Passionfruit', value: 'Passionfruit'},
+              {label: 'Peach', value: 'Peach'},
+              {label: 'Pineapple', value: 'Pineapple'},
               {label: 'Plum', value: 'Plum'},
+              {label: 'Pomegranate', value: 'Pomegranate'},
+              {label: 'Sapote', value: 'Sapote'},
+              {label: 'Starfruit', value: 'Starfruit'},
+              {label: 'Tomato', value: 'Tomato'},
+              {label: 'Turmeric', value: 'Turmeric'},
             ]}
             Icon={() => {
               return (
@@ -134,7 +134,9 @@ function CropYieldScreen({navigation}) {
             <Text style={styles.label}>Lemon</Text>
           </View>*/}
         </View>
-        <Text style={styles.mainButtonText}>Annual Yield Chart</Text>
+        <Text style={styles.mainButtonText}>
+          Expected Monthly Yield of {CropName}
+        </Text>
         <View
           style={{
             alignItems: 'center',
@@ -226,6 +228,14 @@ function CropYieldScreen({navigation}) {
             }}
           />
         </View>
+        <View style={styles.space} />
+        <View style={styles.space} />
+        <View style={styles.space} />
+        <View style={styles.space} />
+        <View style={styles.space} />
+        <View style={styles.space} />
+        <View style={styles.space} />
+        <View style={styles.space} />
         {/*<View style={{marginTop: 20}}>
           <TouchableOpacity
             style={styles.mainButton}
@@ -234,8 +244,8 @@ function CropYieldScreen({navigation}) {
             <Text style={styles.mainButtonText}>Reselect Area</Text>
           </TouchableOpacity>
         </View>*/}
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 

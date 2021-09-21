@@ -1,11 +1,58 @@
-import {Platform, StyleSheet} from 'react-native';
+import * as React from 'react';
+import {
+  StyleSheet,
+  View,
+  Image,
+  TouchableOpacity,
+  Text,
+  FlatList,
+  ImageBackground,
+  Linking,
+  Platform,
+  ScrollView,
+} from 'react-native';
+import logo from '../img/nature_tree.png';
+import {Card, Icon} from 'react-native-elements';
 
-export const styles = StyleSheet.create({
+function CommentPhotoScreen({navigation, route}) {
+  return (
+    <View style={styles.bg}>
+      <View style={styles.headerContainer}>
+        <View style={styles.headerColumn}>
+          <Image
+            style={styles.userImage}
+            source={{
+              uri: 'data:image/jpeg;base64,' + route.params.Notification.image,
+            }}
+          />
+          <Text style={styles.userNameText}>
+            {route.params.Notification.text}
+          </Text>
+        </View>
+      </View>
+      {/*<View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.info}>
+            {'Experienced Grower:' + route.params.experience} / {'Sustainable'}
+          </Text>
+          <Text style={styles.description}>{route.params.bio}</Text>
+        </View>
+      </View>*/}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
   bg: {
     backgroundColor: '#43aa8b',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  listItemContainer: {
+    padding: 10,
+    marginTop: 3,
+    backgroundColor: '#d9f9b1',
   },
   container: {
     flex: 1,
@@ -16,58 +63,20 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 8,
   },
-  smallText: {
-    fontFamily: 'Red Hat Display',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: 18,
-    lineHeight: 20,
-    textAlign: 'center',
-    color: '#254441',
-  },
-  titleText: {
-    fontFamily: 'Red Hat Display',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 34,
-    lineHeight: 45,
-    textAlign: 'center',
-    color: '#254441',
-  },
   fixToText: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  mainButton: {
-    marginTop: 5,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    width: 305,
-    height: 42,
-    borderRadius: 22,
-    backgroundColor: '#00BFFF',
-  },
   buttonContainer: {
-    marginTop: 5,
+    marginTop: 10,
+    height: 45,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative',
-    width: 305,
-    height: 42,
-    borderRadius: 22,
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 30,
     backgroundColor: '#00BFFF',
-  },
-  mainButtonText: {
-    fontFamily: 'Red Hat Display',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 22,
-    lineHeight: 40,
-    textAlign: 'center',
-    color: '#FFFFF0',
   },
   secondaryButton: {
     /* Share an orchard */
@@ -76,7 +85,7 @@ export const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                        top: 630.17,*/
+                            top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -98,22 +107,6 @@ export const styles = StyleSheet.create({
     height: 217,
     width: 217,
     margin: 12,
-  },
-  button: {
-    flexDirection: 'row',
-    borderRadius: 30,
-    marginTop: 10,
-    marginBottom: 10,
-    width: 300,
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#481380',
-  },
-  buttonText: {
-    color: '#ffe2ff',
-    fontSize: 24,
-    marginRight: 5,
   },
   separator: {
     marginVertical: 8,
@@ -167,19 +160,19 @@ export const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   userCityText: {
-    color: 'black',
+    color: '#A5A5A5',
     fontSize: 15,
     fontWeight: '600',
     textAlign: 'center',
   },
   userImage: {
+    backgroundColor: '#A5A5A5',
     borderColor: '#FFF',
-    backgroundColor: '#737373',
-    borderRadius: 85,
+    borderRadius: 5,
     borderWidth: 3,
-    height: 170,
+    height: 250,
     marginBottom: 15,
-    width: 170,
+    width: 250,
   },
   userNameText: {
     color: '#FFF',
@@ -191,7 +184,7 @@ export const styles = StyleSheet.create({
 
   bodyContent: {
     alignItems: 'center',
-    padding: 5,
+    padding: 30,
   },
   name: {
     fontSize: 28,
@@ -199,14 +192,16 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
   },
   info: {
-    fontSize: 19,
-    color: '#FFF',
+    fontSize: 16,
+    color: '#00BFFF',
     marginTop: 10,
   },
   description: {
     fontSize: 16,
-    color: 'black',
+    color: '#696969',
     marginTop: 10,
     textAlign: 'center',
   },
 });
+
+export default CommentPhotoScreen;

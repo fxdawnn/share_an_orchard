@@ -12,7 +12,7 @@ import {
 import {styles} from '../../styles';
 import {ProfileContext} from '../../Navigation/ProfileSwitch';
 import {AuthContext} from '../../Navigation/AuthNavigator';
-import {findUser} from '../../Store';
+import {findUser, findChats} from '../../Store';
 export default function ChatControlScreen({navigation}) {
   const user = useContext(AuthContext);
 
@@ -24,14 +24,22 @@ export default function ChatControlScreen({navigation}) {
     findUser(Profile, navigation);
   }
 
+  async function findAllChats() {
+    let Profile = {
+      firebase_token: user.uid,
+      id: user.user.id,
+    };
+    findChats(Profile, navigation);
+  }
+
   return (
     <View style={styles.bg}>
       <View style={{marginTop: 20}}>
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => navigation.navigate('Users')}
+          onPress={findAllChats}
           underlayColor="#fff">
-          <Text style={styles.mainButtonText}> All Growers </Text>
+          <Text style={styles.mainButtonText}> Active Chats </Text>
         </TouchableOpacity>
       </View>
       <View style={{marginTop: 20}}>
@@ -39,7 +47,7 @@ export default function ChatControlScreen({navigation}) {
           style={styles.buttonContainer}
           onPress={findProfile}
           underlayColor="#fff">
-          <Text style={styles.mainButtonText}> Chats </Text>
+          <Text style={styles.mainButtonText}> Growers </Text>
         </TouchableOpacity>
       </View>
     </View>

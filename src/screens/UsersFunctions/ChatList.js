@@ -11,7 +11,7 @@ import {
 import {connect} from 'react-redux';
 import MaterialCommunityIcons from 'react-native-paper/src/components/MaterialCommunityIcon';
 
-class Users extends React.Component {
+class ChatList extends React.Component {
   constructor() {
     super();
     this.openChat = this.openChat.bind(this);
@@ -60,9 +60,9 @@ class Users extends React.Component {
                       <Text style={styles.name}>
                         <MaterialCommunityIcons
                           name="account"
-                          size={20}
+                          size={22}
                           /*color={color}
-                              size={size}*/
+                                                        size={size}*/
                         />
                         {Notification.name}
                       </Text>
@@ -70,7 +70,11 @@ class Users extends React.Component {
                     <TouchableOpacity
                       style={styles.time}
                       onPress={() => this.openChat(Notification)}>
-                      <Text>Chat</Text>
+                      <MaterialCommunityIcons
+                        name="chat"
+                        color={'#00BFFF'}
+                        size={20}
+                      />
                     </TouchableOpacity>
                   </View>
                   <Text rkType="primary3 mediumLine">{Notification.bio}</Text>
@@ -91,7 +95,7 @@ const mapState = (state) => ({
   users: state.users.filter((user) => user.id !== state.user.id),
 });
 
-export default connect(mapState)(Users);
+export default connect(mapState)(ChatList);
 
 const styles = StyleSheet.create({
   root: {
@@ -127,34 +131,9 @@ const styles = StyleSheet.create({
   time: {
     fontSize: 11,
     color: '#808080',
-    flexDirection: 'row',
-    borderRadius: 15,
-    //marginTop: 10,
-    //marginBottom: 10,
-    width: 60,
-    height: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#00BFFF',
   },
   name: {
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  button: {
-    flexDirection: 'row',
-    borderRadius: 15,
-    marginTop: 10,
-    marginBottom: 10,
-    width: 60,
-    height: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#00BFFF',
-  },
-  buttonText: {
-    color: '#FFFFF0',
-    fontSize: 18,
-    marginRight: 5,
   },
 });

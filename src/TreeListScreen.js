@@ -13,7 +13,6 @@ import {
 import {useEffect, useState} from 'react';
 import {List, ListItem} from 'react-native-elements';
 import TreeList from './TreeList';
-import banana from './img/40.png';
 import socket from './Store/socket';
 
 function TreeListScreen({navigation}) {
@@ -171,6 +170,7 @@ const styles = StyleSheet.create({
     height: 45,
     borderRadius: 20,
     marginLeft: 20,
+    backgroundColor: '#737373',
   },
   time: {
     fontSize: 11,

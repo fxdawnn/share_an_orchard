@@ -10,6 +10,8 @@ import {
   Alert,
   TouchableHighlight,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {styles} from '../../styles';
@@ -55,11 +57,14 @@ export default function AccountBioScreen({navigation, route}) {
   const [text, setText] = useState('');
   return (
     <View style={styles.bg}>
-      <Text style={styles.titleText}>
-        Bio(Tell us why you're using our app!)
-      </Text>
-      <View style={{padding: 10}}>
+      <Text style={styles.mainButtonText}>Profile Bio</Text>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : null}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+        style={{padding: 10}}>
         <TextInput
+          placeholder="Type here about yourself and get to know other growers!"
+          placeholderTextColor="#666"
           style={{
             width: 305,
             height: 120,
@@ -67,21 +72,23 @@ export default function AccountBioScreen({navigation, route}) {
             borderWidth: 1,
             fontSize: 16,
           }}
-          placeholder="Type here about yourself and get to know other growers!"
           onChangeText={(text) => setInfo(text)}
           defaultValue={text}
           multiline={true}
           numberOfLines={7}
         />
-      </View>
-      <View style={{marginTop: 20}}>
+      </KeyboardAvoidingView>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : null}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 150 : 0}
+        style={{marginTop: 20}}>
         <TouchableOpacity
           style={styles.buttonContainer}
           onPress={submitProfile}
           underlayColor="#fff">
           <Text style={styles.mainButtonText}> Finish </Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 }

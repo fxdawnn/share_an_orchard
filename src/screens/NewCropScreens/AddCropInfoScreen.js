@@ -25,8 +25,8 @@ function AddCropInfoScreen({route, navigation}) {
     });
   });
   return (
-    <ScrollView>
-      <View style={styles.bg}>
+    <View style={styles.bg}>
+      <ScrollView>
         <View style={styles.space} />
         <View style={styles.headerContainer}>
           <View style={styles.headerColumn}>
@@ -57,8 +57,8 @@ function AddCropInfoScreen({route, navigation}) {
               {' '}
               {item.privacy} / {item.option}
             </Text>
-            <View style={styles.space} />
             <Text style={styles.description}>{item.description}</Text>
+            <View style={styles.space} />
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate('AddCropPhoto', {crop: msg[0][0]})
@@ -69,21 +69,15 @@ function AddCropInfoScreen({route, navigation}) {
             <TouchableOpacity
               onPress={() => navigation.navigate('Home')}
               style={styles.buttonContainer}>
-              <Text style={styles.mainButtonText}>Finish</Text>
+              <Text style={styles.mainButtonText}>Done</Text>
             </TouchableOpacity>
             {/*<View>
               <Text>cool {JSON.stringify(route.params.foodCreated)}</Text>
             </View>*/}
-            <View style={styles.space} />
-            <View style={styles.space} />
-            <View style={styles.space} />
-            <View style={styles.space} />
-            <View style={styles.space} />
-            <View style={styles.space} />
           </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -108,33 +102,24 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 8,
   },
-  space: {
-    width: 20, // or whatever size you need
-    height: 20,
-  },
   fixToText: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   buttonContainer: {
-    marginTop: 5,
+    marginTop: 10,
+    height: 45,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative',
-    width: 305,
-    height: 42,
-    borderRadius: 22,
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 30,
     backgroundColor: '#00BFFF',
   },
-  mainButtonText: {
-    fontFamily: 'Red Hat Display',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 22,
-    lineHeight: 40,
-    textAlign: 'center',
-    color: '#FFFFF0',
+  space: {
+    width: 20, // or whatever size you need
+    height: 20,
   },
   secondaryButton: {
     /* Share an orchard */
@@ -143,7 +128,7 @@ const styles = StyleSheet.create({
     width: 315.77,
     height: 51.83,
     /*left: 32.62,
-                            top: 630.17,*/
+                        top: 630.17,*/
     backgroundColor: '#43aa8b',
     borderRadius: 22,
     borderWidth: 3,
@@ -184,8 +169,8 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   headerBackgroundImage: {
-    paddingBottom: 20,
-    paddingTop: 45,
+    paddingBottom: 5,
+    paddingTop: 70,
   },
   headerContainer: {},
   headerColumn: {
@@ -218,13 +203,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   userCityText: {
-    color: '#A5A5A5',
+    color: 'black',
     fontSize: 15,
     fontWeight: '600',
     textAlign: 'center',
   },
   userImage: {
     borderColor: '#FFF',
+    backgroundColor: '#737373',
     borderRadius: 85,
     borderWidth: 3,
     height: 170,
@@ -241,7 +227,7 @@ const styles = StyleSheet.create({
 
   bodyContent: {
     alignItems: 'center',
-    padding: 30,
+    padding: 5,
   },
   name: {
     fontSize: 28,
@@ -249,13 +235,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   info: {
-    fontSize: 16,
-    color: '#00BFFF',
+    fontSize: 19,
+    color: '#FFF',
     marginTop: 10,
   },
   description: {
     fontSize: 16,
-    color: '#696969',
+    color: 'black',
     marginTop: 10,
     textAlign: 'center',
   },
