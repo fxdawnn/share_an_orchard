@@ -51,7 +51,11 @@ export default function ChatStack() {
             </TouchableOpacity>
           ),
         })}>
-        <Stack.Screen name="ChatOptions" component={ChatControlScreen} />
+        <Stack.Screen
+          name="ChatOptions"
+          component={ChatControlScreen}
+          options={{title: 'Community'}}
+        />
         <Stack.Screen
           name="Users"
           component={Users}

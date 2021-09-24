@@ -24,8 +24,8 @@ socket.on('userCreated', (response) => {
 socket.on('chatsFound', (response) => {
   const {user, users} = response;
   store.dispatch(gotUser(user));
-  //store.dispatch(gotUsers(users));
-  navigate('Chats', users);
+  store.dispatch(gotUsers(users));
+  navigate('Users', users);
 });
 
 socket.on('usersCreated', (response) => {
