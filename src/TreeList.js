@@ -9,14 +9,15 @@ import {
   FlatList,
   SafeAreaView,
   TouchableHighlight,
+  Alert,
 } from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import socketIOClient from 'socket.io-client';
-import {ListItem} from 'react-native-elements';
 import banana from './img/banana_small.png';
 import testing_icon from './img/120.png';
-
 import socket from './Store/socket';
+import Geolocation from '@react-native-community/geolocation';
+import {getDistance} from 'geolib';
 
 export default class TreeList extends Component {
   constructor(props) {
@@ -36,6 +37,8 @@ export default class TreeList extends Component {
       ],
       fruitsResponse: [],
       nearbyFruits: [],
+      location: null,
+      distance: null,
     };
     this.socket.on('plants nearby', (msg) => {
       var plants = JSON.parse(msg);
@@ -48,6 +51,10 @@ export default class TreeList extends Component {
           longitude: crop.longitude,
         };
         crop.title = crop.common_name;
+        const foodDistance = getDistance(this.state.location.coords, {
+          latitude: crop.latitude,
+          longitude: crop.longitude,
+        });
         PlantsReturn.push({
           title: crop.title,
           description: crop.description,
@@ -60,6 +67,7 @@ export default class TreeList extends Component {
           option: crop.option,
           privacy: crop.privacy,
           image: crop.image,
+          foodDistance: parseFloat(foodDistance * 0.000621371).toPrecision(3),
         });
         console.log(
           'plant coordination:' +
@@ -73,18 +81,68 @@ export default class TreeList extends Component {
       });
     });
   }
-
+  getLocationUser = async () => {
+    Geolocation.requestAuthorization('whenInUse');
+    await Geolocation.getCurrentPosition(
+      (position) => {
+        const location = position;
+        this.setState({location});
+        const distance = getDistance(position.coords, {
+          latitude: 51.525,
+          longitude: 7.4575,
+        });
+        this.setState({distance});
+      },
+      (error) => {
+        console.log(error);
+        Alert.alert(error.message);
+      },
+    );
+  };
+  async getCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        let region = {
+          latitude: parseFloat(position.coords.latitude),
+          longitude: parseFloat(position.coords.longitude),
+          latitudeDelta: 5,
+          longitudeDelta: 5,
+        };
+        this.setState({
+          location: position,
+        });
+      },
+      (error) => console.log(error),
+      {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 1000,
+      },
+    );
+  }
   componentDidMount() {
     this.socket.on('FruitsFromAPI', (data) => {
       this.fruitsResponse = data;
       //console.log("fruit from api" +  JSON.stringify(data))
     });
+    this.getLocationUser();
     console.log('NewCrop socket' + this.state.CropCommonName);
   }
 
   getNeighborCrops() {
     this.socket.emit('get neighbor crops', 'testing');
   }
+  findCoordinates = () => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const location = JSON.stringify(position);
+
+        this.setState({location});
+      },
+      (error) => Alert.alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
+  };
   renderItemComponent = (
     itemData, // 1
   ) => (
@@ -143,10 +201,9 @@ export default class TreeList extends Component {
                       }>
                       <Text style={styles.name}>
                         {marker.title}
-                        {'\n'}
                       </Text>
                     </TouchableOpacity>
-                    <Text rkType="primary3">{marker.description}</Text>
+                    <Text rkType="primary3">{marker.description}{'\n'} {marker.foodDistance} miles</Text>
                   </View>
                 </TouchableHighlight>
               </MapView.Callout>

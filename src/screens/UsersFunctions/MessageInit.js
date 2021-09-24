@@ -11,6 +11,8 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   StatusBar,
+  Platform,
+  KeyboardAvoidingView,
 } from 'react-native';
 import {sendMessage} from '../../Store';
 import {useForm, Controller} from 'react-hook-form';
@@ -45,7 +47,11 @@ export default function MessaggeInitScreen({navigation, route}) {
           numberOfLines={7}
         />
       </View>
-      <View style={{marginTop: 20}}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : null}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 150 : 0}
+        style={{marginTop: 20}}>
+        View style={{marginTop: 20}}>
         <TouchableOpacity
           style={styles.mainButton}
           onPress={sendMessage(Info, user.user, route.params.receivingUser)}
@@ -61,7 +67,7 @@ export default function MessaggeInitScreen({navigation, route}) {
             {JSON.stringify(route.params.receivingUser)}{' '}
           </Text>*/}
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     </ScrollView>
   );
 }

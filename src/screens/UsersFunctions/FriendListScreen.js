@@ -39,14 +39,6 @@ function FriendListScreen({navigation, route}) {
         title: 'Barath',
         description: 'that',
       },
-      {
-        title: 'Jay',
-        description: 'that',
-      },
-      {
-        title: 'Josh',
-        description: 'that',
-      },
     ]);
     socket.emit('get neighbor crops', 'testing');
     socket.on('FruitsFromAPI', (data) => {

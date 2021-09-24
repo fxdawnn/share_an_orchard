@@ -19,7 +19,9 @@ export default function AddCropAvailabilityScreen({navigation, route}) {
     <View style={styles.bg}>
       <View>
         <Text>
-          <Text style={styles.mainButtonText}>Amount(e.g 2 lbs)</Text>
+          <Text style={styles.mainButtonText}>
+            Quantity (e.g. 2 lbs, 3 baskets)
+          </Text>
         </Text>
       </View>
       <View>

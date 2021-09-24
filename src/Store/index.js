@@ -21,6 +21,13 @@ socket.on('userCreated', (response) => {
   navigate('Users', users);
 });
 
+socket.on('chatsFound', (response) => {
+  const {user, users} = response;
+  store.dispatch(gotUser(user));
+  store.dispatch(gotUsers(users));
+  navigate('Users', users);
+});
+
 socket.on('usersCreated', (response) => {
   const {user, users} = response;
   store.dispatch(gotUser(user));
@@ -48,6 +55,11 @@ export const login = (credentials, navigation) => {
 
 export const findUser = (firebase_token, navigation) => {
   socket.emit('findUser', firebase_token);
+  navigate = navigation.navigate;
+};
+
+export const findChats = (firebase_token, navigation) => {
+  socket.emit('findChats', firebase_token);
   navigate = navigation.navigate;
 };
 

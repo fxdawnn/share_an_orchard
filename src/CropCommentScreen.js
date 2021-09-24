@@ -36,10 +36,18 @@ function CropCommentScreen({navigation, route}) {
       var comments = message.comments;
       console.log(comments);
       console.log('plants neaby rturn');
-      setCommentResponse(comments);
-      CommentResponse.map((comment) => {
-        comment.updatedAt = comment.updatedAt.split('T')[0];
+      var newComments = [];
+      //setCommentResponse(comments);
+      comments.map((comment) => {
+        //comment.updatedAt = comment.updatedAt.split('T')[0];
+        newComments.push({
+          id: comment.id,
+          updatedAt: comment.updatedAt.split('T')[0],
+          image: comment.image,
+          text: comment.text,
+        });
       });
+      setCommentResponse(newComments);
     });
     socket.on('crop comment image', function (image, buffer) {
       if (image) {
@@ -73,10 +81,12 @@ function CropCommentScreen({navigation, route}) {
                   <View style={styles.content}>
                     <View style={styles.contentHeader}>
                       <TouchableOpacity
-                        onPress={() => navigation.navigate('TreeInfo', {item})}>
-                        <Text style={styles.name}>Anonymous</Text>
+                        onPress={() =>
+                          navigation.navigate('CommentPhoto', {Notification})
+                        }>
+                        {/*<Text style={styles.name}>Anonymous</Text>*/}
                       </TouchableOpacity>
-                      <Text style={styles.time}>{Notification.createdAt}</Text>
+                      <Text style={styles.time}>{Notification.updatedAt}</Text>
                     </View>
                     <Text rkType="primary3 mediumLine">
                       {Notification.text}
@@ -84,7 +94,9 @@ function CropCommentScreen({navigation, route}) {
                     </Text>
                   </View>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('TreeInfo', {item})}>
+                    onPress={() =>
+                      navigation.navigate('CommentPhoto', {Notification})
+                    }>
                     <Image
                       style={styles.image}
                       source={{
@@ -130,7 +142,7 @@ const styles = StyleSheet.create({
   image: {
     width: 45,
     height: 45,
-    borderRadius: 20,
+    borderRadius: 2,
     marginLeft: 20,
   },
   time: {

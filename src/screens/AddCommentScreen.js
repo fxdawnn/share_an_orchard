@@ -29,7 +29,7 @@ export default function AddCommentScreen({navigation, route}) {
       userId: user.user.id,
     };
     socket.emit('plant comment', JSON.stringify(CropComment));
-    setInfo('done sending');
+    //setInfo('done sending');
   }
 
   const {control, handleSubmit, errors} = useForm();

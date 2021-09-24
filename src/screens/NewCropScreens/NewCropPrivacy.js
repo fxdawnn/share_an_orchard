@@ -35,7 +35,7 @@ export default function NewCropPrivacy({navigation, route}) {
               right: 10,
             },
             placeholder: {
-              color: '#00BFFF',
+              color: '#333333',
               fontSize: 20,
               fontWeight: 'bold',
             },
@@ -45,12 +45,11 @@ export default function NewCropPrivacy({navigation, route}) {
             console.log(setCropPrivacy(value));
           }}
           placeholder={{
-            label: 'Public/Friends/Private?',
+            label: 'Public/Private?',
             value: null,
           }}
           items={[
             {label: 'Public', value: 'Public'},
-            {label: 'Friends', value: 'Friends'},
             {label: 'Private', value: 'Private'},
           ]}
           Icon={() => {

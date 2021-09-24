@@ -8,21 +8,40 @@ import {
   FlatList,
   SafeAreaView,
   ScrollView,
+  Alert,
 } from 'react-native';
 
 import {useEffect, useState} from 'react';
-import {List, ListItem} from 'react-native-elements';
 import TreeList from './TreeList';
-import banana from './img/40.png';
 import socket from './Store/socket';
+import Geolocation from '@react-native-community/geolocation';
+import {getDistance} from 'geolib';
 
 function TreeListScreen({navigation}) {
   const [Fruitresponse, setFruitResponse] = useState([]);
   const [NeighborCrops, setNeighbourCrops] = useState('');
   const [TestImage, setTestImage] = useState('');
   const [msg, setMsg] = useState('');
+  const [Location, setLocation] = useState({});
+  const [distance, setDistance] = useState();
 
-  useEffect(() => {
+  useEffect((getLocationUser) => {
+    Geolocation.requestAuthorization('whenInUse');
+    Geolocation.getCurrentPosition(
+      (position) => {
+        //const location = position;
+        setLocation(position);
+        const distance = getDistance(position.coords, {
+          latitude: 51.525,
+          longitude: 7.4575,
+        });
+        setDistance(distance);
+      },
+      (error) => {
+        console.log(error);
+        Alert.alert(error.message);
+      },
+    );
     setFruitResponse([
       {
         title: 'TestingCrop',
@@ -36,6 +55,7 @@ function TreeListScreen({navigation}) {
     socket.on('neighbor plants', (data) => {
       setNeighbourCrops(data);
     });
+
     socket.on('crop image', function (image, buffer) {
       if (image) {
         console.log(' image: from client side');
@@ -45,6 +65,7 @@ function TreeListScreen({navigation}) {
         // what can we do here to serve the image onto an img tag?
       }
     });
+
     socket.on('plants nearby', (msg) => {
       var plants = JSON.parse(msg);
       var nearbyFruits = plants.crops;
@@ -52,15 +73,23 @@ function TreeListScreen({navigation}) {
       setMsg(msg);
       console.log(plants);
       console.log('plants neaby rturn');
+      /*Geolocation.getCurrentPosition(
+        (position) => {
+          CL = position;
+        },
+        (error) => {
+          console.log(error);
+          Alert.alert(error.message);
+        },
+      );*/
       nearbyFruits.map((crop) => {
         // console.log('plant:' + crop.common_name);
-        crop.coordinates = {
+        /*const foodDistance = getDistance(Location.coords, {
           latitude: crop.latitude,
           longitude: crop.longitude,
-        };
-        crop.title = crop.common_name;
+        });*/
         PlantsReturn.push({
-          title: crop.title,
+          title: crop.common_name,
           description: crop.description,
           coordinates: {
             latitude: crop.latitude,
@@ -72,6 +101,7 @@ function TreeListScreen({navigation}) {
           privacy: crop.privacy,
           userId: crop.userId,
           image: crop.image,
+          //foodDistance: Location, //parseFloat(foodDistance * 0.000621371).toPrecision(3),
         });
         console.log(
           'plant coordination:' +
@@ -93,6 +123,8 @@ function TreeListScreen({navigation}) {
         <TreeList navigation={navigation} image={TestImage} />
         <SafeAreaView>
           <ScrollView>
+            {/*<Text>{JSON.stringify(Location)}</Text>
+            <Text>{distance}</Text>*/}
             {/*<Text>{JSON.stringify(Fruitresponse)}</Text>*/}
             <FlatList
               style={styles.root}
@@ -124,7 +156,10 @@ function TreeListScreen({navigation}) {
                           }>
                           <Text style={styles.name}>{Notification.title}</Text>
                         </TouchableOpacity>
-                        <Text style={styles.time}>{Notification.time}</Text>
+                        <Text style={styles.time}>
+                          {Notification.time}{' '}
+                          {/* {JSON.stringify(Notification.foodDistance)}*/}
+                        </Text>
                       </View>
                       <Text rkType="primary3 mediumLine">
                         {Notification.description}
@@ -171,6 +206,7 @@ const styles = StyleSheet.create({
     height: 45,
     borderRadius: 20,
     marginLeft: 20,
+    backgroundColor: '#737373',
   },
   time: {
     fontSize: 11,

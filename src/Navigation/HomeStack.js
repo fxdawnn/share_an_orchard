@@ -25,6 +25,7 @@ import AddCropInfoScreen from '../screens/NewCropScreens/AddCropInfoScreen';
 import AddCommentScreen from '../screens/AddCommentScreen';
 import FriendListScreen from '../screens/UsersFunctions/FriendListScreen';
 import MessaggeInitScreen from '../screens/UsersFunctions/MessageInit';
+import CommentPhotoScreen from '../screens/CommentPhotoScreen';
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -55,7 +56,7 @@ export default function HomeStack() {
       <Stack.Screen
         name="CropYield"
         component={CropYieldScreen}
-        options={{title: 'Food Recommendation'}}
+        options={{title: 'Recommendation'}}
       />
       <Stack.Screen
         name="Map"
@@ -78,14 +79,19 @@ export default function HomeStack() {
         component={TreeInfoScreen}
       />
       <Stack.Screen
+        name="CommentPhoto"
+        options={{title: 'Details'}}
+        component={CommentPhotoScreen}
+      />
+      <Stack.Screen
         name="CropPrivacy"
         component={NewCropPrivacy}
-        options={{title: 'Add Food'}}
+        options={{title: 'Food Privacy'}}
       />
       <Stack.Screen
         name="CropSharing"
         component={NewCropSharing}
-        options={{title: 'Add Food'}}
+        options={{title: 'Food Sharing'}}
       />
       <Stack.Screen
         name="ChatFood"
@@ -95,27 +101,27 @@ export default function HomeStack() {
       <Stack.Screen
         name="CropAvailability"
         component={AddCropAvailabilityScreen}
-        options={{title: 'Add Food'}}
+        options={{title: 'Food Availability'}}
       />
       <Stack.Screen
         name="CropName"
         component={AddCropNameScreen}
-        options={{title: 'Add Food'}}
+        options={{title: 'Food Name'}}
       />
       <Stack.Screen
         name="CropLocation"
         component={NewCropLocationScreen}
-        options={{title: 'Add Food'}}
+        options={{title: 'Food Location'}}
       />
       <Stack.Screen
         name="CropLocationTest"
         component={NewCropLocationScreen}
-        options={{title: 'Add Food'}}
+        options={{title: 'Food Location'}}
       />
       <Stack.Screen
         name="CropBio"
         component={AddCropBioScreen}
-        options={{title: 'Add Food'}}
+        options={{title: 'Food Details'}}
       />
       <Stack.Screen
         name="AddComment"
@@ -135,7 +141,7 @@ export default function HomeStack() {
       <Stack.Screen
         name="AddCropInfo"
         component={AddCropInfoScreen}
-        options={{title: 'Info'}}
+        options={{title: 'Summary'}}
       />
       <Stack.Screen
         name="AddCropMap"
@@ -155,7 +161,7 @@ export default function HomeStack() {
       <Stack.Screen name="Friends" component={GrowerListScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="AccountSetup" component={AccountSetupScreen} />
-      <Stack.Screen name="AddCropPhoto" component={AddCropPhotoScreen} />
+      <Stack.Screen name="AddCropPhoto" component={AddCropPhotoScreen} options={{title: 'Add Photos'}}/>
       <Stack.Screen name="Comments" component={CommentsScreen} />
     </Stack.Navigator>
   );

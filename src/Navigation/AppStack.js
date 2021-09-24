@@ -56,7 +56,7 @@ export default function AppStack() {
           name="Friends"
           component={ChatStack}
           options={{
-            tabBarLabel: 'Growers',
+            tabBarLabel: 'Community',
             tabBarIcon: ({color, size}) => (
               <MaterialCommunityIcons
                 name="nature-people"

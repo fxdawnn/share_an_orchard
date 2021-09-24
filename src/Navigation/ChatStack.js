@@ -10,6 +10,7 @@ import store from '../Store';
 import {createStackNavigator} from '@react-navigation/stack';
 import UserProfileScreen from '../screens/UserProfileScreen';
 import ChatControlScreen from '../screens/UsersFunctions/ChatControl';
+import ChatList from '../screens/UsersFunctions/ChatList';
 const Stack = createStackNavigator();
 
 export default function ChatStack() {
@@ -50,7 +51,11 @@ export default function ChatStack() {
             </TouchableOpacity>
           ),
         })}>
-          <Stack.Screen name="ChatOptions" component={ChatControlScreen} />
+        <Stack.Screen
+          name="ChatOptions"
+          component={ChatControlScreen}
+          options={{title: 'Community'}}
+        />
         <Stack.Screen
           name="Users"
           component={Users}
@@ -58,6 +63,7 @@ export default function ChatStack() {
         />
         <Stack.Screen name="Friends" component={FriendListScreen} />
         <Stack.Screen name="Chat" component={Chat} />
+        <Stack.Screen name="Chats" component={ChatList} />
         <Stack.Screen name="Grower Profile" component={UserProfileScreen} />
       </Stack.Navigator>
     </Provider>

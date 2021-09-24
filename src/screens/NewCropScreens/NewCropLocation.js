@@ -192,7 +192,7 @@ export default class NewCropLocation extends Component {
                 }*/}>
                 <Marker
                   coordinate={this.state.location}
-                  title={'New Crop Location'}
+                  title={'New Food Location'}
                   onSelect={(e) => log('onSelect', e)}
                   onDrag={(e) => log('onDrag', e)}
                   onDragStart={(e) => log('onDragStart', e)}
@@ -211,7 +211,7 @@ export default class NewCropLocation extends Component {
               <View style={styles.body}>
                 <View style={styles.sectionContainer}>
                   <Text style={styles.highlight}>
-                    Drag the pin to locate the crop
+                    Drag the pin to locate the Food
                   </Text>
                 </View>
               </View>
@@ -221,6 +221,7 @@ export default class NewCropLocation extends Component {
                   <Text>Location: {this.state.location}</Text>
                 </TouchableOpacity>
               </View>*/}
+              <View style={styles.space}></View>
               <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={() => {
@@ -243,8 +244,9 @@ export default class NewCropLocation extends Component {
                   });
                 }}
                 underlayColor="#fff">
-                <Text style={styles.mainButtonText}> Add Crop </Text>
+                <Text style={styles.mainButtonText}> Confirm </Text>
               </TouchableOpacity>
+              <View style={styles.space}></View>
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -275,6 +277,10 @@ const styles = StyleSheet.create({
     height: 42,
     borderRadius: 22,
     backgroundColor: '#00BFFF',
+  },
+  space: {
+    width: 20, // or whatever size you need
+    height: 20,
   },
   mainButtonText: {
     fontFamily: 'Red Hat Display',

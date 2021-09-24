@@ -43,8 +43,8 @@ function TreeInfoScreen({route, navigation}) {
   });
 
   return (
-    <ScrollView>
-      <View style={styles.bg}>
+    <View style={styles.bg}>
+      <ScrollView>
         <View style={styles.space} />
         <View style={styles.headerContainer}>
           <View style={styles.headerColumn}>
@@ -78,7 +78,6 @@ function TreeInfoScreen({route, navigation}) {
               {item.privacy} / {item.option}
             </Text>
             <Text style={styles.description}>{item.description}</Text>
-            <View style={styles.space} />
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate('CropComments', {item: route.params.item})
@@ -94,7 +93,7 @@ function TreeInfoScreen({route, navigation}) {
                   receivingUser: receiver,
                 })
               }>
-              <Text>Send Message</Text>
+              <Text>Send Chat Message</Text>
             </TouchableOpacity>
             {/*<Text>{JSON.stringify(receiver)}</Text>
             <Text>USERS:{JSON.stringify(user.user)}</Text>*/}
@@ -111,12 +110,10 @@ function TreeInfoScreen({route, navigation}) {
               <Text>Add comments</Text>
             </TouchableOpacity>
             <View style={styles.space} />
-            <View style={styles.space} />
-            <View style={styles.space} />
           </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -249,7 +246,7 @@ const styles = StyleSheet.create({
   },
   userImage: {
     borderColor: '#FFF',
-    backgroundColor: "#737373",
+    backgroundColor: '#737373',
     borderRadius: 85,
     borderWidth: 3,
     height: 170,

@@ -33,7 +33,7 @@ export default function AddCropNameScreen({navigation}) {
               right: 10,
             },
             placeholder: {
-              color: '#00BFFF',
+              color: '#333333',
               fontSize: 20,
               fontWeight: 'bold',
             },
@@ -44,42 +44,44 @@ export default function AddCropNameScreen({navigation}) {
             console.log(setCropPrivacy(value));
           }}
           placeholder={{
-            label: 'Choose From list or input on your own?',
+            label: 'Choose From list',
             value: null,
           }}
           items={[
-            {label: 'Sapote', value: 'Sapote'},
-            {label: 'Fig', value: 'Fig'},
-            {label: 'Mulberry', value: 'Mulberry'},
-            {label: 'Guava', value: 'Guava'},
-            {label: 'Loquat', value: 'Loquat'},
+            {label: 'Others -- type below', value: 'null'},
             {label: 'Avocado', value: 'Avocado'},
-            {label: 'Macadamia', value: 'Macadamia'},
-            {label: 'Gooseberry', value: 'Gooseberry'},
-            {label: 'Carob', value: 'Carob'},
-            {label: 'Olive', value: 'Olive'},
-            {label: 'Chrimoya', value: 'Chrimoya'},
-            {label: 'Passionfruit', value: 'Passionfruit'},
-            {label: 'Pomegranate', value: 'Pomegranate'},
-            {label: 'Longan', value: 'Longan'},
-            {label: 'Jaboticaba', value: 'Jaboticaba'},
-            {label: 'Bean', value: 'Bean'},
-            {label: 'Cherry', value: 'Cherry'},
-            {label: 'Lilikoi', value: 'Lilikoi'},
             {label: 'Banana', value: 'Banana'},
-            {label: 'Lychee', value: 'Lychee'},
-            {label: 'Tomato', value: 'Tomato'},
+            {label: 'Bean', value: 'Bean'},
+            {label: 'Carob', value: 'Carob'},
+            {label: 'Chrimoya', value: 'Chrimoya'},
+            {label: 'Cherry', value: 'Cherry'},
             {label: 'Coffee', value: 'Coffee'},
             {label: 'Dragonfruit', value: 'Dragonfruit'},
-            {label: 'Mango', value: 'Mango'},
+            {label: 'Fig', value: 'Fig'},
             {label: 'Ginger', value: 'Ginger'},
-            {label: 'Turmeric', value: 'Turmeric'},
-            {label: 'Starfruit', value: 'Starfruit'},
-            {label: 'Papaya', value: 'Papaya'},
-            {label: 'Pineapple', value: 'Pineapple'},
-            {label: 'Peach', value: 'Peach'},
+            {label: 'Gooseberry', value: 'Gooseberry'},
+            {label: 'Guava', value: 'Guava'},
+            {label: 'Jaboticaba', value: 'Jaboticaba'},
+            {label: 'Lilikoi', value: 'Lilikoi'},
+            {label: 'Longan', value: 'Longan'},
+            {label: 'Loquat', value: 'Loquat'},
+            {label: 'Lychee', value: 'Lychee'},
+            {label: 'Macadamia', value: 'Macadamia'},
+            {label: 'Mango', value: 'Mango'},
+            {label: 'Mulberry', value: 'Mulberry'},
             {label: 'Nectarine', value: 'Nectarine'},
+            {label: 'Olive', value: 'Olive'},
+            {label: 'Papaya', value: 'Papaya'},
+            {label: 'Passionfruit', value: 'Passionfruit'},
+            {label: 'Peach', value: 'Peach'},
+            {label: 'Pineapple', value: 'Pineapple'},
             {label: 'Plum', value: 'Plum'},
+            {label: 'Pomegranate', value: 'Pomegranate'},
+            {label: 'Sapote', value: 'Sapote'},
+            {label: 'Starfruit', value: 'Starfruit'},
+            {label: 'Tomato', value: 'Tomato'},
+            {label: 'Turmeric', value: 'Turmeric'},
+            {label: 'Others -- type below', value: 'null'},
           ]}
           Icon={() => {
             return (
@@ -104,7 +106,7 @@ export default function AddCropNameScreen({navigation}) {
         <TextInput
           style={styles.inputBox}
           autoCorrect={true}
-          value={CropName}
+          //value={CropName}
           //onSubmitEditing={() => this.submitCropCommonName()}
           onChangeText={(CropCommonName) => {
             setCropName(CropCommonName);

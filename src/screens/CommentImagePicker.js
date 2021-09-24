@@ -11,7 +11,6 @@ import {
   Platform,
 } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-//import * as ImagePicker from 'react-native-image-picker';
 
 export default function CommentImageImagePicker(props) {
   const [imageSource, setImageSource] = useState(null);

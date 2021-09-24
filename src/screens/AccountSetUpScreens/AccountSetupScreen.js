@@ -21,18 +21,13 @@ export default function AccountSetupScreen({navigation, route}) {
   const [accountArea, setAccountArea] = useState(0);
   const [accountExperience, setAccountExperience] = useState(0);
   const onSubmit = (data) => console.log(data);
-  const experience = [
-    'New Green Thumb!',
-    'Veggie Grower',
-    'Fruit Planter',
-    'Fruit Whisperer',
-  ];
+  const experience = ['New Green Thumb!', 'Veggie Grower', 'Fruit Whisperer'];
   const availability = ['None', 'Balcony', 'Sidewalk', 'Yard'];
   return (
     <View style={styles.bg}>
-      <Text style={styles.titleText}>Account Settings</Text>
+      <Text style={styles.titleText}>Profile Settings</Text>
       <View style={{marginTop: 20}}>
-        <Text style={styles.smallText}>
+        <Text style={styles.mainButtonText}>
           How much experience you do you have for gardening?
         </Text>
         <Text style={styles.mainButtonText}>
@@ -45,7 +40,7 @@ export default function AccountSetupScreen({navigation, route}) {
             <Slider
               style={{width: Dimensions.get('window').width * 0.8, height: 40}}
               minimumValue={0}
-              maximumValue={3}
+              maximumValue={2}
               minimumTrackTintColor="#FFFFF0"
               maximumTrackTintColor="#FFFFF0"
               onValueChange={(sliderValue) => setAccountExperience(sliderValue)}
@@ -57,11 +52,9 @@ export default function AccountSetupScreen({navigation, route}) {
           control={control}
         />
         <Text style={styles.smallText}>
-          How much space do you have for growing food?
+          How much space do you have for growing?
         </Text>
-        <Text style={styles.mainButtonText}>
-          {availability[accountArea]}
-        </Text>
+        <Text style={styles.mainButtonText}>{availability[accountArea]}</Text>
         <Controller
           name="Land Area Available to Grow"
           defaultValue=""

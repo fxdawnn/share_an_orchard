@@ -10,6 +10,8 @@ import {
   Alert,
   TouchableHighlight,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {styles} from '../../styles';
@@ -23,9 +25,7 @@ export default function AddCropBioScreen({navigation, route}) {
   const [text, setText] = useState('');
   return (
     <View style={styles.bg}>
-      <Text style={styles.mainButtonText}>
-        Crop Bio(Tell us about the crop!)
-      </Text>
+      <Text style={styles.mainButtonText}>Food Details</Text>
       <View>
         <TextInput
           style={{
@@ -34,15 +34,20 @@ export default function AddCropBioScreen({navigation, route}) {
             borderColor: '#00BFFF',
             borderWidth: 1,
             fontSize: 16,
+            color: '#333333',
           }}
           placeholder="Tell us about the food! (e.g. This is a great banana and text me before picking up.)"
+          placeholderTextColor="#666"
           onChangeText={(text) => setInfo(text)}
           defaultValue={text}
           multiline={true}
           numberOfLines={7}
         />
       </View>
-      <View style={{marginTop: 20}}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : null}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 150 : 0}
+        style={{marginTop: 20}}>
         <TouchableOpacity
           style={styles.buttonContainer}
           onPress={() =>
@@ -57,7 +62,7 @@ export default function AddCropBioScreen({navigation, route}) {
           underlayColor="#fff">
           <Text style={styles.mainButtonText}> Next </Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 }
